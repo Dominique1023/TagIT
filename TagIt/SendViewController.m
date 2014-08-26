@@ -12,7 +12,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet UITextField *typedMessage;
 @property (strong, nonatomic) IBOutlet UITextField *receivingUser;
-
+@property NSData *data;
 
 @end
 
@@ -27,6 +27,7 @@
 
 }
 
+#pragma mark UIIMAGEPICKER DELEGEATE METHODS
 -(void)whatSourceType{
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Device Has No Camera" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -47,12 +48,27 @@
     [self presentViewController:picker animated:YES completion:nil];
 }
 
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    self.imageView.image = chosenImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 - (IBAction)sendOnVentButtonPressed:(id)sender {
 
     PFObject * message = [PFObject objectWithClassName:@"Message"];
     message[@"text"] = self.typedMessage.text;
     message[@"from"] = [PFUser currentUser];
     message[@"to"] = self.receivingUser.text;
+    message[@"photo"] = self.imageView.image;
+
+    NSLog(@"%@", message[@"photo"]);
 
     [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
