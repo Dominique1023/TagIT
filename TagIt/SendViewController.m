@@ -43,6 +43,7 @@
     picker.delegate = self;
     picker.allowsEditing = YES;
     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+   // picker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:picker.sourceType];
 
     [self presentViewController:picker animated:YES completion:nil];
 }
@@ -69,7 +70,6 @@
 
     UIImage * image = self.imageView.image;
     NSData *imageData = UIImageJPEGRepresentation(image, 0.06);
-
     PFFile *file = [PFFile fileWithData:imageData];
 
     [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
