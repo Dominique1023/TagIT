@@ -18,12 +18,11 @@
 
 @implementation SendViewController
 
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self whatSourceType];
+    [self.receivingUser setAutocorrectionType:UITextAutocorrectionTypeNo];
 
 }
 
@@ -66,14 +65,20 @@
     message[@"text"] = self.typedMessage.text;
     message[@"from"] = [PFUser currentUser];
     message[@"to"] = self.receivingUser.text;
-    message[@"photo"] = self.imageView.image;
 
-    NSLog(@"%@", message[@"photo"]);
 
-    [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (error) {
-            NSLog(@"%@", [error userInfo]);
-        }
+    UIImage * image = self.imageView.image;
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.06);
+
+    PFFile *file = [PFFile fileWithData:imageData];
+
+    [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        message[@"photo"] = file;
+        [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (error) {
+                NSLog(@"%@", [error userInfo]);
+            }
+        }];
     }];
 }
 

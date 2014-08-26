@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
 
-  // [self.licensePlate setAutocorrectionType:UITextAutocorrectionTypeNo];
+   [self.licensePlate setAutocorrectionType:UITextAutocorrectionTypeNo];
     self.createAccount.hidden = YES;
     self.emailField.hidden = YES;
     
@@ -75,7 +75,6 @@
             self.emailField.hidden = YES;
         }];
     }
-
 }
 
 - (IBAction)onLogInTapped:(UIButton *)sender
@@ -113,8 +112,7 @@
 
         [self.user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error) {
-
-               // [self performSegueWithIdentifier:@"initialSegue" sender:self];
+                [self performSegueWithIdentifier:@"initialSegue" sender:self];
             }else {
                 NSString *errorString = [[error userInfo] objectForKey:@"error"];
                 UIAlertView *signupError = [[UIAlertView alloc] initWithTitle:@"Opps!"
