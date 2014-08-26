@@ -7,6 +7,7 @@
 //
 
 #import "LogInViewController.h"
+#import "SendViewController.h"
 
 @interface LogInViewController () <UIAlertViewDelegate>
 
@@ -16,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *logInLabel;
 @property (weak, nonatomic) IBOutlet UIButton *createAccount;
 @property (weak, nonatomic) IBOutlet UIButton *logIn;
+@property  PFUser *user;
 
 @end
 
@@ -85,7 +87,7 @@
                                         block:^(PFUser *user, NSError *error) {
                                             if (user) {
                                                 NSLog(@"User logged in");
-                                                //[self performSegueWithIdentifier:@"initialSegue" sender:self];
+                                                [self performSegueWithIdentifier:@"initialSegue" sender:self];
                                             } else {
                                                 NSLog(@"User can not log in");
 
@@ -97,18 +99,19 @@
 
                                                 self.licensePlate.text = @"";
                                                 self.passwordField.text = @"";
+
                                             }
                                         }];
 }
 
 - (IBAction)onCreateNewAccount:(UIButton *)sender
 {
-        PFUser *user = [PFUser user];
-        user.username = self.licensePlate.text;
-        user.password = self.passwordField.text;
-        user.email = self.emailField.text;
+        self.user = [PFUser user];
+        self.user.username = self.licensePlate.text;
+        self.user.password = self.passwordField.text;
+        self.user.email = self.emailField.text;
 
-        [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [self.user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error) {
 
                // [self performSegueWithIdentifier:@"initialSegue" sender:self];
@@ -125,6 +128,8 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+
 
 }
 
