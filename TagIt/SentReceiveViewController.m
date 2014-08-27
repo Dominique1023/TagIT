@@ -23,7 +23,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self loadSentMessages];
-    [self receivedMessages];
+    [self loadReceivedMessages];
      self.receivedTableView.hidden = YES;
 
 }
