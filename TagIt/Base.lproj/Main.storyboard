@@ -170,7 +170,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="118" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jAv-fX-4FA">
-                                <rect key="frame" x="0.0" y="61" width="320" height="507"/>
+                                <rect key="frame" x="0.0" y="323" width="320" height="245"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellID" rowHeight="118" id="2EQ-Eg-qMb" customClass="SentTableViewCell">
@@ -184,7 +184,7 @@
                                                     <rect key="frame" x="10" y="9" width="100" height="100"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="User Message" translatesAutoresizingMaskIntoConstraints="NO" id="7lq-b7-exg">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="Sent Message" translatesAutoresizingMaskIntoConstraints="NO" id="7lq-b7-exg">
                                                     <rect key="frame" x="125" y="37" width="175" height="72"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -218,18 +218,58 @@
                                 </connections>
                             </tableView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="V6g-c3-wed">
-                                <rect key="frame" x="98" y="20" width="125" height="29"/>
+                                <rect key="frame" x="98" y="20" width="141" height="29"/>
                                 <segments>
                                     <segment title="Sent"/>
-                                    <segment title="Receive"/>
+                                    <segment title="Received"/>
                                 </segments>
+                                <connections>
+                                    <action selector="toggleControl:" destination="pf9-m1-AJi" eventType="valueChanged" id="fr7-7Z-9sX"/>
+                                </connections>
                             </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="98" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="c40-J3-rdb">
+                                <rect key="frame" x="0.0" y="67" width="320" height="219"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RCell" rowHeight="120" id="xOY-Lx-Uaw" customClass="ReceivedTableViewCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="120"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xOY-Lx-Uaw" id="ieE-As-ZBb">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Received Message" translatesAutoresizingMaskIntoConstraints="NO" id="pNb-Ok-21C">
+                                                    <rect key="frame" x="8" y="24" width="175" height="72"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tGg-Tp-miL">
+                                                    <rect key="frame" x="204" y="4" width="100" height="100"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="receivedImageView" destination="tGg-Tp-miL" id="lbz-tI-IGe"/>
+                                            <outlet property="receivedMessage" destination="pNb-Ok-21C" id="W6s-Vq-z96"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="pf9-m1-AJi" id="vyD-uW-DMn"/>
+                                    <outlet property="delegate" destination="pf9-m1-AJi" id="F6z-kn-Xxk"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="fBP-ty-Bfw"/>
                     <connections>
-                        <outlet property="tableView" destination="jAv-fX-4FA" id="l4U-iK-fos"/>
+                        <outlet property="receivedTableView" destination="c40-J3-rdb" id="jyd-l9-SKb"/>
+                        <outlet property="sentTableView" destination="jAv-fX-4FA" id="xZf-f3-ZqY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EyU-qf-eJ3" userLabel="First Responder" sceneMemberID="firstResponder"/>

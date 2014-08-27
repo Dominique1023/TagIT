@@ -36,6 +36,7 @@
 		5D0B43C719AD1F4A00B91F86 /* SentReceiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0B43C619AD1F4A00B91F86 /* SentReceiveViewController.m */; };
 		5D0B43CA19AD230100B91F86 /* SentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0B43C919AD230100B91F86 /* SentTableViewCell.m */; };
 		5DE3061519ACD7CB006E2DBF /* SendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE3061419ACD7CB006E2DBF /* SendViewController.m */; };
+		5DF66AA719AE494A002C9E1D /* ReceivedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF66AA619AE494A002C9E1D /* ReceivedTableViewCell.m */; };
 		965530A519AE1AA400697D37 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 080308B719ABBB1900199B95 /* Parse.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,8 @@
 		5D0B43C919AD230100B91F86 /* SentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SentTableViewCell.m; sourceTree = "<group>"; };
 		5DE3061319ACD7CB006E2DBF /* SendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendViewController.h; sourceTree = "<group>"; };
 		5DE3061419ACD7CB006E2DBF /* SendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendViewController.m; sourceTree = "<group>"; };
+		5DF66AA519AE494A002C9E1D /* ReceivedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceivedTableViewCell.h; sourceTree = "<group>"; };
+		5DF66AA619AE494A002C9E1D /* ReceivedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceivedTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,14 +176,16 @@
 			children = (
 				0889967B19ABD2CB001D3425 /* Images.xcassets */,
 				0803087B19ABB90C00199B95 /* Main.storyboard */,
-				5D0B43C519AD1F4A00B91F86 /* SentReceiveViewController.h */,
-				5D0B43C619AD1F4A00B91F86 /* SentReceiveViewController.m */,
-				5D0B43C819AD230100B91F86 /* SentTableViewCell.h */,
-				5D0B43C919AD230100B91F86 /* SentTableViewCell.m */,
 				080308B919ABBDAC00199B95 /* LogInViewController.h */,
 				080308BA19ABBDAC00199B95 /* LogInViewController.m */,
 				5DE3061319ACD7CB006E2DBF /* SendViewController.h */,
 				5DE3061419ACD7CB006E2DBF /* SendViewController.m */,
+				5D0B43C519AD1F4A00B91F86 /* SentReceiveViewController.h */,
+				5D0B43C619AD1F4A00B91F86 /* SentReceiveViewController.m */,
+				5D0B43C819AD230100B91F86 /* SentTableViewCell.h */,
+				5D0B43C919AD230100B91F86 /* SentTableViewCell.m */,
+				5DF66AA519AE494A002C9E1D /* ReceivedTableViewCell.h */,
+				5DF66AA619AE494A002C9E1D /* ReceivedTableViewCell.m */,
 				0803087019ABB90C00199B95 /* Supporting Files */,
 			);
 			path = TagIt;
@@ -321,6 +326,7 @@
 				5D0B43CA19AD230100B91F86 /* SentTableViewCell.m in Sources */,
 				5DE3061519ACD7CB006E2DBF /* SendViewController.m in Sources */,
 				0803087A19ABB90C00199B95 /* AppDelegate.m in Sources */,
+				5DF66AA719AE494A002C9E1D /* ReceivedTableViewCell.m in Sources */,
 				0803087619ABB90C00199B95 /* main.m in Sources */,
 				080308BB19ABBDAC00199B95 /* LogInViewController.m in Sources */,
 			);

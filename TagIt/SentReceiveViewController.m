@@ -8,10 +8,13 @@
 
 #import "SentReceiveViewController.h"
 #import "SentTableViewCell.h"
+#import "ReceivedTableViewCell.h"
 
 @interface SentReceiveViewController () <UITableViewDataSource, UITableViewDelegate>
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property NSArray *messages;
+@property (strong, nonatomic) IBOutlet UITableView *sentTableView;
+@property (strong, nonatomic) IBOutlet UITableView *receivedTableView;
+@property NSArray *receivedMessages;
+@property NSArray *sentMessages;
 
 @end
 
@@ -19,40 +22,81 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    [self loadMessages];
+    [self loadSentMessages];
+    [self receivedMessages];
+     self.receivedTableView.hidden = YES;
+
 }
 
--(void)loadMessages{
+-(void)loadSentMessages{
     //Tells which class to look at
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];
-
     [query whereKey:@"from" equalTo:[PFUser currentUser]];
-
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
 
-        self.messages = objects;
-        [self.tableView reloadData];
+        self.sentMessages = objects;
+        [self.sentTableView reloadData];
     }];
+}
 
+-(void)loadReceivedMessages{
+    //Tells which class to look at
+    PFQuery *query = [PFQuery queryWithClassName:@"Message"];
+    [query whereKey:@"to" equalTo:[PFUser currentUser].username];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+
+        self.receivedMessages = objects;
+        [self.receivedTableView reloadData];
+    }];
+}
+
+- (IBAction)toggleControl:(UISegmentedControl *)control {
+
+    if (control.selectedSegmentIndex == 0) {
+        self.receivedTableView.hidden = YES;
+        self.sentTableView.hidden = NO;
+
+    } else {
+        self.sentTableView.hidden = YES;
+           self.receivedTableView.hidden = NO;
+    }
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.messages.count;
+
+    if (self.sentTableView == tableView) {
+        return self.sentMessages.count;
+    } else{
+        return self.receivedMessages.count;
+    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    SentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID"];
 
-    PFObject *tempObject = [self.messages objectAtIndex:indexPath.row];
-    NSLog(@"%@", tempObject);
-    cell.userMessageView.text = tempObject[@"text"];
-    cell.receiverLabel.text = tempObject[@"to"];
+    if (tableView == self.sentTableView) {
+        SentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID"];
 
-    NSData * imageData = [tempObject[@"photo"] getData];
+        PFObject *tempObject = [self.sentMessages objectAtIndex:indexPath.row];
 
-    cell.myImageView.image = [UIImage imageWithData:imageData];
+        cell.userMessageView.text = tempObject[@"text"];
+        cell.receiverLabel.text = tempObject[@"to"];
 
-    return cell;
+        NSData * imageData = [tempObject[@"photo"] getData];
+
+        cell.myImageView.image = [UIImage imageWithData:imageData];
+
+        return cell;
+    } else {
+        ReceivedTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"RCell"];
+
+        PFObject *tempObject = [self.receivedMessages objectAtIndex:indexPath.row];
+        cell.receivedMessage.text = tempObject[@"text"];
+
+        NSData * imageData = [tempObject[@"photo"] getData];
+        cell.receivedImageView.image = [UIImage imageWithData:imageData];
+        return cell;
+    }
+
 }
 
 
