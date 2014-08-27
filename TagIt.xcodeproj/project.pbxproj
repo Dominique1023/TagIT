@@ -275,7 +275,7 @@
 				ORGANIZATIONNAME = MobileMakers;
 				TargetAttributes = {
 					0803086519ABB90C00199B95 = {
-						DevelopmentTeam = Q92J65ZBJQ;
+						DevelopmentTeam = 6VFN7544GC;
 					};
 					0803088619ABB90C00199B95 = {
 						TestTargetID = 0803086519ABB90C00199B95;
