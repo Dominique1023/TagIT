@@ -56,7 +56,6 @@
         NSLog(@"User needs to sign in");
     }else{
         NSLog(@"Automatically Signed User In");
-        NSLog(@"%@", [PFUser currentUser]);
         [self performSegueWithIdentifier:@"initialSegue" sender:self];
 
     }
