@@ -181,7 +181,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8EM-HC-f5D">
-                                                    <rect key="frame" x="10" y="9" width="272" height="100"/>
+                                                    <rect key="frame" x="10" y="9" width="100" height="100"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="User Message" translatesAutoresizingMaskIntoConstraints="NO" id="7lq-b7-exg">
@@ -218,7 +218,7 @@
                                 </connections>
                             </tableView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="V6g-c3-wed">
-                                <rect key="frame" x="99" y="14" width="125" height="29"/>
+                                <rect key="frame" x="98" y="20" width="125" height="29"/>
                                 <segments>
                                     <segment title="Sent"/>
                                     <segment title="Receive"/>
