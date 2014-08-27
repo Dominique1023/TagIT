@@ -45,6 +45,21 @@
         self.myView.center = CGPointMake(self.view.center.x, self.view.center.y + 100);
     }];
 
+
+
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:YES];
+
+    if (![PFUser currentUser]) {
+        NSLog(@"User needs to sign in");
+    }else{
+        NSLog(@"Automatically Signed User In");
+        [self performSegueWithIdentifier:@"initialSegue" sender:self];
+
+    }
+
 }
 
 - (IBAction)onSignUpButtonPressed:(UIButton *)sender

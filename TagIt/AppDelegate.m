@@ -15,6 +15,17 @@
     [Parse setApplicationId:@"LGoKQau3KAIoHY3aH201WncmAp4uOoNhe7nyCkqx"clientKey:@"iEJmwbIor8EqyCvZ4Jqsyu6VWv0gNpUN0t1xcODV"];
     //[PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
 
+//    if ([PFUser currentUser]) {
+//        NSLog(@"Automatically Signed User In");
+//        NSLog(@"username: %@    password: %@",[PFUser currentUser].username, [PFUser currentUser].password);
+//
+//        //[PFUser logInWithUsernameInBackground:[PFUser currentUser].username password:[PFUser currentUser].password];
+//    }else{
+//
+//        NSLog(@"User is not logged in");
+//    }
+
+
     return YES;
 }
 							
@@ -45,4 +56,9 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+
+
+-(void)automaticLogin{
+
+}
 @end
