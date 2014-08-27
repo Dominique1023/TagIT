@@ -9,7 +9,7 @@
 #import "LogInViewController.h"
 #import "SendViewController.h"
 
-@interface LogInViewController () <UIAlertViewDelegate>
+@interface LogInViewController () <UIAlertViewDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *licensePlate;
@@ -38,6 +38,7 @@
     [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillShowNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note)
      {
          self.myView.center = CGPointMake(self.view.center.x, self.view.center.y - 100);
+
      }];
 
     [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillHideNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
@@ -141,4 +142,9 @@
 
 }
 
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
 @end
