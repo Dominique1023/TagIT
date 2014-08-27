@@ -36,6 +36,7 @@
 		5D0B43C719AD1F4A00B91F86 /* SentReceiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0B43C619AD1F4A00B91F86 /* SentReceiveViewController.m */; };
 		5D0B43CA19AD230100B91F86 /* SentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0B43C919AD230100B91F86 /* SentTableViewCell.m */; };
 		5DE3061519ACD7CB006E2DBF /* SendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE3061419ACD7CB006E2DBF /* SendViewController.m */; };
+		965530A519AE1AA400697D37 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 080308B719ABBB1900199B95 /* Parse.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0803088B19ABB90C00199B95 /* UIKit.framework in Frameworks */,
+				965530A519AE1AA400697D37 /* Parse.framework in Frameworks */,
 				0803088A19ABB90C00199B95 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,6 +483,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TagIt/TagIt-Prefix.pch";
@@ -503,6 +506,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TagIt/TagIt-Prefix.pch";

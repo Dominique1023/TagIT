@@ -9,7 +9,7 @@
 #import "LogInViewController.h"
 #import "SendViewController.h"
 
-@interface LogInViewController () <UIAlertViewDelegate>
+@interface LogInViewController () <UIAlertViewDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *licensePlate;
@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *logInLabel;
 @property (weak, nonatomic) IBOutlet UIButton *createAccount;
 @property (weak, nonatomic) IBOutlet UIButton *logIn;
+@property (weak, nonatomic) IBOutlet UIView *myView;
 @property  PFUser *user;
 
 @end
@@ -33,6 +34,16 @@
     
     [self.passwordField setSecureTextEntry:YES];
     [self.passwordField setAutocorrectionType:UITextAutocorrectionTypeNo];
+
+    [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillShowNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note)
+     {
+         self.myView.center = CGPointMake(self.view.center.x, self.view.center.y - 100);
+
+     }];
+
+    [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillHideNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+        self.myView.center = CGPointMake(self.view.center.x, self.view.center.y + 100);
+    }];
 
 }
 
@@ -131,4 +142,9 @@
 
 }
 
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
 @end
