@@ -37,12 +37,12 @@
 
     [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillShowNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note)
      {
-         self.myView.center = CGPointMake(self.view.center.x, self.view.center.y - 100);
+         self.myView.center = CGPointMake(self.view.center.x, self.view.center.y - 15);
 
      }];
 
     [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillHideNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-        self.myView.center = CGPointMake(self.view.center.x, self.view.center.y + 100);
+        self.myView.center = CGPointMake(self.view.center.x, self.view.center.y + 15);
     }];
 
 
@@ -67,35 +67,61 @@
     if ([sender.titleLabel.text isEqualToString:@"Sign-Up"]) {
 
         [sender setTitle:@"Cancel" forState:UIControlStateNormal];
+        [sender setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
 
         [UIView animateWithDuration:1.2 animations:^{
-            self.createAccount.hidden = NO;
             self.logIn.hidden = YES;
-            self.logInLabel.transform = CGAffineTransformMakeTranslation(0, -105);
-            self.logInLabel.transform = CGAffineTransformMakeTranslation(0, -220);
+
+            self.logInLabel.transform = CGAffineTransformMakeTranslation(0, -90);
+            self.logInLabel.transform = CGAffineTransformMakeTranslation(0, -185);
+
+            self.emailField.transform = CGAffineTransformMakeTranslation(0, -60);
+            self.emailField.transform = CGAffineTransformMakeTranslation(0, -120);
+
+            self.licensePlate.transform = CGAffineTransformMakeTranslation(0, -60);
+            self.licensePlate.transform = CGAffineTransformMakeTranslation(0, -120);
+
+            self.passwordField.transform = CGAffineTransformMakeTranslation(0, -60);
+            self.passwordField.transform = CGAffineTransformMakeTranslation(0, -120);
+
             self.emailField.hidden = NO;
             self.emailField.alpha = 1;
             self.emailField.text = @"";
             self.licensePlate.text = @"";
             self.passwordField.text = @"";
             sender.enabled = NO;
+
         } completion:^(BOOL finished) {
             sender.enabled = YES;
+            self.createAccount.hidden = NO;
         }];
 
     } else {
 
         [sender setTitle:@"Sign-Up" forState:UIControlStateNormal];
+        [sender setTitleColor:[UIColor blueColor] forState:UIControlStateNormal]; 
 
         [UIView animateWithDuration:1.2 animations:^{
-            self.logInLabel.transform = CGAffineTransformMakeTranslation(0, -105);
+            self.logInLabel.transform = CGAffineTransformMakeTranslation(0, -90);
             self.logInLabel.transform = CGAffineTransformMakeTranslation(0, 5);
+
+            self.emailField.transform = CGAffineTransformMakeTranslation(0, -60);
+            self.emailField.transform = CGAffineTransformMakeTranslation(0, 5);
+
+            self.licensePlate.transform = CGAffineTransformMakeTranslation(0, -60);
+            self.licensePlate.transform = CGAffineTransformMakeTranslation(0, 5);
+
+            self.passwordField.transform = CGAffineTransformMakeTranslation(0, -60);
+            self.passwordField.transform = CGAffineTransformMakeTranslation(0, 5);
+
+
             self.emailField.alpha = 0;
             self.createAccount.hidden = YES;
             self.logIn.hidden = NO;
             sender.enabled = NO;
             self.licensePlate.text = @"";
             self.passwordField.text = @"";
+
         } completion:^(BOOL finished) {
             sender.enabled = YES;
             self.emailField.hidden = YES;

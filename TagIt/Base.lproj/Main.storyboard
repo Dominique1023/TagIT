@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Log In View Controller-->
@@ -24,29 +24,30 @@
                                 <rect key="frame" x="37" y="143" width="247" height="322"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ROAD RAGE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0Z-2W-UGb">
-                                        <rect key="frame" x="11" y="46" width="224" height="69"/>
+                                        <rect key="frame" x="11" y="43" width="224" height="69"/>
                                         <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="39"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="THl-mc-006">
-                                        <rect key="frame" x="48" y="66" width="150" height="30"/>
+                                        <rect key="frame" x="48" y="62" width="150" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="License Plate" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Jvq-2d-gNe">
-                                        <rect key="frame" x="48" y="104" width="150" height="30"/>
+                                        <rect key="frame" x="48" y="100" width="150" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pasword" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="zin-Cr-aS2">
-                                        <rect key="frame" x="48" y="142" width="150" height="30"/>
+                                        <rect key="frame" x="48" y="138" width="150" height="30"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1f-vO-ghT">
-                                        <rect key="frame" x="32" y="180" width="71" height="30"/>
+                                        <rect key="frame" x="48" y="170" width="71" height="30"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
                                         <state key="normal" title="Sign-Up">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -55,8 +56,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="blC-GY-dNK">
-                                        <rect key="frame" x="176" y="180" width="43" height="30"/>
+                                        <rect key="frame" x="141" y="170" width="57" height="30"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
                                         <state key="normal" title="Log In">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -64,8 +67,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v1d-kF-i1i">
-                                        <rect key="frame" x="70" y="205" width="107" height="30"/>
+                                        <rect key="frame" x="48" y="118" width="150" height="30"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
                                         <state key="normal" title="Create Account">
+                                            <color key="titleColor" red="0.30289303639749354" green="0.60447225765306123" blue="0.24719816834691699" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -92,7 +97,7 @@
             </objects>
             <point key="canvasLocation" x="837" y="402"/>
         </scene>
-        <!--Capture-->
+        <!--Send View Controller - Capture-->
         <scene sceneID="V9Y-cd-Sv6">
             <objects>
                 <viewController id="w1i-Ut-GCG" customClass="SendViewController" sceneMemberID="viewController">
@@ -157,7 +162,7 @@
             </objects>
             <point key="canvasLocation" x="1927" y="-287"/>
         </scene>
-        <!--Messages-->
+        <!--Sent Receive View Controller - Messages-->
         <scene sceneID="Yf9-6S-4tg">
             <objects>
                 <viewController id="pf9-m1-AJi" customClass="SentReceiveViewController" sceneMemberID="viewController">
@@ -307,7 +312,7 @@
             </objects>
             <point key="canvasLocation" x="2970" y="102"/>
         </scene>
-        <!--Settings-->
+        <!--Settings View Controller - Settings-->
         <scene sceneID="hqG-nt-E5N">
             <objects>
                 <viewController id="qDd-HJ-DYf" customClass="SettingsViewController" sceneMemberID="viewController">
@@ -366,13 +371,10 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4">
-            <size key="portraitSize" width="320" height="568"/>
-            <size key="landscapeSize" width="568" height="320"/>
-        </simulatedScreenMetrics>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Bmv-5N-dh4"/>
         <segue reference="B0d-wR-fw0"/>
+        <segue reference="r0G-hu-Lyv"/>
     </inferredMetricsTieBreakers>
 </document>
