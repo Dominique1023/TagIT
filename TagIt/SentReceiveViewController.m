@@ -9,6 +9,7 @@
 #import "SentReceiveViewController.h"
 #import "SentTableViewCell.h"
 #import "ReceivedTableViewCell.h"
+#import "ImageViewController.h"
 
 @interface SentReceiveViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *sentTableView;
@@ -96,6 +97,30 @@
         cell.receivedImageView.image = [UIImage imageWithData:imageData];
         return cell;
     }
+
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    ImageViewController * vc = segue.destinationViewController;
+
+    if ([segue.identifier isEqualToString:@"receivedPhotoSegue"]) {
+        NSIndexPath * indexPath = [self.receivedTableView indexPathForSelectedRow];
+
+        vc.object =  [self.receivedMessages objectAtIndex:indexPath.row];
+    }
+    else if ([segue.identifier isEqualToString:@"sentPhotoSegue"]){
+
+        NSIndexPath * indexPath = [self.sentTableView indexPathForSelectedRow];
+
+        vc.object =  [self.sentMessages objectAtIndex:indexPath.row];
+
+    }
+}
+
+-(IBAction)unwindFromFullPhoto:(id)sender
+{
+
 
 }
 

@@ -105,14 +105,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eDe-Jg-has">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="That Awesome Driver" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jt1-k6-Sky">
                                 <rect key="frame" x="76" y="37" width="212" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eDe-Jg-has">
-                                <rect key="frame" x="20" y="132" width="280" height="257"/>
-                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="                     Vent Here" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7F9-oi-urd">
                                 <rect key="frame" x="40" y="75" width="248" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -131,6 +131,7 @@
                                 </state>
                                 <connections>
                                     <action selector="sendOnVentButtonPressed:" destination="w1i-Ut-GCG" eventType="touchUpInside" id="NxE-NY-qBY"/>
+                                    <segue destination="Fny-Lf-hBd" kind="modal" id="Bmv-5N-dh4"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3yv-zO-DcN">
@@ -155,7 +156,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NCO-sc-z8L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1945" y="-286"/>
+            <point key="canvasLocation" x="1927" y="-287"/>
         </scene>
         <!--Sent Receive View Controller - Messages-->
         <scene sceneID="Yf9-6S-4tg">
@@ -169,8 +170,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="V6g-c3-wed">
+                                <rect key="frame" x="98" y="20" width="141" height="29"/>
+                                <segments>
+                                    <segment title="Sent"/>
+                                    <segment title="Received"/>
+                                </segments>
+                                <connections>
+                                    <action selector="toggleControl:" destination="pf9-m1-AJi" eventType="valueChanged" id="fr7-7Z-9sX"/>
+                                </connections>
+                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jAv-fX-4FA" userLabel="Table View Sent">
-                                <rect key="frame" x="0.0" y="56" width="320" height="512"/>
+                                <rect key="frame" x="0.0" y="50" width="320" height="518"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellID" rowHeight="120" id="2EQ-Eg-qMb" customClass="SentTableViewCell">
@@ -209,6 +220,7 @@
                                             <outlet property="myImageView" destination="8EM-HC-f5D" id="hND-tN-Pc6"/>
                                             <outlet property="receiverLabel" destination="POU-ea-Thh" id="mPx-Ly-EtA"/>
                                             <outlet property="userMessageView" destination="7lq-b7-exg" id="WYJ-uA-mgd"/>
+                                            <segue destination="nT4-os-u9C" kind="modal" identifier="sentPhotoSegue" id="X5y-IJ-7RE"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -217,18 +229,8 @@
                                     <outlet property="delegate" destination="pf9-m1-AJi" id="nCE-zI-IzZ"/>
                                 </connections>
                             </tableView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="V6g-c3-wed">
-                                <rect key="frame" x="98" y="20" width="141" height="29"/>
-                                <segments>
-                                    <segment title="Sent"/>
-                                    <segment title="Received"/>
-                                </segments>
-                                <connections>
-                                    <action selector="toggleControl:" destination="pf9-m1-AJi" eventType="valueChanged" id="fr7-7Z-9sX"/>
-                                </connections>
-                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="c40-J3-rdb" userLabel="Table View Received">
-                                <rect key="frame" x="0.0" y="56" width="320" height="512"/>
+                                <rect key="frame" x="0.0" y="50" width="320" height="518"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -255,6 +257,7 @@
                                         <connections>
                                             <outlet property="receivedImageView" destination="tGg-Tp-miL" id="lbz-tI-IGe"/>
                                             <outlet property="receivedMessage" destination="pNb-Ok-21C" id="W6s-Vq-z96"/>
+                                            <segue destination="nT4-os-u9C" kind="modal" identifier="receivedPhotoSegue" id="B0d-wR-fw0"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -267,6 +270,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Messages" id="fBP-ty-Bfw"/>
+                    <navigationItem key="navigationItem" id="VjR-Hg-Pvb"/>
                     <connections>
                         <outlet property="receivedTableView" destination="c40-J3-rdb" id="jyd-l9-SKb"/>
                         <outlet property="sentTableView" destination="jAv-fX-4FA" id="xZf-f3-ZqY"/>
@@ -274,7 +278,44 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EyU-qf-eJ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1927" y="1043"/>
+            <point key="canvasLocation" x="1927" y="402"/>
+        </scene>
+        <!--Image View Controller-->
+        <scene sceneID="Soc-qY-Ucz">
+            <objects>
+                <viewController id="nT4-os-u9C" customClass="ImageViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tlG-Id-dZD"/>
+                        <viewControllerLayoutGuide type="bottom" id="CHx-ax-6WL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tuf-ag-wIU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CFe-op-9Mp">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ye-hP-45x">
+                                <rect key="frame" x="137" y="462" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Fny-Lf-hBd" kind="modal" modalTransitionStyle="crossDissolve" id="AMJ-MD-8BE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="CFe-op-9Mp" id="fmb-aa-pa6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Vf-SA-dSq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2970" y="102"/>
         </scene>
         <!--Settings View Controller - Settings-->
         <scene sceneID="hqG-nt-E5N">
@@ -306,7 +347,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZZa-kV-IE4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1927" y="375"/>
+            <point key="canvasLocation" x="1927" y="1145"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="zVg-6d-xB9">
@@ -338,4 +379,8 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="Bmv-5N-dh4"/>
+        <segue reference="B0d-wR-fw0"/>
+    </inferredMetricsTieBreakers>
 </document>

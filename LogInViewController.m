@@ -109,7 +109,7 @@
         NSString *password = self.passwordField.text;
 
         [PFUser logInWithUsernameInBackground:username password:password
-                                        block:^(PFUser *user, NSError *error) {
+            block:^(PFUser *user, NSError *error) {
                                             if (user) {
                                                 NSLog(@"User logged in");
                                                 [self performSegueWithIdentifier:@"initialSegue" sender:self];

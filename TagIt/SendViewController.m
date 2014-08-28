@@ -35,7 +35,6 @@
     }else{
         return;
     }
-
 }
 
 - (IBAction)onTakePhotoButtonPressed:(id)sender {
@@ -67,9 +66,8 @@
     message[@"from"] = [PFUser currentUser];
     message[@"to"] = self.receivingUser.text;
 
-
     UIImage * image = self.imageView.image;
-    NSData *imageData = UIImageJPEGRepresentation(image, 0.06);
+    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
     PFFile *file = [PFFile fileWithData:imageData];
 
     [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
