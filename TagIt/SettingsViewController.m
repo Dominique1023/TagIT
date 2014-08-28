@@ -21,7 +21,7 @@
 
 }
 
-- (IBAction)logOutOnButtonPressed:(id)sender
+- (IBAction)logOutOnButtonPressed:(id)sen
 {
 
     [PFUser logOut];
