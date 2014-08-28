@@ -110,7 +110,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eDe-Jg-has">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="20" y="144" width="280" height="280"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="That Awesome Driver" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jt1-k6-Sky">
                                 <rect key="frame" x="76" y="37" width="212" height="30"/>
@@ -374,7 +374,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="Bmv-5N-dh4"/>
         <segue reference="B0d-wR-fw0"/>
-        <segue reference="r0G-hu-Lyv"/>
     </inferredMetricsTieBreakers>
 </document>
