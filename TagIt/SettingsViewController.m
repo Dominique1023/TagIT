@@ -11,6 +11,7 @@
 @interface SettingsViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *blockedUserTextField;
 @property NSMutableArray *blockedUsers;
+@property (weak, nonatomic) IBOutlet UILabel *userLabel;
 
 @end
 
@@ -18,6 +19,8 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+
+    [self showUserLoggedInLabel];
 }
 
 - (IBAction)logOutOnButtonPressed:(id)sen{
@@ -38,6 +41,11 @@
     user[@"blockedUsers"] = self.blockedUsers;
 
     [user saveInBackground];
+}
+
+-(void)showUserLoggedInLabel{
+    PFUser *user = [PFUser currentUser];
+    self.userLabel.text = user.username;
 }
 
 @end

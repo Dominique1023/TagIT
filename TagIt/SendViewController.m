@@ -8,7 +8,7 @@
 
 #import "SendViewController.h"
 
-@interface SendViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface SendViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet UITextField *typedMessage;
 @property (strong, nonatomic) IBOutlet UITextField *receivingLicensePlate;
@@ -22,6 +22,16 @@
     [super viewDidLoad];
     [self whatSourceType];
     [self.receivingLicensePlate setAutocorrectionType:UITextAutocorrectionTypeNo];
+
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(textFieldShouldReturn:)];
+    [self.view addGestureRecognizer:tap];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.typedMessage resignFirstResponder];
+    [self.receivingLicensePlate resignFirstResponder];
+
+    return YES;
 }
 
 - (IBAction)sendOnVentButtonPressed:(id)sender{

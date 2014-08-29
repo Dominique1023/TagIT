@@ -25,7 +25,9 @@
     [super viewDidLoad];
     [self loadSentMessages];
     [self loadReceivedMessages];
-     self.receivedTableView.hidden = YES;
+
+    self.receivedTableView.hidden = YES;
+
 }
 
 #pragma mark QUERYING FOR MESSAGES SENT AND RECEIVED
@@ -33,6 +35,10 @@
 -(void)loadSentMessages{
     //Tells which class to look at
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];
+
+    // Retrieve the most recent ones
+    [query orderByDescending:@"createdAt"];
+
     [query whereKey:@"from" equalTo:[PFUser currentUser]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
 
@@ -45,6 +51,10 @@
     //Tells which class to look at
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];
     [query whereKey:@"to" equalTo:[PFUser currentUser].username];
+
+    // Retrieve the most recent ones
+    [query orderByDescending:@"createdAt"];
+
     [query includeKey:@"from"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
 
@@ -111,8 +121,6 @@
 
 }
 
-#pragma mark MISC METHODS 
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     ImageViewController * vc = segue.destinationViewController;
 
@@ -130,10 +138,14 @@
     if (control.selectedSegmentIndex == 0) {
         self.receivedTableView.hidden = YES;
         self.sentTableView.hidden = NO;
+
     }else{
         self.sentTableView.hidden = YES;
         self.receivedTableView.hidden = NO;
     }
 }
+
+
+
 
 @end
