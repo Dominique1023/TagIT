@@ -16,9 +16,9 @@
 
 @implementation ImageViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
+    
     NSData * imageData = [self.object[@"photo"] getData];
     self.imageView.image = [UIImage imageWithData:imageData];
 }

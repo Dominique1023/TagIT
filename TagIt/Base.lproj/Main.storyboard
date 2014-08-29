@@ -135,7 +135,6 @@
                                 </state>
                                 <connections>
                                     <action selector="sendOnVentButtonPressed:" destination="w1i-Ut-GCG" eventType="touchUpInside" id="NxE-NY-qBY"/>
-                                    <segue destination="Fny-Lf-hBd" kind="modal" id="Bmv-5N-dh4"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3yv-zO-DcN">
@@ -154,8 +153,9 @@
                     <navigationItem key="navigationItem" id="1KD-kY-8j0"/>
                     <connections>
                         <outlet property="imageView" destination="eDe-Jg-has" id="Mhi-qf-HGh"/>
-                        <outlet property="receivingUser" destination="jt1-k6-Sky" id="WCw-Vr-QaT"/>
+                        <outlet property="receivingLicensePlate" destination="jt1-k6-Sky" id="s2n-8t-B7h"/>
                         <outlet property="typedMessage" destination="7F9-oi-urd" id="LeH-Lz-Ia4"/>
+                        <segue destination="Fny-Lf-hBd" kind="modal" identifier="ventPressed" id="z9V-Hc-FNm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NCO-sc-z8L" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -393,7 +393,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="z9V-Hc-FNm"/>
         <segue reference="B0d-wR-fw0"/>
-        <segue reference="r0G-hu-Lyv"/>
     </inferredMetricsTieBreakers>
 </document>

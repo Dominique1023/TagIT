@@ -16,22 +16,15 @@
 
 @implementation SettingsViewController
 
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
-
 }
 
-- (IBAction)logOutOnButtonPressed:(id)sen
-{
-
+- (IBAction)logOutOnButtonPressed:(id)sen{
     [PFUser logOut];
-   
 }
 
-- (IBAction)onBlockUserButtonPressed:(id)sender
-{
+- (IBAction)onBlockUserButtonPressed:(id)sender{
     PFUser *user = [PFUser currentUser];
 
     if (user[@"blockedUsers"]) {
@@ -41,14 +34,10 @@
     }
 
     NSString *blockedUserString = self.blockedUserTextField.text;
-
     [self.blockedUsers insertObject:blockedUserString atIndex:0];
-
     user[@"blockedUsers"] = self.blockedUsers;
 
     [user saveInBackground];
 }
-
-
 
 @end

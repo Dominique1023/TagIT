@@ -18,14 +18,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *createAccount;
 @property (weak, nonatomic) IBOutlet UIButton *logIn;
 @property (weak, nonatomic) IBOutlet UIView *myView;
-@property  PFUser *user;
+
 
 @end
 
 @implementation LogInViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
 
     [self.licensePlate setAutocorrectionType:UITextAutocorrectionTypeNo];
@@ -35,23 +34,19 @@
     [self.passwordField setSecureTextEntry:YES];
     [self.passwordField setAutocorrectionType:UITextAutocorrectionTypeNo];
 
-    [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillShowNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note)
-     {
+    [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillShowNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note){
          self.myView.center = CGPointMake(self.view.center.x, self.view.center.y - 15);
-
      }];
 
     [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillHideNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
         self.myView.center = CGPointMake(self.view.center.x, self.view.center.y + 15);
     }];
-
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
+-(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:YES];
 
-    if (![PFUser currentUser]) {
+    if (![PFUser currentUser]){
         NSLog(@"User needs to sign in");
     }else{
         NSLog(@"Automatically Signed User In");
@@ -59,9 +54,10 @@
     }
 }
 
-- (IBAction)onSignUpButtonPressed:(UIButton *)sender
-{
-    if ([sender.titleLabel.text isEqualToString:@"Sign-Up"]) {
+#pragma mark LOGING AND SIGNING UP
+
+- (IBAction)onSignUpButtonPressed:(UIButton *)sender{
+    if ([sender.titleLabel.text isEqualToString:@"Sign-Up"]){
 
         [sender setTitle:@"Cancel" forState:UIControlStateNormal];
         [sender setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
@@ -88,13 +84,11 @@
             self.passwordField.text = @"";
             sender.enabled = NO;
 
-        } completion:^(BOOL finished) {
+        }completion:^(BOOL finished){
             sender.enabled = YES;
             self.createAccount.hidden = NO;
         }];
-
-    } else {
-
+    }else{
         [sender setTitle:@"Sign-Up" forState:UIControlStateNormal];
         [sender setTitleColor:[UIColor blueColor] forState:UIControlStateNormal]; 
 
@@ -119,66 +113,57 @@
             self.licensePlate.text = @"";
             self.passwordField.text = @"";
 
-        } completion:^(BOOL finished) {
+        }completion:^(BOOL finished){
             sender.enabled = YES;
             self.emailField.hidden = YES;
         }];
     }
 }
 
-- (IBAction)onLogInTapped:(UIButton *)sender
-{
+- (IBAction)onLogInTapped:(UIButton *)sender{
     NSString  *username = self.licensePlate.text;
     NSString *password = self.passwordField.text;
 
-    [PFUser logInWithUsernameInBackground:username password:password
-        block:^(PFUser *user, NSError *error) {
-                                        if (user) {
-                                            NSLog(@"User logged in");
-                                            [self performSegueWithIdentifier:@"initialSegue" sender:self];
-                                        } else {
-                                            NSLog(@"User can not log in");
+    [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser *user, NSError *error) {
+        if (user) {
+            NSLog(@"User logged in");
+            [self performSegueWithIdentifier:@"initialSegue" sender:self];
+        }else{
+            NSLog(@"User can not log in");
 
-                                            UIAlertView *signupError = [[UIAlertView alloc] initWithTitle:@"Opps!"
-                                                                                                  message:[NSString stringWithFormat:@"Invalid Plate &/or Password"]
-                                                                                                 delegate:self cancelButtonTitle:@"Retry"
-                                                                                        otherButtonTitles:nil, nil];
-                                            [signupError show];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Opps!" message:[NSString stringWithFormat:@"Invalid Plate &/or Password"] delegate:self cancelButtonTitle:@"Retry" otherButtonTitles:nil, nil];
+            [alertView show];
 
-                                            self.licensePlate.text = @"";
-                                            self.passwordField.text = @"";
-
-                                        }
-                                    }];
+            self.licensePlate.text = @"";
+            self.passwordField.text = @"";
+        }
+    }];
 }
 
-- (IBAction)onCreateNewAccount:(UIButton *)sender
-{
-    self.user = [PFUser user];
-    self.user.username = self.licensePlate.text;
-    self.user.password = self.passwordField.text;
-    self.user.email = self.emailField.text;
+- (IBAction)onCreateNewAccount:(UIButton *)sender{
+    PFUser *user = [PFUser user];
+    user.username = self.licensePlate.text;
+    user.password = self.passwordField.text;
+    user.email = self.emailField.text;
 
-    [self.user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
+    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+        if (!error){
             [self performSegueWithIdentifier:@"initialSegue" sender:self];
-        }else {
+        }else{
             NSString *errorString = [[error userInfo] objectForKey:@"error"];
-            UIAlertView *signupError = [[UIAlertView alloc] initWithTitle:@"Opps!"
-                                        message:[NSString stringWithFormat:@"Looks like we have a small issue: %@", errorString]
-                                        delegate:self cancelButtonTitle:@"Continue"
-                                        otherButtonTitles:nil, nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Opps!" message:[NSString stringWithFormat:@"Looks like we have a small issue: %@", errorString] delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil, nil];
 
-            [signupError show];
+            [alertView show];
          }
     }];
 }
 
+#pragma mark TEXTFEILD DELEGATES 
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
+
     return YES;
 }
-
 
 @end
