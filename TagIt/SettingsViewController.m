@@ -8,10 +8,12 @@
 
 #import "SettingsViewController.h"
 
-@interface SettingsViewController ()
+@interface SettingsViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *blockedUserTextField;
 @property NSMutableArray *blockedUsers;
 @property (weak, nonatomic) IBOutlet UILabel *userLabel;
+@property (weak, nonatomic) IBOutlet UITextField *changeEmailTextField;
+
 
 @end
 
@@ -21,6 +23,10 @@
     [super viewDidLoad];
 
     [self showUserLoggedInLabel];
+
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(textFieldShouldReturn:)];
+
+    [self.view addGestureRecognizer:tap];
 }
 
 - (IBAction)logOutOnButtonPressed:(id)sen{
@@ -46,6 +52,44 @@
 -(void)showUserLoggedInLabel{
     PFUser *user = [PFUser currentUser];
     self.userLabel.text = user.username;
+}
+
+- (IBAction)onChangePasswordButtonChanged:(id)sender{
+    PFUser *user = [PFUser currentUser];
+
+    [PFUser requestPasswordResetForEmailInBackground:user.email block:^(BOOL succeeded, NSError *error) {
+        if (error) {
+            NSLog(@"%@", error.userInfo);
+        }else{
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:nil message:@"An e-mail will be sent shortly" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+
+            [alertView show];
+        }
+    }];
+
+
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.blockedUserTextField resignFirstResponder];
+    [self.changeEmailTextField resignFirstResponder];
+    
+    return YES;
+}
+
+- (IBAction)onChangeEmailButtonPressed:(id)sender{
+
+    self.changeEmailTextField.hidden = NO;
+
+    PFUser *user = [PFUser currentUser];
+
+    NSString *newEmail = self.changeEmailTextField.text;
+    NSLog(@"%@", newEmail);
+
+    [user setEmail:newEmail];
+    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        NSLog(@"email changed");
+    }];
 }
 
 @end
