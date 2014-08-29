@@ -14,7 +14,7 @@
 @interface SentReceiveViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *sentTableView;
 @property (strong, nonatomic) IBOutlet UITableView *receivedTableView;
-@property NSArray *receivedMessages;
+@property NSMutableArray *receivedMessages;
 @property NSArray *sentMessages;
 
 @end
@@ -44,12 +44,38 @@
     //Tells which class to look at
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];
     [query whereKey:@"to" equalTo:[PFUser currentUser].username];
+    [query includeKey:@"from"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
 
-        self.receivedMessages = objects;
+        self.receivedMessages = objects.mutableCopy;
+
+        PFUser * user = [PFUser currentUser];
+
+        NSMutableArray * blockedUsers = user[@"blockedUsers"];
+        NSLog(@" blocked users %@", blockedUsers);
+
+        for (int i = 0; i < blockedUsers.count; i++) {
+
+            for (int y =0; y < self.receivedMessages.count; y++) {
+
+                PFObject * message = [self.receivedMessages objectAtIndex:y];
+
+                PFUser * bUser = message [@"from"];
+
+                if ([[blockedUsers objectAtIndex:i] isEqualToString:bUser.username]){
+
+                    [self.receivedMessages removeObjectAtIndex:y];
+
+                }
+            }
+        }
+
         [self.receivedTableView reloadData];
     }];
 }
+
+
+
 
 - (IBAction)toggleControl:(UISegmentedControl *)control {
 

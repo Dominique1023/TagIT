@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
 
-   [self.licensePlate setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [self.licensePlate setAutocorrectionType:UITextAutocorrectionTypeNo];
     self.createAccount.hidden = YES;
     self.emailField.hidden = YES;
     
@@ -45,11 +45,10 @@
         self.myView.center = CGPointMake(self.view.center.x, self.view.center.y + 15);
     }];
 
-
-
 }
 
--(void)viewDidAppear:(BOOL)animated{
+-(void)viewDidAppear:(BOOL)animated
+{
     [super viewDidAppear:YES];
 
     if (![PFUser currentUser]) {
@@ -57,9 +56,7 @@
     }else{
         NSLog(@"Automatically Signed User In");
         [self performSegueWithIdentifier:@"initialSegue" sender:self];
-
     }
-
 }
 
 - (IBAction)onSignUpButtonPressed:(UIButton *)sender
@@ -131,50 +128,50 @@
 
 - (IBAction)onLogInTapped:(UIButton *)sender
 {
-        NSString  *username = self.licensePlate.text;
-        NSString *password = self.passwordField.text;
+    NSString  *username = self.licensePlate.text;
+    NSString *password = self.passwordField.text;
 
-        [PFUser logInWithUsernameInBackground:username password:password
-            block:^(PFUser *user, NSError *error) {
-                                            if (user) {
-                                                NSLog(@"User logged in");
-                                                [self performSegueWithIdentifier:@"initialSegue" sender:self];
-                                            } else {
-                                                NSLog(@"User can not log in");
+    [PFUser logInWithUsernameInBackground:username password:password
+        block:^(PFUser *user, NSError *error) {
+                                        if (user) {
+                                            NSLog(@"User logged in");
+                                            [self performSegueWithIdentifier:@"initialSegue" sender:self];
+                                        } else {
+                                            NSLog(@"User can not log in");
 
-                                                UIAlertView *signupError = [[UIAlertView alloc] initWithTitle:@"Opps!"
-                                                                                                      message:[NSString stringWithFormat:@"Invalid Plate &/or Password"]
-                                                                                                     delegate:self cancelButtonTitle:@"Retry"
-                                                                                            otherButtonTitles:nil, nil];
-                                                [signupError show];
+                                            UIAlertView *signupError = [[UIAlertView alloc] initWithTitle:@"Opps!"
+                                                                                                  message:[NSString stringWithFormat:@"Invalid Plate &/or Password"]
+                                                                                                 delegate:self cancelButtonTitle:@"Retry"
+                                                                                        otherButtonTitles:nil, nil];
+                                            [signupError show];
 
-                                                self.licensePlate.text = @"";
-                                                self.passwordField.text = @"";
+                                            self.licensePlate.text = @"";
+                                            self.passwordField.text = @"";
 
-                                            }
-                                        }];
+                                        }
+                                    }];
 }
 
 - (IBAction)onCreateNewAccount:(UIButton *)sender
 {
-        self.user = [PFUser user];
-        self.user.username = self.licensePlate.text;
-        self.user.password = self.passwordField.text;
-        self.user.email = self.emailField.text;
+    self.user = [PFUser user];
+    self.user.username = self.licensePlate.text;
+    self.user.password = self.passwordField.text;
+    self.user.email = self.emailField.text;
 
-        [self.user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (!error) {
-                [self performSegueWithIdentifier:@"initialSegue" sender:self];
-            }else {
-                NSString *errorString = [[error userInfo] objectForKey:@"error"];
-                UIAlertView *signupError = [[UIAlertView alloc] initWithTitle:@"Opps!"
-                                            message:[NSString stringWithFormat:@"Looks like we have a small issue: %@", errorString]
-                                            delegate:self cancelButtonTitle:@"Continue"
-                                            otherButtonTitles:nil, nil];
+    [self.user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            [self performSegueWithIdentifier:@"initialSegue" sender:self];
+        }else {
+            NSString *errorString = [[error userInfo] objectForKey:@"error"];
+            UIAlertView *signupError = [[UIAlertView alloc] initWithTitle:@"Opps!"
+                                        message:[NSString stringWithFormat:@"Looks like we have a small issue: %@", errorString]
+                                        delegate:self cancelButtonTitle:@"Continue"
+                                        otherButtonTitles:nil, nil];
 
-                [signupError show];
-             }
-        }];
+            [signupError show];
+         }
+    }];
 }
 
 
