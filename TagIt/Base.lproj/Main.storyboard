@@ -135,7 +135,6 @@
                                 </state>
                                 <connections>
                                     <action selector="sendOnVentButtonPressed:" destination="w1i-Ut-GCG" eventType="touchUpInside" id="NxE-NY-qBY"/>
-                                    <segue destination="Fny-Lf-hBd" kind="modal" id="Bmv-5N-dh4"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3yv-zO-DcN">
@@ -154,8 +153,9 @@
                     <navigationItem key="navigationItem" id="1KD-kY-8j0"/>
                     <connections>
                         <outlet property="imageView" destination="eDe-Jg-has" id="Mhi-qf-HGh"/>
-                        <outlet property="receivingUser" destination="jt1-k6-Sky" id="WCw-Vr-QaT"/>
+                        <outlet property="receivingLicensePlate" destination="jt1-k6-Sky" id="s2n-8t-B7h"/>
                         <outlet property="typedMessage" destination="7F9-oi-urd" id="LeH-Lz-Ia4"/>
+                        <segue destination="Fny-Lf-hBd" kind="modal" identifier="ventPressed" id="z9V-Hc-FNm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NCO-sc-z8L" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -240,7 +240,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Received Message" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="pNb-Ok-21C">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Received Message" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="pNb-Ok-21C">
                                                     <rect key="frame" x="8" y="24" width="175" height="72"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -293,8 +293,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ye-hP-45x">
-                                <rect key="frame" x="137" y="462" width="46" height="30"/>
-                                <state key="normal" title="Button">
+                                <rect key="frame" x="143" y="464" width="35" height="30"/>
+                                <state key="normal" title="Back">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -350,12 +350,26 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wF3-I1-4dY">
+                                <rect key="frame" x="237" y="28" width="63" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User Logged In" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCR-Gf-5jk">
+                                <rect key="frame" x="20" y="28" width="122" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" id="WLh-Qk-s2f"/>
                     <connections>
                         <outlet property="blockedUserTextField" destination="Ovx-GQ-7Eu" id="9LQ-8r-dXl"/>
+                        <outlet property="userLabel" destination="sCR-Gf-5jk" id="thQ-un-iPt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZZa-kV-IE4" userLabel="First Responder" sceneMemberID="firstResponder"/>
