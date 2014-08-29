@@ -9,6 +9,8 @@
 #import "SettingsViewController.h"
 
 @interface SettingsViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *blockedUserTextField;
+@property NSMutableArray *blockedUsers;
 
 @end
 
@@ -26,6 +28,25 @@
 
     [PFUser logOut];
    
+}
+
+- (IBAction)onBlockUserButtonPressed:(id)sender
+{
+    PFUser *user = [PFUser currentUser];
+
+    if (user[@"blockedUsers"]) {
+        self.blockedUsers = user[@"blockedUsers"];
+    }else{
+        self.blockedUsers = [NSMutableArray new];
+    }
+
+    NSString *blockedUserString = self.blockedUserTextField.text;
+
+    [self.blockedUsers insertObject:blockedUserString atIndex:0];
+
+    user[@"blockedUsers"] = self.blockedUsers;
+
+    [user saveInBackground];
 }
 
 
