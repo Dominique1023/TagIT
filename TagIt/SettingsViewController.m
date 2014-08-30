@@ -78,9 +78,6 @@
 }
 
 - (IBAction)onChangeEmailButtonPressed:(id)sender{
-
-    self.changeEmailTextField.hidden = NO;
-
     PFUser *user = [PFUser currentUser];
 
     NSString *newEmail = self.changeEmailTextField.text;
@@ -89,7 +86,10 @@
     [user setEmail:newEmail];
     [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         NSLog(@"email changed");
+        NSLog(@"%@", newEmail);
     }];
+
+    self.changeEmailTextField.text = @""; 
 }
 
 @end

@@ -395,6 +395,7 @@
                     <tabBarItem key="tabBarItem" title="Settings" id="WLh-Qk-s2f"/>
                     <connections>
                         <outlet property="blockedUserTextField" destination="Ovx-GQ-7Eu" id="9LQ-8r-dXl"/>
+                        <outlet property="changeEmailTextField" destination="ebs-ls-f5A" id="DXG-Ga-1wB"/>
                         <outlet property="userLabel" destination="sCR-Gf-5jk" id="thQ-un-iPt"/>
                     </connections>
                 </viewController>
