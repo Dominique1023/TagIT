@@ -89,7 +89,7 @@
         NSLog(@"%@", newEmail);
     }];
 
-    self.changeEmailTextField.text = @""; 
+    self.changeEmailTextField.text = @"";
 }
 
 @end
