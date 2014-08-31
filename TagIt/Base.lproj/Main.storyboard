@@ -49,6 +49,7 @@
                                         <rect key="frame" x="48" y="170" width="71" height="30"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
                                         <state key="normal" title="Sign-Up">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -70,11 +71,23 @@
                                         <rect key="frame" x="48" y="118" width="150" height="30"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
                                         <state key="normal" title="Create Account">
-                                            <color key="titleColor" red="0.30289303639749354" green="0.60447225765306123" blue="0.24719816834691699" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="onCreateNewAccount:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="utW-P1-SbG"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E7N-5b-udL">
+                                        <rect key="frame" x="57" y="219" width="133" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                        <state key="normal" title="Forgot Password">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onForgotPasswordButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="B1o-6t-t2v"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -85,6 +98,7 @@
                     <connections>
                         <outlet property="createAccount" destination="v1d-kF-i1i" id="HoI-8W-rrp"/>
                         <outlet property="emailField" destination="THl-mc-006" id="ohz-YN-S8v"/>
+                        <outlet property="forgotPasswordButton" destination="E7N-5b-udL" id="ixe-PL-pEJ"/>
                         <outlet property="licensePlate" destination="Jvq-2d-gNe" id="Lcc-ML-91i"/>
                         <outlet property="logIn" destination="blC-GY-dNK" id="Jk5-7R-twi"/>
                         <outlet property="logInLabel" destination="v0Z-2W-UGb" id="NXe-gB-FoL"/>
@@ -434,7 +448,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="AMJ-MD-8BE"/>
+        <segue reference="r0G-hu-Lyv"/>
         <segue reference="B0d-wR-fw0"/>
     </inferredMetricsTieBreakers>
 </document>

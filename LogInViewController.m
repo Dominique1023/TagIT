@@ -18,7 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *createAccount;
 @property (weak, nonatomic) IBOutlet UIButton *logIn;
 @property (weak, nonatomic) IBOutlet UIView *myView;
-
+@property UIAlertView *forgotPasswordAlertView;
+@property (weak, nonatomic) IBOutlet UIButton *forgotPasswordButton;
 
 @end
 
@@ -41,8 +42,10 @@
     [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillHideNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
         self.myView.center = CGPointMake(self.view.center.x, self.view.center.y + 15);
     }];
-}
 
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(textFieldShouldReturn:)];
+    [self.view addGestureRecognizer:tap];
+}
 
 
 
@@ -57,6 +60,33 @@
     }
 }
 
+- (IBAction)onForgotPasswordButtonPressed:(id)sender {
+    self.forgotPasswordAlertView = [[UIAlertView alloc]initWithTitle:@"Enter Email Address" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Done", nil];
+
+    self.forgotPasswordAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField *alertTextField = [self.forgotPasswordAlertView textFieldAtIndex:0];
+    alertTextField.keyboardType = UIKeyboardTypeDefault;
+
+    [self.forgotPasswordAlertView show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex != self.forgotPasswordAlertView.cancelButtonIndex) {
+        NSString *email = [self.forgotPasswordAlertView textFieldAtIndex:0].text;
+        [PFUser requestPasswordResetForEmailInBackground:email block:^(BOOL succeeded, NSError *error) {
+            if (error) {
+                self.forgotPasswordAlertView = [[UIAlertView alloc]initWithTitle:@"Invalid Email" message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+
+                [self.forgotPasswordAlertView show];
+            }
+
+            NSLog(@"Changed email address with: %@", email);
+        }];
+    }
+}
+
+
+
 #pragma mark LOGING AND SIGNING UP
 
 - (IBAction)onSignUpButtonPressed:(UIButton *)sender{
@@ -67,6 +97,7 @@
 
         [UIView animateWithDuration:1.2 animations:^{
             self.logIn.hidden = YES;
+            self.forgotPasswordButton.hidden = YES;
 
             self.logInLabel.transform = CGAffineTransformMakeTranslation(0, -90);
             self.logInLabel.transform = CGAffineTransformMakeTranslation(0, -185);
@@ -112,6 +143,7 @@
             self.emailField.alpha = 0;
             self.createAccount.hidden = YES;
             self.logIn.hidden = NO;
+            self.forgotPasswordButton.hidden = NO;
             sender.enabled = NO;
             self.licensePlate.text = @"";
             self.passwordField.text = @"";
@@ -164,9 +196,12 @@
 #pragma mark TEXTFEILD DELEGATES 
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
+    [self.emailField resignFirstResponder];
+    [self.licensePlate resignFirstResponder];
+    [self.passwordField resignFirstResponder];
 
     return YES;
 }
+
 
 @end
