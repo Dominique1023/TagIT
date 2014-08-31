@@ -60,6 +60,8 @@
     }
 }
 
+#pragma mark FORGOT PASSWORD
+
 - (IBAction)onForgotPasswordButtonPressed:(id)sender {
     self.forgotPasswordAlertView = [[UIAlertView alloc]initWithTitle:@"Enter Email Address" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Done", nil];
 
@@ -84,8 +86,6 @@
         }];
     }
 }
-
-
 
 #pragma mark LOGING AND SIGNING UP
 

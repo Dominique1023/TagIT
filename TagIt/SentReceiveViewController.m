@@ -63,7 +63,6 @@
         PFUser * user = [PFUser currentUser];
 
         NSMutableArray * blockedUsers = user[@"blockedUsers"];
-        NSLog(@" blocked users %@", blockedUsers);
 
         for (int i = 0; i < blockedUsers.count; i++) {
             for (int y =0; y < self.receivedMessages.count; y++) {
@@ -81,11 +80,7 @@
     }];
 }
 
-
-
-
 #pragma mark TABLEVIEW DELEGATE AND DATASOURCE METHODS
-
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (self.sentTableView == tableView){
@@ -103,8 +98,9 @@
         cell.userMessageView.text = tempObject[@"text"];
         cell.receiverLabel.text = tempObject[@"to"];
 
-        NSData * imageData = [tempObject[@"photo"] getData];
-        cell.myImageView.image = [UIImage imageWithData:imageData];
+        [tempObject[@"photo"]getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+            cell.myImageView.image = [UIImage imageWithData:imageData];
+        }];
 
         return cell;
     }else{
@@ -113,12 +109,12 @@
         PFObject *tempObject = [self.receivedMessages objectAtIndex:indexPath.row];
         cell.receivedMessage.text = tempObject[@"text"];
 
-        NSData * imageData = [tempObject[@"photo"] getData];
-        cell.receivedImageView.image = [UIImage imageWithData:imageData];
+        [tempObject[@"photo"] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            cell.receivedImageView.image = [UIImage imageWithData:data];
+        }];
 
         return cell;
     }
-
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -138,14 +134,15 @@
     if (control.selectedSegmentIndex == 0) {
         self.receivedTableView.hidden = YES;
         self.sentTableView.hidden = NO;
+        [self loadSentMessages];
+
 
     }else{
         self.sentTableView.hidden = YES;
         self.receivedTableView.hidden = NO;
+        [self loadReceivedMessages];
     }
 }
-
-
 
 
 @end
