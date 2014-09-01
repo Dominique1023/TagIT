@@ -8,7 +8,11 @@
 
 #import "SendViewController.h"
 
-@interface SendViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
+@interface SendViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UIActionSheetDelegate>
+{
+    UIActionSheet * actionSheet;
+    UIImagePickerController * imagePicker;
+}
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet UITextField *typedMessage;
 @property (strong, nonatomic) IBOutlet UITextField *receivingLicensePlate;
@@ -86,13 +90,15 @@
 }
 
 - (IBAction)onTakePhotoButtonPressed:(id)sender{
-    UIImagePickerController *picker = [UIImagePickerController new];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    //picker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:picker.sourceType];
 
-    [self presentViewController:picker animated:YES completion:nil];
+    [self showPhotoMenu];
+//    UIImagePickerController *picker = [UIImagePickerController new];
+//    picker.delegate = self;
+//    picker.allowsEditing = YES;
+//    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+//    //picker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:picker.sourceType];
+//
+//    [self presentViewController:picker animated:YES completion:nil];
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
@@ -104,6 +110,54 @@
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - UIActionSheetDelegate
+-(void)actionSheet:(UIActionSheet *)theActionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 0) {
+        [self takePhoto];
+    }else if (buttonIndex ==1) {
+        [self choosePhotoFromLibrary];
+    }
+    actionSheet = nil;
+}
+
+-(void)takePhoto
+{
+    UIImagePickerController *picker = [UIImagePickerController new];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    [self presentViewController:picker animated:YES completion:nil];
+}
+
+-(void)choosePhotoFromLibrary
+{
+    imagePicker = [[UIImagePickerController alloc]init];
+    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    imagePicker.delegate = self;
+    imagePicker.allowsEditing = YES;
+    [self presentViewController:imagePicker animated:YES completion:nil];
+}
+-(void)showPhotoMenu
+{
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+
+        //UIActionSheet *actionSheet = [[UIActionSheet alloc]
+
+        actionSheet = [[UIActionSheet alloc]
+                       initWithTitle:nil
+                       delegate:self
+                       cancelButtonTitle:@"Cancel"
+                       destructiveButtonTitle:nil
+                       otherButtonTitles:@"Take Photo", @"Choose From Library", nil];
+
+        [actionSheet showInView:self.view];
+
+    }else {
+        [self choosePhotoFromLibrary];
+    }
 }
 
 @end

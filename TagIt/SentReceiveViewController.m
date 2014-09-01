@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *sentTableView;
 @property (strong, nonatomic) IBOutlet UITableView *receivedTableView;
 @property NSMutableArray *receivedMessages;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property NSArray *sentMessages;
 
 @end
@@ -26,6 +27,8 @@
     [self loadSentMessages];
     [self loadReceivedMessages];
 
+    //self.segmentedControl.backgroundColor = [UIColor whiteColor];
+    self.segmentedControl.tintColor = [UIColor whiteColor];
     self.receivedTableView.hidden = YES;
 
 }
