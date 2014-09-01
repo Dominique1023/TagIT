@@ -66,7 +66,6 @@
         PFUser * user = [PFUser currentUser];
 
         NSMutableArray * blockedUsers = user[@"blockedUsers"];
-        NSLog(@" blocked users %@", blockedUsers);
 
         for (int i = 0; i < blockedUsers.count; i++) {
             for (int y =0; y < self.receivedMessages.count; y++) {
@@ -106,8 +105,14 @@
         cell.userMessageView.text = tempObject[@"text"];
         cell.receiverLabel.text = tempObject[@"to"];
 
-        NSData * imageData = [tempObject[@"photo"] getData];
-        cell.myImageView.image = [UIImage imageWithData:imageData];
+//        NSData * imageData = [tempObject[@"photo"] getData];
+//        cell.myImageView.image = [UIImage imageWithData:imageData];
+
+
+        [tempObject[@"photo"] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            cell.imageView.image = [UIImage imageWithData:data];
+        }];
+
 
         return cell;
     }else{
@@ -116,8 +121,12 @@
         PFObject *tempObject = [self.receivedMessages objectAtIndex:indexPath.row];
         cell.receivedMessage.text = tempObject[@"text"];
 
-        NSData * imageData = [tempObject[@"photo"] getData];
-        cell.receivedImageView.image = [UIImage imageWithData:imageData];
+//        NSData * imageData = [tempObject[@"photo"] getData];
+//        cell.receivedImageView.image = [UIImage imageWithData:imageData];
+
+        [tempObject[@"photo"] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            cell.receivedImageView.image = [UIImage imageWithData:data];
+        }];
 
         return cell;
     }

@@ -16,10 +16,14 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UILabel *logInLabel;
 @property (weak, nonatomic) IBOutlet UIButton *createAccount;
-@property (weak, nonatomic) IBOutlet UIButton *logIn;
+@property (weak, nonatomic) IBOutlet UIButton *logInButton;
 @property (weak, nonatomic) IBOutlet UIView *myView;
 @property UIAlertView *forgotPasswordAlertView;
-@property (weak, nonatomic) IBOutlet UIButton *forgotPasswordButton;
+@property (weak, nonatomic) IBOutlet UILabel *forgotPasswordLabel;
+@property (weak, nonatomic) IBOutlet UITextField *forgotPasswordTextField;
+@property (weak, nonatomic) IBOutlet UIButton *signUpButton;
+@property (weak, nonatomic) IBOutlet UIButton *doneButton;
+
 
 @end
 
@@ -31,7 +35,10 @@
     [self.licensePlate setAutocorrectionType:UITextAutocorrectionTypeNo];
     self.createAccount.hidden = YES;
     self.emailField.hidden = YES;
-    
+    self.forgotPasswordLabel.hidden = YES;
+    self.forgotPasswordTextField.hidden = YES;
+    self.doneButton.hidden = YES;
+
     [self.passwordField setSecureTextEntry:YES];
     [self.passwordField setAutocorrectionType:UITextAutocorrectionTypeNo];
 
@@ -60,32 +67,15 @@
     }
 }
 
-- (IBAction)onForgotPasswordButtonPressed:(id)sender {
-    self.forgotPasswordAlertView = [[UIAlertView alloc]initWithTitle:@"Enter Email Address" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Done", nil];
-
-    self.forgotPasswordAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    UITextField *alertTextField = [self.forgotPasswordAlertView textFieldAtIndex:0];
-    alertTextField.keyboardType = UIKeyboardTypeDefault;
-
-    [self.forgotPasswordAlertView show];
-}
-
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex != self.forgotPasswordAlertView.cancelButtonIndex) {
-        NSString *email = [self.forgotPasswordAlertView textFieldAtIndex:0].text;
-        [PFUser requestPasswordResetForEmailInBackground:email block:^(BOOL succeeded, NSError *error) {
-            if (error) {
-                self.forgotPasswordAlertView = [[UIAlertView alloc]initWithTitle:@"Invalid Email" message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-
-                [self.forgotPasswordAlertView show];
-            }
-
-            NSLog(@"Changed email address with: %@", email);
-        }];
-    }
-}
-
-
+//- (IBAction)onForgotPasswordButtonPressed:(id)sender {
+//    self.forgotPasswordAlertView = [[UIAlertView alloc]initWithTitle:@"Enter Email Address" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Done", nil];
+//
+//    self.forgotPasswordAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+//    UITextField *alertTextField = [self.forgotPasswordAlertView textFieldAtIndex:0];
+//    alertTextField.keyboardType = UIKeyboardTypeDefault;
+//
+//    [self.forgotPasswordAlertView show];
+//}
 
 #pragma mark LOGING AND SIGNING UP
 
@@ -93,11 +83,10 @@
     if ([sender.titleLabel.text isEqualToString:@"Sign-Up"]){
 
         [sender setTitle:@"Cancel" forState:UIControlStateNormal];
-        [sender setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        [sender setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 
         [UIView animateWithDuration:1.2 animations:^{
-            self.logIn.hidden = YES;
-            self.forgotPasswordButton.hidden = YES;
+            self.logInButton.hidden = YES;
 
             self.logInLabel.transform = CGAffineTransformMakeTranslation(0, -90);
             self.logInLabel.transform = CGAffineTransformMakeTranslation(0, -185);
@@ -142,8 +131,7 @@
 
             self.emailField.alpha = 0;
             self.createAccount.hidden = YES;
-            self.logIn.hidden = NO;
-            self.forgotPasswordButton.hidden = NO;
+            self.logInButton.hidden = NO;
             sender.enabled = NO;
             self.licensePlate.text = @"";
             self.passwordField.text = @"";
@@ -166,12 +154,52 @@
         }else{
             NSLog(@"User can not log in");
 
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Opps!" message:[NSString stringWithFormat:@"Invalid Plate &/or Password"] delegate:self cancelButtonTitle:@"Retry" otherButtonTitles:nil, nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:[NSString stringWithFormat:@"The email or password you entered is incorrect."] delegate:self cancelButtonTitle:@"Retry" otherButtonTitles:@"Forgot password", nil];
             [alertView show];
 
             self.licensePlate.text = @"";
             self.passwordField.text = @"";
         }
+    }];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (!alertView.cancelButtonIndex) {
+        self.forgotPasswordLabel.hidden = NO;
+        self.forgotPasswordTextField.hidden = NO;
+        self.logInLabel.hidden = YES;
+        self.licensePlate.hidden = YES;
+        self.passwordField.hidden = YES;
+        self.logInButton.hidden = YES;
+        self.signUpButton.hidden = YES;
+        self.doneButton.hidden = NO;
+    }
+}
+
+- (IBAction)onDoneButtonPressed:(id)sender {
+    NSString *email = self.forgotPasswordTextField.text;
+
+    [PFUser requestPasswordResetForEmailInBackground:email block:^(BOOL succeeded, NSError *error) {
+
+        if (error) {
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Invalid Email Address Try Again" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
+
+            [alertView show];
+        } else {
+            self.forgotPasswordTextField.text = @"";
+
+            [self.forgotPasswordTextField resignFirstResponder];
+
+            self.forgotPasswordLabel.hidden = YES;
+            self.forgotPasswordTextField.hidden = YES;
+            self.logInLabel.hidden = NO;
+            self.licensePlate.hidden = NO;
+            self.passwordField.hidden = NO;
+            self.logInButton.hidden = NO;
+            self.signUpButton.hidden = NO;
+            self.doneButton.hidden = YES;
+        }
+
     }];
 }
 
@@ -186,7 +214,7 @@
             [self performSegueWithIdentifier:@"initialSegue" sender:self];
         }else{
             NSString *errorString = [[error userInfo] objectForKey:@"error"];
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Opps!" message:[NSString stringWithFormat:@"Looks like we have a small issue: %@", errorString] delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil, nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:[NSString stringWithFormat:@"Looks like we have a small issue: %@", errorString] delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil, nil];
 
             [alertView show];
          }
@@ -199,6 +227,7 @@
     [self.emailField resignFirstResponder];
     [self.licensePlate resignFirstResponder];
     [self.passwordField resignFirstResponder];
+    [self.forgotPasswordTextField resignFirstResponder];
 
     return YES;
 }

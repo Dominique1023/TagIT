@@ -14,7 +14,7 @@
     UIImagePickerController * imagePicker;
 }
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
-@property (strong, nonatomic) IBOutlet UITextField *typedMessage;
+@property (strong, nonatomic) IBOutlet UITextView *typedMessage;
 @property (strong, nonatomic) IBOutlet UITextField *receivingLicensePlate;
 @property NSData *data;
 
@@ -26,6 +26,7 @@
     [super viewDidLoad];
     [self whatSourceType];
     [self.receivingLicensePlate setAutocorrectionType:UITextAutocorrectionTypeNo];
+    self.typedMessage.backgroundColor = [UIColor clearColor];
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(textFieldShouldReturn:)];
     [self.view addGestureRecognizer:tap];
