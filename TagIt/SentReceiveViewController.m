@@ -56,19 +56,20 @@
     [query orderByDescending:@"createdAt"];
 
     [query includeKey:@"from"];
+
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
 
         self.receivedMessages = objects.mutableCopy;
 
-        PFUser * user = [PFUser currentUser];
+        PFUser *user = [PFUser currentUser];
 
-        NSMutableArray * blockedUsers = user[@"blockedUsers"];
+        NSMutableArray *blockedUsers = user[@"blockedUsers"];
 
         for (int i = 0; i < blockedUsers.count; i++) {
             for (int y =0; y < self.receivedMessages.count; y++) {
-                PFObject * message = [self.receivedMessages objectAtIndex:y];
+                PFObject *message = [self.receivedMessages objectAtIndex:y];
 
-                PFUser * bUser = message [@"from"];
+                PFUser * bUser = message[@"from"];
 
                 if ([[blockedUsers objectAtIndex:i] isEqualToString:bUser.username]){
                     [self.receivedMessages removeObjectAtIndex:y];
@@ -136,9 +137,20 @@
         self.sentTableView.hidden = NO;
     }else{
         self.sentTableView.hidden = YES;
-        self.receivedTableView.hidden = NO;
+        self.receivedTableView.hidden = NO; 
     }
 }
 
+- (IBAction)onRefreshButtonPressed:(id)sender {
+
+    if (self.sentTableView.hidden) {
+        [self receivedMessages];
+        NSLog(@"in received messages: Reloading");
+    }else{
+        [self loadSentMessages];
+        NSLog(@"in Sent messages: Reloading");
+    }
+
+}
 
 @end

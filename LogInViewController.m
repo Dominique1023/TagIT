@@ -62,32 +62,19 @@
 
 #pragma mark FORGOT PASSWORD
 
-- (IBAction)onForgotPasswordButtonPressed:(id)sender {
-    self.forgotPasswordAlertView = [[UIAlertView alloc]initWithTitle:@"Enter Email Address" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Done", nil];
+//- (IBAction)onForgotPasswordButtonPressed:(id)sender {
+//    self.forgotPasswordAlertView = [[UIAlertView alloc]initWithTitle:@"Enter Email Address" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Done", nil];
+//
+//    self.forgotPasswordAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+//    UITextField *alertTextField = [self.forgotPasswordAlertView textFieldAtIndex:0];
+//    alertTextField.keyboardType = UIKeyboardTypeDefault;
+//
+//    [self.forgotPasswordAlertView show];
+//}
 
-    self.forgotPasswordAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    UITextField *alertTextField = [self.forgotPasswordAlertView textFieldAtIndex:0];
-    alertTextField.keyboardType = UIKeyboardTypeDefault;
 
-    [self.forgotPasswordAlertView show];
-}
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex != self.forgotPasswordAlertView.cancelButtonIndex) {
-        NSString *email = [self.forgotPasswordAlertView textFieldAtIndex:0].text;
-        [PFUser requestPasswordResetForEmailInBackground:email block:^(BOOL succeeded, NSError *error) {
-            if (error) {
-                self.forgotPasswordAlertView = [[UIAlertView alloc]initWithTitle:@"Invalid Email" message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-
-                [self.forgotPasswordAlertView show];
-            }
-
-            NSLog(@"Changed email address with: %@", email);
-        }];
-    }
-}
-
-#pragma mark LOGING AND SIGNING UP
+#pragma mark LOG IN AND SIGNING UP
 
 - (IBAction)onSignUpButtonPressed:(UIButton *)sender{
     if ([sender.titleLabel.text isEqualToString:@"Sign-Up"]){
@@ -166,13 +153,24 @@
         }else{
             NSLog(@"User can not log in");
 
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Opps!" message:[NSString stringWithFormat:@"Invalid Plate &/or Password"] delegate:self cancelButtonTitle:@"Retry" otherButtonTitles:nil, nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:[NSString stringWithFormat:@"The email or password you entered is incorrect."] delegate:self cancelButtonTitle:@"Retry" otherButtonTitles:@"Forgot Password", nil];
+
             [alertView show];
 
             self.licensePlate.text = @"";
             self.passwordField.text = @"";
         }
     }];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (!self.forgotPasswordAlertView.cancelButtonIndex) {
+        self.forgotPasswordAlertView = [[UIAlertView alloc]initWithTitle:@"Enter email address to reset password" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Done", nil];
+
+
+
+        [self.forgotPasswordAlertView show];
+    }
 }
 
 - (IBAction)onCreateNewAccount:(UIButton *)sender{
