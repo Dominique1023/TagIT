@@ -37,10 +37,11 @@
     //Tells which class to look at
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];
 
+    [query whereKey:@"from" equalTo:[PFUser currentUser]];
+
     // Retrieve the most recent ones
     [query orderByDescending:@"createdAt"];
 
-    [query whereKey:@"from" equalTo:[PFUser currentUser]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
 
         self.sentMessages = objects;
@@ -55,7 +56,6 @@
 
     // Retrieve the most recent ones
     [query orderByDescending:@"createdAt"];
-
     [query includeKey:@"from"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
 
@@ -100,8 +100,9 @@
         cell.receiverLabel.text = tempObject[@"to"];
 
         [tempObject[@"photo"] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-            cell.imageView.image = [UIImage imageWithData:data];
+            cell.myImageView.image = [UIImage imageWithData:data];
         }];
+
 
         return cell;
     }else{
@@ -115,6 +116,7 @@
         [tempObject[@"photo"] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             cell.receivedImageView.image = [UIImage imageWithData:data];
         }];
+
 
         return cell;
     }
