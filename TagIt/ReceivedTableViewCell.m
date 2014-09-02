@@ -13,7 +13,11 @@
 - (IBAction)onBlockButtonPressed:(id)sender {
     PFUser *blockedUser = [self.message objectForKey:@"from"];
 
-    NSLog(@"%@", blockedUser);
+    //i have the blockedUser
+    //I want to grab the message from that user and delete it from the array
+    //the blocked user array is apart of PF User
+    //check sendReceive view controller.m 
+
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
