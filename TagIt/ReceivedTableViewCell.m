@@ -10,6 +10,12 @@
 
 @implementation ReceivedTableViewCell
 
+- (IBAction)onBlockButtonPressed:(id)sender {
+    PFUser *user = [self.message objectForKey:@"from"];
+
+    
+}
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

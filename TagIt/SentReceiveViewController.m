@@ -14,9 +14,9 @@
 @interface SentReceiveViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *sentTableView;
 @property (strong, nonatomic) IBOutlet UITableView *receivedTableView;
-@property NSMutableArray *receivedMessages;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property NSArray *sentMessages;
+@property NSMutableArray *receivedMessages;
 
 @end
 
@@ -30,11 +30,9 @@
     //self.segmentedControl.backgroundColor = [UIColor whiteColor];
     self.segmentedControl.tintColor = [UIColor whiteColor];
     self.receivedTableView.hidden = YES;
-
 }
 
 #pragma mark QUERYING FOR MESSAGES SENT AND RECEIVED
-
 -(void)loadSentMessages{
     //Tells which class to look at
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];
@@ -105,13 +103,14 @@
             cell.imageView.image = [UIImage imageWithData:data];
         }];
 
-
         return cell;
     }else{
         ReceivedTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"RCell"];
 
         PFObject *tempObject = [self.receivedMessages objectAtIndex:indexPath.row];
         cell.receivedMessage.text = tempObject[@"text"];
+        
+        cell.message = tempObject;
 
         [tempObject[@"photo"] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             cell.receivedImageView.image = [UIImage imageWithData:data];
@@ -119,7 +118,6 @@
 
         return cell;
     }
-
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -139,14 +137,10 @@
     if (control.selectedSegmentIndex == 0) {
         self.receivedTableView.hidden = YES;
         self.sentTableView.hidden = NO;
-
     }else{
         self.sentTableView.hidden = YES;
         self.receivedTableView.hidden = NO;
     }
 }
-
-
-
 
 @end

@@ -9,11 +9,8 @@
 #import "SettingsViewController.h"
 
 @interface SettingsViewController () <UITextFieldDelegate>
-@property (weak, nonatomic) IBOutlet UITextField *blockedUserTextField;
-@property NSMutableArray *blockedUsers;
 @property (weak, nonatomic) IBOutlet UILabel *userLabel;
 @property (weak, nonatomic) IBOutlet UITextField *changeEmailTextField;
-
 
 @end
 
@@ -25,7 +22,6 @@
     [self showUserLoggedInLabel];
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(textFieldShouldReturn:)];
-
     [self.view addGestureRecognizer:tap];
 }
 
@@ -33,20 +29,20 @@
     [PFUser logOut];
 }
 
-- (IBAction)onBlockUserButtonPressed:(id)sender{
-    PFUser *user = [PFUser currentUser];
-
-    if (user[@"blockedUsers"]) {
-        self.blockedUsers = user[@"blockedUsers"];
-    }else{
-        self.blockedUsers = [NSMutableArray new];
-    }
-
-    NSString *blockedUserString = self.blockedUserTextField.text;
-    [self.blockedUsers insertObject:blockedUserString atIndex:0];
-    user[@"blockedUsers"] = self.blockedUsers;
-
-    [user saveInBackground];
+- (IBAction)onUnblockAllUsersButtonPressed:(id)sender{
+//    PFUser *user = [PFUser currentUser];
+//
+//    if (user[@"blockedUsers"]) {
+//        self.blockedUsers = user[@"blockedUsers"];
+//    }else{
+//        self.blockedUsers = [NSMutableArray new];
+//    }
+//
+//    NSString *blockedUserString = self.blockedUserTextField.text;
+//    [self.blockedUsers insertObject:blockedUserString atIndex:0];
+//    user[@"blockedUsers"] = self.blockedUsers;
+//
+//    [user saveInBackground];
 }
 
 -(void)showUserLoggedInLabel{
@@ -66,12 +62,10 @@
             [alertView show];
         }
     }];
-
-
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [self.blockedUserTextField resignFirstResponder];
+    //[self.blockedUserTextField resignFirstResponder];
     [self.changeEmailTextField resignFirstResponder];
     
     return YES;

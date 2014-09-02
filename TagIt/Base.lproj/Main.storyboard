@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Log In View Controller-->
@@ -100,18 +100,30 @@
                                             <action selector="onDoneButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="WMm-T2-UnF"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NjO-wp-aJQ">
+                                        <rect key="frame" x="59" y="170" width="48" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onCancelResetPasswordButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="CzW-rm-sEE"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="createAccount" destination="v1d-kF-i1i" id="HoI-8W-rrp"/>
+                        <outlet property="cancelResetPasswordButton" destination="NjO-wp-aJQ" id="rSI-mU-KbQ"/>
+                        <outlet property="createAccountButton" destination="v1d-kF-i1i" id="rjD-oJ-igO"/>
                         <outlet property="doneButton" destination="WeF-E6-coE" id="GLJ-eH-4aB"/>
-                        <outlet property="emailField" destination="THl-mc-006" id="ohz-YN-S8v"/>
+                        <outlet property="emailTextField" destination="THl-mc-006" id="gkU-0u-Pqa"/>
                         <outlet property="forgotPasswordLabel" destination="hYd-0P-JEa" id="icE-e8-fui"/>
                         <outlet property="forgotPasswordTextField" destination="iIQ-4g-Gap" id="qFL-Xd-hja"/>
-                        <outlet property="licensePlate" destination="Jvq-2d-gNe" id="Lcc-ML-91i"/>
+                        <outlet property="licensePlateTextField" destination="Jvq-2d-gNe" id="GAO-91-4sV"/>
                         <outlet property="logInButton" destination="blC-GY-dNK" id="R90-yr-sRR"/>
                         <outlet property="myView" destination="LJA-iW-20u" id="OSB-UQ-aYg"/>
                         <outlet property="passwordField" destination="zin-Cr-aS2" id="yXC-p7-ZwF"/>
@@ -124,7 +136,7 @@
             </objects>
             <point key="canvasLocation" x="680" y="497"/>
         </scene>
-        <!--Rage-->
+        <!--Send View Controller - Rage-->
         <scene sceneID="V9Y-cd-Sv6">
             <objects>
                 <viewController id="w1i-Ut-GCG" customClass="SendViewController" sceneMemberID="viewController">
@@ -145,8 +157,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Message Rectangle" translatesAutoresizingMaskIntoConstraints="NO" id="yGJ-nk-dvQ">
                                 <rect key="frame" x="10" y="110" width="300" height="86"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="That Awesome Driver" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jt1-k6-Sky">
-                                <rect key="frame" x="27" y="71" width="212" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="That Awesome Driver's License Plate" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jt1-k6-Sky">
+                                <rect key="frame" x="27" y="71" width="266" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -165,7 +177,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="onTakePhotoButtonPressed:" destination="w1i-Ut-GCG" eventType="touchUpInside" id="p6O-HK-5MM"/>
+                                    <action selector="onAddPhotoButtonPressed:" destination="w1i-Ut-GCG" eventType="touchUpInside" id="Zz0-dH-E9t"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BG" translatesAutoresizingMaskIntoConstraints="NO" id="VcM-be-8Ke">
@@ -187,6 +199,16 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eDe-Jg-has">
                                 <rect key="frame" x="35" y="256" width="250" height="250"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zX0-CI-iO7">
+                                <rect key="frame" x="215" y="228" width="82" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Clear Photo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onClearPhotoButtonPressed:" destination="w1i-Ut-GCG" eventType="touchUpInside" id="H1E-4G-47D"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -194,6 +216,8 @@
                     <navigationItem key="navigationItem" id="1KD-kY-8j0"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="addPhotoButton" destination="3yv-zO-DcN" id="r0N-Ui-Szh"/>
+                        <outlet property="clearPhotoButton" destination="zX0-CI-iO7" id="SyJ-1u-HHa"/>
                         <outlet property="imageView" destination="eDe-Jg-has" id="Mhi-qf-HGh"/>
                         <outlet property="receivingLicensePlate" destination="jt1-k6-Sky" id="s2n-8t-B7h"/>
                         <outlet property="typedMessage" destination="0Qc-K2-T3d" id="dHy-dC-WSw"/>
@@ -204,7 +228,7 @@
             </objects>
             <point key="canvasLocation" x="1927" y="-287"/>
         </scene>
-        <!--Messeges-->
+        <!--Sent Receive View Controller - Messeges-->
         <scene sceneID="Yf9-6S-4tg">
             <objects>
                 <viewController id="pf9-m1-AJi" customClass="SentReceiveViewController" sceneMemberID="viewController">
@@ -231,7 +255,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8EM-HC-f5D">
-                                                    <rect key="frame" x="10" y="9" width="100" height="92"/>
+                                                    <rect key="frame" x="10" y="9" width="100" height="100"/>
                                                 </imageView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="Sent Message" translatesAutoresizingMaskIntoConstraints="NO" id="7lq-b7-exg">
                                                     <rect key="frame" x="125" y="37" width="175" height="72"/>
@@ -265,7 +289,7 @@
                                 </connections>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="c40-J3-rdb" userLabel="Table View Received">
-                                <rect key="frame" x="0.0" y="64" width="320" height="518"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="454"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RCell" rowHeight="120" id="xOY-Lx-Uaw" customClass="ReceivedTableViewCell">
@@ -284,9 +308,21 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tGg-Tp-miL">
                                                     <rect key="frame" x="200" y="12" width="100" height="100"/>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZEf-en-Irb">
+                                                    <rect key="frame" x="85" y="69" width="39" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Block">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="onBlockButtonPressed:" destination="xOY-Lx-Uaw" eventType="touchUpInside" id="a3X-W2-RBG"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="blockButton" destination="ZEf-en-Irb" id="TaF-1f-HmS"/>
+                                            <outlet property="onBlockButtonPressed" destination="ZEf-en-Irb" id="ET4-zN-glP"/>
                                             <outlet property="receivedImageView" destination="tGg-Tp-miL" id="lbz-tI-IGe"/>
                                             <outlet property="receivedMessage" destination="pNb-Ok-21C" id="W6s-Vq-z96"/>
                                             <segue destination="nT4-os-u9C" kind="modal" identifier="receivedPhotoSegue" id="B0d-wR-fw0"/>
@@ -348,18 +384,26 @@
                                     <segue destination="Fny-Lf-hBd" kind="modal" modalTransitionStyle="crossDissolve" id="AMJ-MD-8BE"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yRf-FA-PfT">
+                                <rect key="frame" x="240" y="464" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="CFe-op-9Mp" id="fmb-aa-pa6"/>
+                        <outlet property="saveButton" destination="yRf-FA-PfT" id="VC5-1y-Rp4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Vf-SA-dSq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2970" y="102"/>
         </scene>
-        <!--Settings-->
+        <!--Settings View Controller - Settings-->
         <scene sceneID="hqG-nt-E5N">
             <objects>
                 <viewController id="qDd-HJ-DYf" customClass="SettingsViewController" sceneMemberID="viewController">
@@ -385,19 +429,14 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBz-8o-csJ">
-                                <rect key="frame" x="182" y="99" width="76" height="30"/>
-                                <state key="normal" title="Block User">
+                                <rect key="frame" x="31" y="259" width="122" height="30"/>
+                                <state key="normal" title="Unblock All Users">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="onBlockUserButtonPressed:" destination="qDd-HJ-DYf" eventType="touchUpInside" id="8f2-Fs-9Ss"/>
+                                    <action selector="onUnblockAllUsersButtonPressed:" destination="qDd-HJ-DYf" eventType="touchUpInside" id="X00-vx-LaA"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ovx-GQ-7Eu">
-                                <rect key="frame" x="20" y="99" width="154" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1LB-m5-VYh">
                                 <rect key="frame" x="97" y="137" width="126" height="30"/>
                                 <state key="normal" title="Change Password">
@@ -435,7 +474,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" id="WLh-Qk-s2f"/>
                     <connections>
-                        <outlet property="blockedUserTextField" destination="Ovx-GQ-7Eu" id="9LQ-8r-dXl"/>
                         <outlet property="changeEmailTextField" destination="ebs-ls-f5A" id="DXG-Ga-1wB"/>
                         <outlet property="userLabel" destination="sCR-Gf-5jk" id="thQ-un-iPt"/>
                     </connections>
@@ -478,13 +516,10 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4">
-            <size key="portraitSize" width="320" height="568"/>
-            <size key="landscapeSize" width="568" height="320"/>
-        </simulatedScreenMetrics>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="r0G-hu-Lyv"/>
-        <segue reference="B0d-wR-fw0"/>
+        <segue reference="AMJ-MD-8BE"/>
+        <segue reference="X5y-IJ-7RE"/>
     </inferredMetricsTieBreakers>
 </document>

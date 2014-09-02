@@ -11,6 +11,7 @@
 @interface ImageViewController ()
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
 
 @end
 
@@ -18,7 +19,8 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
+
+    //getting data for photo from parse 
     [self.object[@"photo"] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         self.imageView.image = [UIImage imageWithData:data];
     }];

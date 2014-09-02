@@ -11,5 +11,9 @@
 @interface ReceivedTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UIImageView *receivedImageView;
 @property (strong, nonatomic) IBOutlet UITextView *receivedMessage;
+@property (weak, nonatomic) IBOutlet UIButton *blockButton;
+@property NSMutableArray *blockedUsers;
+@property PFObject *message; 
+
 
 @end

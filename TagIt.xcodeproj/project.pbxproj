@@ -184,8 +184,6 @@
 				0803087B19ABB90C00199B95 /* Main.storyboard */,
 				080308B919ABBDAC00199B95 /* LogInViewController.h */,
 				080308BA19ABBDAC00199B95 /* LogInViewController.m */,
-				088996BE19AE80EA001D3425 /* SettingsViewController.h */,
-				088996BF19AE80EA001D3425 /* SettingsViewController.m */,
 				5DE3061319ACD7CB006E2DBF /* SendViewController.h */,
 				5DE3061419ACD7CB006E2DBF /* SendViewController.m */,
 				5D0B43C519AD1F4A00B91F86 /* SentReceiveViewController.h */,
@@ -196,6 +194,8 @@
 				5DF66AA619AE494A002C9E1D /* ReceivedTableViewCell.m */,
 				5D41DD9919AE98EE00295892 /* ImageViewController.h */,
 				5D41DD9A19AE98EE00295892 /* ImageViewController.m */,
+				088996BE19AE80EA001D3425 /* SettingsViewController.h */,
+				088996BF19AE80EA001D3425 /* SettingsViewController.m */,
 				0803087019ABB90C00199B95 /* Supporting Files */,
 			);
 			path = TagIt;
