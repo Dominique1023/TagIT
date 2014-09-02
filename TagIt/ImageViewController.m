@@ -19,8 +19,10 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
-    NSData * imageData = [self.object[@"photo"] getData];
-    self.imageView.image = [UIImage imageWithData:imageData];
+    [self.object[@"photo"] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        self.imageView.image = [UIImage imageWithData:data];
+    }];
+
 }
 
 @end

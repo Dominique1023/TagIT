@@ -54,8 +54,6 @@
     [self.view addGestureRecognizer:tap];
 }
 
-
-
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:YES];
 
@@ -67,17 +65,7 @@
     }
 }
 
-//- (IBAction)onForgotPasswordButtonPressed:(id)sender {
-//    self.forgotPasswordAlertView = [[UIAlertView alloc]initWithTitle:@"Enter Email Address" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Done", nil];
-//
-//    self.forgotPasswordAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-//    UITextField *alertTextField = [self.forgotPasswordAlertView textFieldAtIndex:0];
-//    alertTextField.keyboardType = UIKeyboardTypeDefault;
-//
-//    [self.forgotPasswordAlertView show];
-//}
-
-#pragma mark LOGING AND SIGNING UP
+#pragma mark LOG IN SIGN UP
 
 - (IBAction)onSignUpButtonPressed:(UIButton *)sender{
     if ([sender.titleLabel.text isEqualToString:@"Sign-Up"]){

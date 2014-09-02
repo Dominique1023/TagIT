@@ -130,7 +130,7 @@
             </objects>
             <point key="canvasLocation" x="680" y="497"/>
         </scene>
-        <!--Send View Controller - Capture-->
+        <!--Send View Controller-->
         <scene sceneID="V9Y-cd-Sv6">
             <objects>
                 <viewController id="w1i-Ut-GCG" customClass="SendViewController" sceneMemberID="viewController">
@@ -196,7 +196,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Capture" id="Llr-mI-bVJ"/>
+                    <tabBarItem key="tabBarItem" title="" id="Llr-mI-bVJ"/>
                     <navigationItem key="navigationItem" id="1KD-kY-8j0"/>
                     <connections>
                         <outlet property="imageView" destination="eDe-Jg-has" id="Mhi-qf-HGh"/>
@@ -209,7 +209,7 @@
             </objects>
             <point key="canvasLocation" x="1927" y="-287"/>
         </scene>
-        <!--Sent Receive View Controller - Messages-->
+        <!--Sent Receive View Controller-->
         <scene sceneID="Yf9-6S-4tg">
             <objects>
                 <viewController id="pf9-m1-AJi" customClass="SentReceiveViewController" sceneMemberID="viewController">
@@ -316,7 +316,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Messages" id="fBP-ty-Bfw"/>
+                    <tabBarItem key="tabBarItem" title="" image="BG" id="rnK-b2-4Xc"/>
                     <navigationItem key="navigationItem" id="VjR-Hg-Pvb"/>
                     <connections>
                         <outlet property="receivedTableView" destination="c40-J3-rdb" id="jyd-l9-SKb"/>
@@ -485,7 +485,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="r0G-hu-Lyv"/>
+        <segue reference="z9V-Hc-FNm"/>
         <segue reference="B0d-wR-fw0"/>
     </inferredMetricsTieBreakers>
 </document>

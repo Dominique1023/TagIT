@@ -83,11 +83,7 @@
     }];
 }
 
-
-
-
 #pragma mark TABLEVIEW DELEGATE AND DATASOURCE METHODS
-
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (self.sentTableView == tableView){
@@ -105,10 +101,6 @@
         cell.userMessageView.text = tempObject[@"text"];
         cell.receiverLabel.text = tempObject[@"to"];
 
-//        NSData * imageData = [tempObject[@"photo"] getData];
-//        cell.myImageView.image = [UIImage imageWithData:imageData];
-
-
         [tempObject[@"photo"] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             cell.imageView.image = [UIImage imageWithData:data];
         }];
@@ -120,9 +112,6 @@
 
         PFObject *tempObject = [self.receivedMessages objectAtIndex:indexPath.row];
         cell.receivedMessage.text = tempObject[@"text"];
-
-//        NSData * imageData = [tempObject[@"photo"] getData];
-//        cell.receivedImageView.image = [UIImage imageWithData:imageData];
 
         [tempObject[@"photo"] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             cell.receivedImageView.image = [UIImage imageWithData:data];
