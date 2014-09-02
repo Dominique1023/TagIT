@@ -322,7 +322,6 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="blockButton" destination="ZEf-en-Irb" id="TaF-1f-HmS"/>
-                                            <outlet property="onBlockButtonPressed" destination="ZEf-en-Irb" id="ET4-zN-glP"/>
                                             <outlet property="receivedImageView" destination="tGg-Tp-miL" id="lbz-tI-IGe"/>
                                             <outlet property="receivedMessage" destination="pNb-Ok-21C" id="W6s-Vq-z96"/>
                                             <segue destination="nT4-os-u9C" kind="modal" identifier="receivedPhotoSegue" id="B0d-wR-fw0"/>

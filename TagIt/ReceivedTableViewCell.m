@@ -11,9 +11,9 @@
 @implementation ReceivedTableViewCell
 
 - (IBAction)onBlockButtonPressed:(id)sender {
-    PFUser *user = [self.message objectForKey:@"from"];
+    PFUser *blockedUser = [self.message objectForKey:@"from"];
 
-    
+    NSLog(@"%@", blockedUser);
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

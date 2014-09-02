@@ -15,5 +15,6 @@
 @property NSMutableArray *blockedUsers;
 @property PFObject *message; 
 
+-(IBAction)onBlockButtonPressed:(id)sender;
 
 @end

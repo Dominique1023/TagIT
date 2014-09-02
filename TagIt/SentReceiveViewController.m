@@ -105,7 +105,7 @@
 
         return cell;
     }else{
-        ReceivedTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"RCell"];
+        ReceivedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RCell"];
 
         PFObject *tempObject = [self.receivedMessages objectAtIndex:indexPath.row];
         cell.receivedMessage.text = tempObject[@"text"];
