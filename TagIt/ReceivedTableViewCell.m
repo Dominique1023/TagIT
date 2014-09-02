@@ -16,7 +16,9 @@
     //i have the blockedUser
     //I want to grab the message from that user and delete it from the array
     //the blocked user array is apart of PF User
-    //check sendReceive view controller.m 
+    //check sendReceive view controller.m
+
+    NSLog(@"%@", blockedUser); 
 
 }
 
