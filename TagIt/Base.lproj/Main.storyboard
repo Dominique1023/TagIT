@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment defaultVersion="1808" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
     </dependencies>
     <scenes>
         <!--Log In View Controller-->
@@ -80,23 +80,17 @@
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter email address to reset password" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="170" translatesAutoresizingMaskIntoConstraints="NO" id="hYd-0P-JEa">
                                         <rect key="frame" x="38" y="43" width="170" height="70"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iIQ-4g-Gap">
                                         <rect key="frame" x="48" y="138" width="172" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Log In Button" translatesAutoresizingMaskIntoConstraints="NO" id="t8R-lS-UzI">
-                                        <rect key="frame" x="136" y="268" width="84" height="28"/>
-                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WeF-E6-coE">
-                                        <rect key="frame" x="104" y="170" width="61" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <rect key="frame" x="137" y="170" width="61" height="30"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
                                         <state key="normal" title="Done">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -119,9 +113,9 @@
                         <outlet property="forgotPasswordTextField" destination="iIQ-4g-Gap" id="qFL-Xd-hja"/>
                         <outlet property="licensePlate" destination="Jvq-2d-gNe" id="Lcc-ML-91i"/>
                         <outlet property="logInButton" destination="blC-GY-dNK" id="R90-yr-sRR"/>
-                        <outlet property="logInLabel" destination="v0Z-2W-UGb" id="NXe-gB-FoL"/>
                         <outlet property="myView" destination="LJA-iW-20u" id="OSB-UQ-aYg"/>
                         <outlet property="passwordField" destination="zin-Cr-aS2" id="yXC-p7-ZwF"/>
+                        <outlet property="roadRageLabel" destination="v0Z-2W-UGb" id="pVj-T8-DzA"/>
                         <outlet property="signUpButton" destination="f1f-vO-ghT" id="QB6-us-voA"/>
                         <segue destination="Fny-Lf-hBd" kind="modal" identifier="initialSegue" id="r0G-hu-Lyv"/>
                     </connections>
@@ -130,7 +124,7 @@
             </objects>
             <point key="canvasLocation" x="680" y="497"/>
         </scene>
-        <!--Send View Controller-->
+        <!--Rage-->
         <scene sceneID="V9Y-cd-Sv6">
             <objects>
                 <viewController id="w1i-Ut-GCG" customClass="SendViewController" sceneMemberID="viewController">
@@ -196,8 +190,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" id="Llr-mI-bVJ"/>
+                    <tabBarItem key="tabBarItem" title="Rage" id="HKg-hP-63U"/>
                     <navigationItem key="navigationItem" id="1KD-kY-8j0"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="imageView" destination="eDe-Jg-has" id="Mhi-qf-HGh"/>
                         <outlet property="receivingLicensePlate" destination="jt1-k6-Sky" id="s2n-8t-B7h"/>
@@ -209,7 +204,7 @@
             </objects>
             <point key="canvasLocation" x="1927" y="-287"/>
         </scene>
-        <!--Sent Receive View Controller-->
+        <!--Messeges-->
         <scene sceneID="Yf9-6S-4tg">
             <objects>
                 <viewController id="pf9-m1-AJi" customClass="SentReceiveViewController" sceneMemberID="viewController">
@@ -316,8 +311,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="BG" id="rnK-b2-4Xc"/>
+                    <tabBarItem key="tabBarItem" title="Messeges" id="n7G-Z6-MI7"/>
                     <navigationItem key="navigationItem" id="VjR-Hg-Pvb"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="receivedTableView" destination="c40-J3-rdb" id="jyd-l9-SKb"/>
                         <outlet property="segmentedControl" destination="V6g-c3-wed" id="8FU-zc-vAI"/>
@@ -363,7 +359,7 @@
             </objects>
             <point key="canvasLocation" x="2970" y="102"/>
         </scene>
-        <!--Settings View Controller - Settings-->
+        <!--Settings-->
         <scene sceneID="hqG-nt-E5N">
             <objects>
                 <viewController id="qDd-HJ-DYf" customClass="SettingsViewController" sceneMemberID="viewController">
@@ -482,10 +478,13 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination" type="retina4">
+            <size key="portraitSize" width="320" height="568"/>
+            <size key="landscapeSize" width="568" height="320"/>
+        </simulatedScreenMetrics>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="z9V-Hc-FNm"/>
+        <segue reference="r0G-hu-Lyv"/>
         <segue reference="B0d-wR-fw0"/>
     </inferredMetricsTieBreakers>
 </document>

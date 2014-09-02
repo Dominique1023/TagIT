@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *licensePlate;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
-@property (weak, nonatomic) IBOutlet UILabel *logInLabel;
+@property (weak, nonatomic) IBOutlet UILabel *roadRageLabel;
 @property (weak, nonatomic) IBOutlet UIButton *createAccount;
 @property (weak, nonatomic) IBOutlet UIButton *logInButton;
 @property (weak, nonatomic) IBOutlet UIView *myView;
@@ -29,19 +29,26 @@
 
 @implementation LogInViewController
 
+
+
 - (void)viewDidLoad{
     [super viewDidLoad];
 
+    //Turning off autocorrect for license plate
     [self.licensePlate setAutocorrectionType:UITextAutocorrectionTypeNo];
+
+
     self.createAccount.hidden = YES;
     self.emailField.hidden = YES;
     self.forgotPasswordLabel.hidden = YES;
     self.forgotPasswordTextField.hidden = YES;
     self.doneButton.hidden = YES;
 
+     //Turning off autocorrect for password and hiding letters
     [self.passwordField setSecureTextEntry:YES];
     [self.passwordField setAutocorrectionType:UITextAutocorrectionTypeNo];
 
+    //Transitions myView when keyboard comes up and goes down
     [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillShowNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note){
          self.myView.center = CGPointMake(self.view.center.x, self.view.center.y - 15);
      }];
@@ -54,6 +61,7 @@
     [self.view addGestureRecognizer:tap];
 }
 
+//Allows a user to remain logged in
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:YES];
 
@@ -67,17 +75,20 @@
 
 #pragma mark LOG IN SIGN UP
 
+//lets user sign up
 - (IBAction)onSignUpButtonPressed:(UIButton *)sender{
     if ([sender.titleLabel.text isEqualToString:@"Sign-Up"]){
 
+        //moves everything up and changes "signup" to "cancel"
         [sender setTitle:@"Cancel" forState:UIControlStateNormal];
         [sender setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 
         [UIView animateWithDuration:1.2 animations:^{
             self.logInButton.hidden = YES;
 
-            self.logInLabel.transform = CGAffineTransformMakeTranslation(0, -90);
-            self.logInLabel.transform = CGAffineTransformMakeTranslation(0, -185);
+
+            self.roadRageLabel.transform = CGAffineTransformMakeTranslation(0, -90);
+            self.roadRageLabel.transform = CGAffineTransformMakeTranslation(0, -185);
 
             self.emailField.transform = CGAffineTransformMakeTranslation(0, -60);
             self.emailField.transform = CGAffineTransformMakeTranslation(0, -120);
@@ -100,12 +111,13 @@
             self.createAccount.hidden = NO;
         }];
     }else{
+         //moves everything down and changes "cancel" to "signup"
         [sender setTitle:@"Sign-Up" forState:UIControlStateNormal];
-        [sender setTitleColor:[UIColor blueColor] forState:UIControlStateNormal]; 
+        [sender setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 
         [UIView animateWithDuration:1.2 animations:^{
-            self.logInLabel.transform = CGAffineTransformMakeTranslation(0, -90);
-            self.logInLabel.transform = CGAffineTransformMakeTranslation(0, 5);
+            self.roadRageLabel.transform = CGAffineTransformMakeTranslation(0, -90);
+            self.roadRageLabel.transform = CGAffineTransformMakeTranslation(0, 5);
 
             self.emailField.transform = CGAffineTransformMakeTranslation(0, -60);
             self.emailField.transform = CGAffineTransformMakeTranslation(0, 5);
@@ -131,6 +143,7 @@
     }
 }
 
+//Allows user to log in
 - (IBAction)onLogInTapped:(UIButton *)sender{
     NSString  *username = self.licensePlate.text;
     NSString *password = self.passwordField.text;
@@ -151,11 +164,12 @@
     }];
 }
 
+
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (!alertView.cancelButtonIndex) {
+    if (buttonIndex != alertView.cancelButtonIndex) {
         self.forgotPasswordLabel.hidden = NO;
         self.forgotPasswordTextField.hidden = NO;
-        self.logInLabel.hidden = YES;
+        self.roadRageLabel.hidden = YES;
         self.licensePlate.hidden = YES;
         self.passwordField.hidden = YES;
         self.logInButton.hidden = YES;
@@ -163,6 +177,7 @@
         self.doneButton.hidden = NO;
     }
 }
+
 
 - (IBAction)onDoneButtonPressed:(id)sender {
     NSString *email = self.forgotPasswordTextField.text;
@@ -174,13 +189,17 @@
 
             [alertView show];
         } else {
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Please check your email to complete password reset" message:nil delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
+
+            [alertView show];
+
             self.forgotPasswordTextField.text = @"";
 
             [self.forgotPasswordTextField resignFirstResponder];
 
             self.forgotPasswordLabel.hidden = YES;
             self.forgotPasswordTextField.hidden = YES;
-            self.logInLabel.hidden = NO;
+            self.roadRageLabel.hidden = NO;
             self.licensePlate.hidden = NO;
             self.passwordField.hidden = NO;
             self.logInButton.hidden = NO;

@@ -182,10 +182,10 @@
 			children = (
 				0889967B19ABD2CB001D3425 /* Images.xcassets */,
 				0803087B19ABB90C00199B95 /* Main.storyboard */,
+				080308B919ABBDAC00199B95 /* LogInViewController.h */,
+				080308BA19ABBDAC00199B95 /* LogInViewController.m */,
 				088996BE19AE80EA001D3425 /* SettingsViewController.h */,
 				088996BF19AE80EA001D3425 /* SettingsViewController.m */,
-				080308BA19ABBDAC00199B95 /* LogInViewController.m */,
-				080308B919ABBDAC00199B95 /* LogInViewController.h */,
 				5DE3061319ACD7CB006E2DBF /* SendViewController.h */,
 				5DE3061419ACD7CB006E2DBF /* SendViewController.m */,
 				5D0B43C519AD1F4A00B91F86 /* SentReceiveViewController.h */,
@@ -280,7 +280,7 @@
 				ORGANIZATIONNAME = MobileMakers;
 				TargetAttributes = {
 					0803086519ABB90C00199B95 = {
-						DevelopmentTeam = 6VFN7544GC;
+						DevelopmentTeam = KTXSHTJLS6;
 					};
 					0803088619ABB90C00199B95 = {
 						TestTargetID = 0803086519ABB90C00199B95;
