@@ -235,9 +235,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0803086519ABB90C00199B95 /* TagIt */ = {
+		0803086519ABB90C00199B95 /* RoadRage */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0803089819ABB90D00199B95 /* Build configuration list for PBXNativeTarget "TagIt" */;
+			buildConfigurationList = 0803089819ABB90D00199B95 /* Build configuration list for PBXNativeTarget "RoadRage" */;
 			buildPhases = (
 				0803086219ABB90C00199B95 /* Sources */,
 				0803086319ABB90C00199B95 /* Frameworks */,
@@ -247,14 +247,14 @@
 			);
 			dependencies = (
 			);
-			name = TagIt;
+			name = RoadRage;
 			productName = TagIt;
 			productReference = 0803086619ABB90C00199B95 /* TagIt.app */;
 			productType = "com.apple.product-type.application";
 		};
-		0803088619ABB90C00199B95 /* TagItTests */ = {
+		0803088619ABB90C00199B95 /* RoadRageTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0803089B19ABB90D00199B95 /* Build configuration list for PBXNativeTarget "TagItTests" */;
+			buildConfigurationList = 0803089B19ABB90D00199B95 /* Build configuration list for PBXNativeTarget "RoadRageTests" */;
 			buildPhases = (
 				0803088319ABB90C00199B95 /* Sources */,
 				0803088419ABB90C00199B95 /* Frameworks */,
@@ -265,7 +265,7 @@
 			dependencies = (
 				0803088D19ABB90C00199B95 /* PBXTargetDependency */,
 			);
-			name = TagItTests;
+			name = RoadRageTests;
 			productName = TagItTests;
 			productReference = 0803088719ABB90C00199B95 /* TagItTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -288,7 +288,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0803086119ABB90C00199B95 /* Build configuration list for PBXProject "TagIt" */;
+			buildConfigurationList = 0803086119ABB90C00199B95 /* Build configuration list for PBXProject "RoadRage" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -301,8 +301,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0803086519ABB90C00199B95 /* TagIt */,
-				0803088619ABB90C00199B95 /* TagItTests */,
+				0803086519ABB90C00199B95 /* RoadRage */,
+				0803088619ABB90C00199B95 /* RoadRageTests */,
 			);
 		};
 /* End PBXProject section */
@@ -358,7 +358,7 @@
 /* Begin PBXTargetDependency section */
 		0803088D19ABB90C00199B95 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0803086519ABB90C00199B95 /* TagIt */;
+			target = 0803086519ABB90C00199B95 /* RoadRage */;
 			targetProxy = 0803088C19ABB90C00199B95 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -554,7 +554,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0803086119ABB90C00199B95 /* Build configuration list for PBXProject "TagIt" */ = {
+		0803086119ABB90C00199B95 /* Build configuration list for PBXProject "RoadRage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0803089619ABB90D00199B95 /* Debug */,
@@ -563,7 +563,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0803089819ABB90D00199B95 /* Build configuration list for PBXNativeTarget "TagIt" */ = {
+		0803089819ABB90D00199B95 /* Build configuration list for PBXNativeTarget "RoadRage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0803089919ABB90D00199B95 /* Debug */,
@@ -572,7 +572,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0803089B19ABB90D00199B95 /* Build configuration list for PBXNativeTarget "TagItTests" */ = {
+		0803089B19ABB90D00199B95 /* Build configuration list for PBXNativeTarget "RoadRageTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0803089C19ABB90D00199B95 /* Debug */,
