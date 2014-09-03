@@ -53,7 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0803086619ABB90C00199B95 /* TagIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TagIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0803086619ABB90C00199B95 /* RoadRage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadRage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0803086919ABB90C00199B95 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0803086B19ABB90C00199B95 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		0803086D19ABB90C00199B95 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -64,7 +64,7 @@
 		0803087819ABB90C00199B95 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0803087919ABB90C00199B95 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0803087C19ABB90C00199B95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0803088719ABB90C00199B95 /* TagItTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TagItTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0803088719ABB90C00199B95 /* RoadRageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoadRageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0803089019ABB90D00199B95 /* TagItTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TagItTests-Info.plist"; sourceTree = "<group>"; };
 		0803089219ABB90D00199B95 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0803089419ABB90D00199B95 /* TagItTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagItTests.m; sourceTree = "<group>"; };
@@ -148,8 +148,8 @@
 		0803086719ABB90C00199B95 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0803086619ABB90C00199B95 /* TagIt.app */,
-				0803088719ABB90C00199B95 /* TagItTests.xctest */,
+				0803086619ABB90C00199B95 /* RoadRage.app */,
+				0803088719ABB90C00199B95 /* RoadRageTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -249,7 +249,7 @@
 			);
 			name = RoadRage;
 			productName = TagIt;
-			productReference = 0803086619ABB90C00199B95 /* TagIt.app */;
+			productReference = 0803086619ABB90C00199B95 /* RoadRage.app */;
 			productType = "com.apple.product-type.application";
 		};
 		0803088619ABB90C00199B95 /* RoadRageTests */ = {
@@ -267,7 +267,7 @@
 			);
 			name = RoadRageTests;
 			productName = TagItTests;
-			productReference = 0803088719ABB90C00199B95 /* TagItTests.xctest */;
+			productReference = 0803088719ABB90C00199B95 /* RoadRageTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -506,7 +506,6 @@
 		0803089C19ABB90D00199B95 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TagIt.app/TagIt";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -532,7 +531,6 @@
 		0803089D19ABB90D00199B95 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TagIt.app/TagIt";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
