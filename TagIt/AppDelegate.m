@@ -13,22 +13,20 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [Parse setApplicationId:@"LGoKQau3KAIoHY3aH201WncmAp4uOoNhe7nyCkqx"clientKey:@"iEJmwbIor8EqyCvZ4Jqsyu6VWv0gNpUN0t1xcODV"];
-    //[PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
 
-//    if ([PFUser currentUser]) {
-//        NSLog(@"Automatically Signed User In");
-//        NSLog(@"username: %@    password: %@",[PFUser currentUser].username, [PFUser currentUser].password);
-//
-//        //[PFUser logInWithUsernameInBackground:[PFUser currentUser].username password:[PFUser currentUser].password];
-//    }else{
-//
-//        NSLog(@"User is not logged in");
-//    }
+
+
+    [application registerForRemoteNotificationTypes:
+     UIRemoteNotificationTypeBadge |
+     UIRemoteNotificationTypeAlert |
+     UIRemoteNotificationTypeSound];
+
+
 
 
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -60,5 +58,14 @@
 
 -(void)automaticLogin{
 
+}
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    currentInstallation.channels = @[@"global"];
+    [currentInstallation saveInBackground];
 }
 @end
