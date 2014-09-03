@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>79CD0F9C-1174-4C68-8BC7-0D30EDB48460</string>
+	<key>IDESourceControlProjectName</key>
+	<string>RoadRage</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>35A24BE394D65AA3EBB35A54264D540981AFA05D</key>
+		<string>https://github.com/AlexHudson07/TagIT.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>RoadRage.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>35A24BE394D65AA3EBB35A54264D540981AFA05D</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/AlexHudson07/TagIT.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>35A24BE394D65AA3EBB35A54264D540981AFA05D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>35A24BE394D65AA3EBB35A54264D540981AFA05D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>RoadRage</string>
+		</dict>
+	</array>
+</dict>
+</plist>
