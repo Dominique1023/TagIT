@@ -356,6 +356,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="receivedTableView" destination="c40-J3-rdb" id="jyd-l9-SKb"/>
+                        <outlet property="refreshButton" destination="pmq-fO-JDL" id="IXQ-Ir-feA"/>
                         <outlet property="segmentedControl" destination="V6g-c3-wed" id="8FU-zc-vAI"/>
                         <outlet property="sentTableView" destination="jAv-fX-4FA" id="xZf-f3-ZqY"/>
                     </connections>

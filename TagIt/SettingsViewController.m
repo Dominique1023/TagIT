@@ -97,11 +97,40 @@
     NSString *newEmail = self.changeEmailTextField.text;
     NSLog(@"%@", newEmail);
 
-    [user setEmail:newEmail];
-    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        NSLog(@"email changed");
-        NSLog(@"%@", newEmail);
-    }];
+    if (![newEmail  isEqual: @""]){
+
+        if ([newEmail rangeOfString:@"@"].location == NSNotFound){
+
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Invalid Email"
+                                                               message:nil
+                                                              delegate:nil
+                                                     cancelButtonTitle:@"OK"
+                                                     otherButtonTitles:nil, nil];
+            [alertView show];
+        } else{
+
+            NSLog(@"Email is not nil and has @ symbol");
+
+            [user setEmail:newEmail];
+            [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                NSLog(@"email changed");
+                NSLog(@"%@", newEmail);
+            }];
+
+
+        }
+
+    } else {
+
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Email Field Empty"
+                                                        message:nil
+                                                        delegate:nil
+                                                        cancelButtonTitle:@"OK"
+                                                        otherButtonTitles:nil, nil];
+        [alertView show];
+
+    }
+
 
     self.changeEmailTextField.text = @"";
 }

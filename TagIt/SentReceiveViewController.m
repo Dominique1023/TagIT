@@ -17,6 +17,7 @@
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property NSArray *sentMessages;
 @property NSMutableArray *receivedMessages;
+@property (strong, nonatomic) IBOutlet UIButton *refreshButton;
 
 @end
 
@@ -29,6 +30,7 @@
 
     //self.segmentedControl.backgroundColor = [UIColor whiteColor];
     self.segmentedControl.tintColor = [UIColor whiteColor];
+    self.refreshButton.tintColor = [UIColor whiteColor];
     self.receivedTableView.hidden = YES;
 }
 
