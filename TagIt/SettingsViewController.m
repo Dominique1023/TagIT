@@ -8,7 +8,7 @@
 
 #import "SettingsViewController.h"
 
-@interface SettingsViewController () <UITextFieldDelegate>
+@interface SettingsViewController () <UITextFieldDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *userLabel;
 @property (weak, nonatomic) IBOutlet UITextField *changeEmailTextField;
 
@@ -30,19 +30,37 @@
 }
 
 - (IBAction)onUnblockAllUsersButtonPressed:(id)sender{
-//    PFUser *user = [PFUser currentUser];
-//
-//    if (user[@"blockedUsers"]) {
-//        self.blockedUsers = user[@"blockedUsers"];
-//    }else{
-//        self.blockedUsers = [NSMutableArray new];
-//    }
-//
-//    NSString *blockedUserString = self.blockedUserTextField.text;
-//    [self.blockedUsers insertObject:blockedUserString atIndex:0];
-//    user[@"blockedUsers"] = self.blockedUsers;
-//
-//    [user saveInBackground];
+
+
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Warning!" message:[NSString stringWithFormat:@"This will unblock all blocked license plates"] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Continue", nil];
+    [alertView show];
+
+
+
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex != alertView.cancelButtonIndex) {
+
+        PFUser *user = [PFUser currentUser];
+
+        NSMutableArray * unblockUsersArray = user[@"blockedUsers"];
+        if (unblockUsersArray == nil) {
+            unblockUsersArray = [NSMutableArray new];
+        }else {
+            [unblockUsersArray removeAllObjects];
+        }
+        user[@"blockedUsers"] = unblockUsersArray;
+
+        [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (error) {
+                NSLog(@"Error");
+            }else {
+                NSLog(@"successfully unblocked all users");
+            }
+        }];
+
+    }
 }
 
 -(void)showUserLoggedInLabel{

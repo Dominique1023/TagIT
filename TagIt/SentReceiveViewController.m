@@ -11,7 +11,7 @@
 #import "ReceivedTableViewCell.h"
 #import "ImageViewController.h"
 
-@interface SentReceiveViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface SentReceiveViewController () <UITableViewDataSource, UITableViewDelegate, ReceivedTableViewCellDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *sentTableView;
 @property (strong, nonatomic) IBOutlet UITableView *receivedTableView;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
@@ -54,31 +54,48 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];
     [query whereKey:@"to" equalTo:[PFUser currentUser].username];
 
-    // Retrieve the most recent ones
+    [query whereKey:@"from" notContainedIn:[PFUser currentUser][@"blockedUsers"]];
     [query orderByDescending:@"createdAt"];
-    [query includeKey:@"from"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
-
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.receivedMessages = objects.mutableCopy;
-
-        PFUser * user = [PFUser currentUser];
-
-        NSMutableArray * blockedUsers = user[@"blockedUsers"];
-
-        for (int i = 0; i < blockedUsers.count; i++) {
-            for (int y =0; y < self.receivedMessages.count; y++) {
-                PFObject * message = [self.receivedMessages objectAtIndex:y];
-
-                PFUser * bUser = message [@"from"];
-
-                if ([[blockedUsers objectAtIndex:i] isEqualToString:bUser.username]){
-                    [self.receivedMessages removeObjectAtIndex:y];
-                }
-            }
-        }
-
         [self.receivedTableView reloadData];
     }];
+
+
+
+//
+//    // Retrieve the most recent ones
+//    [query orderByDescending:@"createdAt"];
+//    [query includeKey:@"from"];
+//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
+//
+//        self.receivedMessages = objects.mutableCopy;
+//
+//        PFUser * user = [PFUser currentUser];
+//
+//        NSMutableArray * blockedUsers = user[@"blockedUsers"];
+//
+//        for (int i = 0; i < blockedUsers.count; i++) {
+//            for (int y =0; y < self.receivedMessages.count; y++) {
+//                PFObject * message = [self.receivedMessages objectAtIndex:y];
+//
+//                PFUser * bUser = message [@"from"];
+//
+//                if ([[blockedUsers objectAtIndex:i] isEqualToString:bUser.username]){
+//                    [self.receivedMessages removeObjectAtIndex:y];
+//                }
+//            }
+//        }
+//
+//        [self.receivedTableView reloadData];
+//    }];
+
+
+}
+
+-(void)reloadReceivedTableView
+{
+    [self loadReceivedMessages];
 }
 
 #pragma mark TABLEVIEW DELEGATE AND DATASOURCE METHODS
@@ -107,6 +124,8 @@
         return cell;
     }else{
         ReceivedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RCell"];
+
+        cell.delegate = self;
 
         PFObject *tempObject = [self.receivedMessages objectAtIndex:indexPath.row];
         cell.receivedMessage.text = tempObject[@"text"];
