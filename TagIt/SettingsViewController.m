@@ -31,27 +31,30 @@
 
 - (IBAction)onUnblockAllUsersButtonPressed:(id)sender{
 
+    //confirming from the user that they want to remove all blocked users
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Warning!" message:@"This will unblock all license plates" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Continue", nil];
 
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Warning!" message:[NSString stringWithFormat:@"This will unblock all blocked license plates"] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Continue", nil];
     [alertView show];
-
-
-
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex != alertView.cancelButtonIndex) {
-
         PFUser *user = [PFUser currentUser];
 
+        //creating a new NSMutableArray and setting it the currentUsers blockedUsers array on parse
         NSMutableArray * unblockUsersArray = user[@"blockedUsers"];
+
+        //if they haven't blocked anyone than init a new NSMutableArray, other wise remove all objects
         if (unblockUsersArray == nil) {
             unblockUsersArray = [NSMutableArray new];
         }else {
             [unblockUsersArray removeAllObjects];
         }
+
+        //updating the array on parse
         user[@"blockedUsers"] = unblockUsersArray;
 
+        //save the empty array on parse, removing all the blocked users
         [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (error) {
                 NSLog(@"Error");
@@ -59,7 +62,6 @@
                 NSLog(@"successfully unblocked all users");
             }
         }];
-
     }
 }
 

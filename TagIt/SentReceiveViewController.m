@@ -61,36 +61,11 @@
         [self.receivedTableView reloadData];
     }];
 
+}
 
-
-//
-//    // Retrieve the most recent ones
-//    [query orderByDescending:@"createdAt"];
-//    [query includeKey:@"from"];
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
-//
-//        self.receivedMessages = objects.mutableCopy;
-//
-//        PFUser * user = [PFUser currentUser];
-//
-//        NSMutableArray * blockedUsers = user[@"blockedUsers"];
-//
-//        for (int i = 0; i < blockedUsers.count; i++) {
-//            for (int y =0; y < self.receivedMessages.count; y++) {
-//                PFObject * message = [self.receivedMessages objectAtIndex:y];
-//
-//                PFUser * bUser = message [@"from"];
-//
-//                if ([[blockedUsers objectAtIndex:i] isEqualToString:bUser.username]){
-//                    [self.receivedMessages removeObjectAtIndex:y];
-//                }
-//            }
-//        }
-//
-//        [self.receivedTableView reloadData];
-//    }];
-
-
+- (IBAction)onRefreshButtonPressed:(id)sender {
+    [self loadReceivedMessages];
+    [self loadSentMessages];
 }
 
 -(void)reloadReceivedTableView
