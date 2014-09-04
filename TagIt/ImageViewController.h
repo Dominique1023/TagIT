@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FeedTableViewCell.h"
 
 @interface ImageViewController : UIViewController
 
