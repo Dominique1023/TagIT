@@ -72,6 +72,18 @@
     message[@"from"] = [PFUser currentUser];
     message[@"to"] = self.receivingLicensePlate.text;
 
+
+    // Create our Installation query to see if they can receive push notifications
+    PFQuery *pushQuery = [PFInstallation query];
+    [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
+    // Send push notification to query
+    [PFPush sendPushMessageToQueryInBackground:pushQuery
+                                   withMessage:message[@"text"]];
+
+
+
+
+
     UIImage * image = self.photoImageView.image;
     NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
     PFFile *file = [PFFile fileWithData:imageData];

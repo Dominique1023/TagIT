@@ -285,7 +285,7 @@
 				ORGANIZATIONNAME = MobileMakers;
 				TargetAttributes = {
 					0803086519ABB90C00199B95 = {
-						DevelopmentTeam = KTXSHTJLS6;
+						DevelopmentTeam = Q92J65ZBJQ;
 					};
 					0803088619ABB90C00199B95 = {
 						DevelopmentTeam = KTXSHTJLS6;
@@ -413,7 +413,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Steven Sickler (ZMW3P5PFXW)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Steven Sickler (ZMW3P5PFXW)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -431,6 +432,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "4758a5e5-af6d-46b6-8c87-bf9a974d3fc8";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -451,7 +453,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Steven Sickler (ZMW3P5PFXW)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Steven Sickler (ZMW3P5PFXW)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -462,6 +465,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PROVISIONING_PROFILE = "4758a5e5-af6d-46b6-8c87-bf9a974d3fc8";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -472,8 +476,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Alex Hudson (YP7UW6XRP7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alex Hudson (YP7UW6XRP7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Steven Sickler (ZMW3P5PFXW)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Steven Sickler (ZMW3P5PFXW)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -483,7 +487,7 @@
 				GCC_PREFIX_HEADER = "TagIt/TagIt-Prefix.pch";
 				INFOPLIST_FILE = "TagIt/TagIt-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "4758a5e5-af6d-46b6-8c87-bf9a974d3fc8";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -493,8 +497,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Alex Hudson (YP7UW6XRP7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alex Hudson (YP7UW6XRP7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Steven Sickler (ZMW3P5PFXW)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Steven Sickler (ZMW3P5PFXW)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -504,7 +508,7 @@
 				GCC_PREFIX_HEADER = "TagIt/TagIt-Prefix.pch";
 				INFOPLIST_FILE = "TagIt/TagIt-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "4758a5e5-af6d-46b6-8c87-bf9a974d3fc8";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

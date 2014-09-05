@@ -46,7 +46,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    //add code for badges and such here
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -56,16 +56,21 @@
 
 
 
--(void)automaticLogin{
-
+-(void)automaticLogin
+{
 }
 
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
     // Store the deviceToken in the current installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-  //  [currentInstallation setDeviceTokenFromData:deviceToken];
+  [currentInstallation setDeviceTokenFromData:newDeviceToken];
     currentInstallation.channels = @[@"global"];
     [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
 }
 @end
