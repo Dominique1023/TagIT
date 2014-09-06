@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *receivingLicensePlate;
 @property (weak, nonatomic) IBOutlet UIButton *clearPhotoButton;
 @property (weak, nonatomic) IBOutlet UIButton *addPhotoButton;
+@property NSString *usersObjectId;
 
 @end
 
@@ -25,6 +26,10 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+
+    self.receivingLicensePlate.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+    [self.receivingLicensePlate.text uppercaseString];
+
 
     self.clearPhotoButton.hidden = YES;
 
@@ -62,31 +67,38 @@
     self.photoImageView.image = nil;
     self.addPhotoButton.hidden = NO;
     self.clearPhotoButton.hidden = YES;
-     self.photoImageView.layer.borderWidth=0.0;
+    self.photoImageView.layer.borderWidth=0.0;
 }
 
 //uploads message, user and photo up to parse
 - (IBAction)sendOnVentButtonPressed:(id)sender{
-    PFObject * message = [PFObject objectWithClassName:@"Message"];
-    message[@"text"] = self.typedMessage.text;
-    message[@"from"] = [PFUser currentUser];
-    message[@"to"] = self.receivingLicensePlate.text;
-
-
-    // Create our Installation query to see if they can receive push notifications
-    PFQuery *pushQuery = [PFInstallation query];
-    [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
-    // Send push notification to query
-    [PFPush sendPushMessageToQueryInBackground:pushQuery
-                                   withMessage:message[@"text"]];
-
-
-
-
 
     UIImage * image = self.photoImageView.image;
     NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
     PFFile *file = [PFFile fileWithData:imageData];
+
+
+
+    PFQuery *usersQuery = [PFUser query];
+    [usersQuery whereKey:@"username" equalTo:self.receivingLicensePlate.text];
+    [usersQuery findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
+        for (PFObject *user in comments) {
+            self.usersObjectId = user.objectId;
+            NSLog(@"%@", self.usersObjectId);
+        }
+
+    }];
+
+    PFObject * message = [PFObject objectWithClassName:@"Message"];
+    message[@"text"] = self.typedMessage.text;
+    message[@"from"] = [PFUser currentUser];
+    message[@"to"] = self.receivingLicensePlate.text;
+    message[@"senderId"] =[[PFUser currentUser] objectId];
+    message[@"senderName"] = [[PFUser currentUser] username];
+
+    //message[@"usersObjectId"] = self.usersObjectId;
+    //NSLog(@"%@",  message[@"usersObjectId"]);
+
 
     if ([self.receivingLicensePlate.text isEqualToString:@""]) {
       UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Error!" message:@"Enter License Plate" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -108,8 +120,22 @@
         [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
             if (error){
                 NSLog(@"%@", [error userInfo]);
+            }else {
+
+
+// Send Push Notification to recipient
+                PFQuery *pushQueryy = [PFInstallation query];
+                [pushQueryy whereKey:@"installationUser" equalTo:self.usersObjectId];
+                PFPush *push = [[PFPush alloc] init];
+                [push setQuery:pushQueryy];
+                [push setMessage:message[@"text"]];
+                [push sendPushInBackground];
+
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"onSendButtonPressed" object:self.typedMessage.text];
+
             }
         }];
+        
     }];
 
     [self performSegueWithIdentifier:@"ventPressed" sender:self];

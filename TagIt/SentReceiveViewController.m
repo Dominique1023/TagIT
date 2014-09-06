@@ -32,6 +32,8 @@
     self.segmentedControl.tintColor = [UIColor whiteColor];
     self.refreshButton.tintColor = [UIColor whiteColor];
     self.receivedTableView.hidden = YES;
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadSentMessages) name:@"onSendButtonPressed" object:nil];
 }
 
 #pragma mark QUERYING FOR MESSAGES SENT AND RECEIVED
