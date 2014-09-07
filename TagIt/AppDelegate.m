@@ -21,9 +21,6 @@
      UIRemoteNotificationTypeAlert |
      UIRemoteNotificationTypeSound];
 
-
-
-
     return YES;
 }
 
@@ -98,10 +95,17 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
   [currentInstallation setDeviceTokenFromData:newDeviceToken];
     currentInstallation.channels = @[@"global"];
     [currentInstallation saveInBackground];
+    [PFPush storeDeviceToken:newDeviceToken];
+    [PFPush subscribeToChannelInBackground:@""];
+
 }
 
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [PFPush handlePush:userInfo];
+}
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    NSLog(@"Did fail to register for push, %@", error);
 }
 @end

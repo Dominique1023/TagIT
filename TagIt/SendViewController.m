@@ -121,6 +121,9 @@
             }else {
 
                 // Send Push Notification to recipient
+                PFQuery *pushQuery = [PFInstallation query];
+                [pushQuery whereKey:@"installationUser" equalTo:[[PFUser currentUser] objectId]];
+
                 PFQuery *pushQueryy = [PFInstallation query];
                 [pushQueryy whereKey:@"installationUser" equalTo:self.usersObjectId];
                 PFPush *push = [[PFPush alloc] init];
@@ -129,7 +132,7 @@
                 [push sendPushInBackground];
 
                 //Sends a in-code notification to update the sent table view in SentReceiveViewController
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"onSendButtonPressed" object:self.typedMessage.text];
+                //[[NSNotificationCenter defaultCenter] postNotificationName:@"onSendButtonPressed" object:self.typedMessage.text];
 
             }
         }];
