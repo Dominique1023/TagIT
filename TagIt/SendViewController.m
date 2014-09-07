@@ -27,7 +27,10 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
 
+    //Turining all license plate to caps. NOTE: this ONLY works using the device/simulators keyboard!!!!
+    //Shows the characters as all caps when the user is typing it
     self.receivingLicensePlate.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+    //changes all the characters to to caps
     [self.receivingLicensePlate.text uppercaseString];
 
 
@@ -48,7 +51,7 @@
      attributes:@{NSForegroundColorAttributeName:color}];
 
     self.typedMessage.backgroundColor = [UIColor clearColor];
-  //  self.typedMessage.textColor = [UIColor lightGrayColor];
+    //self.typedMessage.textColor = [UIColor lightGrayColor];
     //self.typedMessage.
 
     // hides keyboard when user touches outside of text fields
@@ -67,44 +70,16 @@
     self.photoImageView.image = nil;
     self.addPhotoButton.hidden = NO;
     self.clearPhotoButton.hidden = YES;
-    self.photoImageView.layer.borderWidth=0.0;
+    self.photoImageView.layer.borderWidth = 0.0;
 }
 
 //uploads message, user and photo up to parse
 - (IBAction)sendOnVentButtonPressed:(id)sender{
-
-    UIImage * image = self.photoImageView.image;
-    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
-    PFFile *file = [PFFile fileWithData:imageData];
-
-
-
-    PFQuery *usersQuery = [PFUser query];
-    [usersQuery whereKey:@"username" equalTo:self.receivingLicensePlate.text];
-    [usersQuery findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
-        for (PFObject *user in comments) {
-            self.usersObjectId = user.objectId;
-            NSLog(@"%@", self.usersObjectId);
-        }
-
-    }];
-
-    PFObject * message = [PFObject objectWithClassName:@"Message"];
-    message[@"text"] = self.typedMessage.text;
-    message[@"from"] = [PFUser currentUser];
-    message[@"to"] = self.receivingLicensePlate.text;
-    message[@"senderId"] =[[PFUser currentUser] objectId];
-    message[@"senderName"] = [[PFUser currentUser] username];
-
-    //message[@"usersObjectId"] = self.usersObjectId;
-    //NSLog(@"%@",  message[@"usersObjectId"]);
-
-
     if ([self.receivingLicensePlate.text isEqualToString:@""]) {
-      UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Error!" message:@"Enter License Plate" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-      [alertView show];
-      
-      return;
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Error!" message:@"Enter License Plate" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertView show];
+
+        return;
     }
 
     if ([self.typedMessage.text isEqualToString:@""] || [self.photoImageView.image isEqual:nil]) {
@@ -114,6 +89,29 @@
         return;
     }
 
+    UIImage *image = self.photoImageView.image;
+    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
+    PFFile *file = [PFFile fileWithData:imageData];
+
+    //Quering so Push Notification sends to only the receiving user
+    PFQuery *usersQuery = [PFUser query];
+    [usersQuery whereKey:@"username" equalTo:self.receivingLicensePlate.text];
+    [usersQuery findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
+        for (PFObject *user in comments) {
+            self.usersObjectId = user.objectId;
+        }
+
+    }];
+
+    PFObject *message = [PFObject objectWithClassName:@"Message"];
+    message[@"text"] = self.typedMessage.text;
+    message[@"from"] = [PFUser currentUser];
+    message[@"to"] = self.receivingLicensePlate.text;
+    message[@"senderId"] =[[PFUser currentUser] objectId];
+    message[@"senderName"] = [[PFUser currentUser] username];
+    //message[@"usersObjectId"] = self.usersObjectId;
+    //NSLog(@"%@",  message[@"usersObjectId"]);
+
     [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         message[@"photo"] = file;
 
@@ -122,8 +120,7 @@
                 NSLog(@"%@", [error userInfo]);
             }else {
 
-
-// Send Push Notification to recipient
+                // Send Push Notification to recipient
                 PFQuery *pushQueryy = [PFInstallation query];
                 [pushQueryy whereKey:@"installationUser" equalTo:self.usersObjectId];
                 PFPush *push = [[PFPush alloc] init];
@@ -131,17 +128,19 @@
                 [push setMessage:message[@"text"]];
                 [push sendPushInBackground];
 
+                //Sends a in-code notification to update the sent table view in SentReceiveViewController
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"onSendButtonPressed" object:self.typedMessage.text];
 
             }
         }];
-        
+
     }];
 
     [self performSegueWithIdentifier:@"ventPressed" sender:self];
 }
 
-#pragma mark UIIMAGEPICKER DELEGEATE METHODS
+
+#pragma mark UIACTIONSHEET AND UIIMAGEPICKERCONTROLLER DELEGATE METHODS
 -(void)whatSourceType{
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Device Has No Camera" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -168,8 +167,8 @@
     self.photoImageView.layer.masksToBounds = YES;
 
     self.photoImageView.layer.borderColor=[[UIColor whiteColor] CGColor];
-  //  self.photoImageView.layer.borderColor=[[UIColor colorWithRed:250.f/255.f green:80.f/255.f blue:84.f/255.f alpha:1.f] CGColor];
-   // self.photoImageView.layer.borderColor=[UIColor colorWithRed:250 green:80 blue:84 alpha:100];
+    //self.photoImageView.layer.borderColor=[[UIColor colorWithRed:250.f/255.f green:80.f/255.f blue:84.f/255.f alpha:1.f] CGColor];
+    //self.photoImageView.layer.borderColor=[UIColor colorWithRed:250 green:80 blue:84 alpha:100];
 
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
@@ -178,7 +177,6 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark UIACTIONSHEET DELEGATE
 -(void)actionSheet:(UIActionSheet *)theActionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
     if(buttonIndex == 0) {
         [self takePhoto];
@@ -194,7 +192,6 @@
     picker.allowsEditing = YES;
     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
     [self presentViewController:picker animated:YES completion:nil];
-
 }
 
 -(void)choosePhotoFromLibrary{
@@ -209,18 +206,9 @@
 
 -(void)showPhotoMenu{
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-
-        //UIActionSheet *actionSheet = [[UIActionSheet alloc]
-
-        actionSheet = [[UIActionSheet alloc]
-                       initWithTitle:nil
-                       delegate:self
-                       cancelButtonTitle:@"Cancel"
-                       destructiveButtonTitle:nil
-                       otherButtonTitles:@"Take Photo", @"Choose From Library", nil];
+        actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Choose From Library", nil];
 
         [actionSheet showInView:self.view];
-
     }else {
         [self choosePhotoFromLibrary];
     }
