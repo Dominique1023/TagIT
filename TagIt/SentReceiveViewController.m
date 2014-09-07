@@ -137,9 +137,11 @@
     if (control.selectedSegmentIndex == 0) {
         self.receivedTableView.hidden = YES;
         self.sentTableView.hidden = NO;
+        [self loadSentMessages];
     }else{
         self.sentTableView.hidden = YES;
         self.receivedTableView.hidden = NO;
+        [self loadReceivedMessages];
     }
 }
 
