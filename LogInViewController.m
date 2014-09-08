@@ -32,6 +32,10 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
 
+
+    self.licensePlateTextField.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+    [self.licensePlateTextField.text uppercaseString];
+
     //Turning off autocorrect for license plate
     [self.licensePlateTextField setAutocorrectionType:UITextAutocorrectionTypeNo];
 

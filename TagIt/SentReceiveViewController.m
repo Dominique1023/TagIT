@@ -33,13 +33,19 @@
     [self loadSentMessages];
     [self loadReceivedMessages];
 
+
     self.sentTableView.separatorColor = [UIColor clearColor];
     self.receivedTableView.separatorColor = [UIColor clearColor];
+
+    self.refreshButton.hidden = YES; 
+
 
     //self.segmentedControl.backgroundColor = [UIColor whiteColor];
     self.segmentedControl.tintColor = [UIColor whiteColor];
     self.refreshButton.tintColor = [UIColor whiteColor];
     self.receivedTableView.hidden = YES;
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadSentMessages) name:@"onSendButtonPressed" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -167,9 +173,11 @@
     if (control.selectedSegmentIndex == 0) {
         self.receivedTableView.hidden = YES;
         self.sentTableView.hidden = NO;
+        [self loadSentMessages];
     }else{
         self.sentTableView.hidden = YES;
         self.receivedTableView.hidden = NO;
+        [self loadReceivedMessages];
     }
 }
 

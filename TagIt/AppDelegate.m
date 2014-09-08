@@ -22,6 +22,7 @@
      UIRemoteNotificationTypeSound];
 
 
+
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor redColor]];
 
     return YES;
@@ -44,9 +45,39 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
+
 - (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    {
+
+        PFUser *currentUser = [PFUser currentUser];
+        if (currentUser) {
+            //save the installation
+            PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+            currentInstallation[@"installationUser"] = [[PFUser currentUser]objectId];
+            // here we add a column to the installation table and store the current user’s ID
+            // this way we can target specific users later
+
+            // while we’re at it, this is a good place to reset our app’s badge count
+            // you have to do this locally as well as on the parse server by updating
+            // the PFInstallation object
+            if (currentInstallation.badge != 0) {
+                currentInstallation.badge = 0;
+                [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (error) {
+                        // Handle error here with an alert…
+                    }
+                    else {
+                        // only update locally if the remote update succeeded so they always match
+                        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+                        NSLog(@"updated badge");
+                    }
+                }];
+            }
+        } else {
+            
+            [PFUser logOut];
+            // show the signup screen here....
+        }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -56,16 +87,29 @@
 
 
 
--(void)automaticLogin{
-
+-(void)automaticLogin
+{
 }
+
 
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
     // Store the deviceToken in the current installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-  //  [currentInstallation setDeviceTokenFromData:deviceToken];
+  [currentInstallation setDeviceTokenFromData:newDeviceToken];
     currentInstallation.channels = @[@"global"];
     [currentInstallation saveInBackground];
+    [PFPush storeDeviceToken:newDeviceToken];
+    [PFPush subscribeToChannelInBackground:@""];
+
+}
+
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
+}
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    NSLog(@"Did fail to register for push, %@", error);
 }
 @end

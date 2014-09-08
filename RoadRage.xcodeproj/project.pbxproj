@@ -40,6 +40,7 @@
 		5DA2517919B8C45800850053 /* FeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2517819B8C45800850053 /* FeedTableViewCell.m */; };
 		5DE3061519ACD7CB006E2DBF /* SendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE3061419ACD7CB006E2DBF /* SendViewController.m */; };
 		5DF66AA719AE494A002C9E1D /* ReceivedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF66AA619AE494A002C9E1D /* ReceivedTableViewCell.m */; };
+		96231CEC19BE343500C9F2DF /* car-horn.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96231CEB19BE343500C9F2DF /* car-horn.wav */; };
 		965530A519AE1AA400697D37 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 080308B719ABBB1900199B95 /* Parse.framework */; };
 /* End PBXBuildFile section */
 
@@ -99,6 +100,7 @@
 		5DE3061419ACD7CB006E2DBF /* SendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendViewController.m; sourceTree = "<group>"; };
 		5DF66AA519AE494A002C9E1D /* ReceivedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceivedTableViewCell.h; sourceTree = "<group>"; };
 		5DF66AA619AE494A002C9E1D /* ReceivedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceivedTableViewCell.m; sourceTree = "<group>"; };
+		96231CEB19BE343500C9F2DF /* car-horn.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "car-horn.wav"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +211,7 @@
 		0803087019ABB90C00199B95 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				96231CEB19BE343500C9F2DF /* car-horn.wav */,
 				0803087819ABB90C00199B95 /* AppDelegate.h */,
 				0803087919ABB90C00199B95 /* AppDelegate.m */,
 				0803087119ABB90C00199B95 /* TagIt-Info.plist */,
@@ -319,6 +322,7 @@
 			files = (
 				0889967C19ABD2CB001D3425 /* Images.xcassets in Resources */,
 				0803087419ABB90C00199B95 /* InfoPlist.strings in Resources */,
+				96231CEC19BE343500C9F2DF /* car-horn.wav in Resources */,
 				0803087D19ABB90C00199B95 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,7 +417,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Steven Sickler (ZMW3P5PFXW)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Steven Sickler (ZMW3P5PFXW)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -431,6 +436,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "583eea85-195d-438d-bac4-feb4c5bacc85";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -451,7 +457,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Steven Sickler (ZMW3P5PFXW)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Steven Sickler (ZMW3P5PFXW)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -462,6 +469,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PROVISIONING_PROFILE = "583eea85-195d-438d-bac4-feb4c5bacc85";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -472,8 +480,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Alex Hudson (YP7UW6XRP7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alex Hudson (YP7UW6XRP7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -493,8 +501,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Alex Hudson (YP7UW6XRP7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alex Hudson (YP7UW6XRP7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
