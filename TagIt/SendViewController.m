@@ -95,13 +95,31 @@
 
     //Quering so Push Notification sends to only the receiving user
     PFQuery *usersQuery = [PFUser query];
-    [usersQuery whereKey:@"username" equalTo:self.receivingLicensePlate.text];
+    [usersQuery whereKeyExists:@"username"];
+
     [usersQuery findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
-        for (PFObject *user in comments) {
-            self.usersObjectId = user.objectId;
+        if (error) {
+            NSLog(@"error");
+        }else{
+            for (PFObject *user in comments) {
+
+                //if the receivingLicensePlate is not a user than do nothing, else grab that licensePlate's objectID
+                NSString *username = user[@"username"];
+
+                if (![username isEqualToString:self.receivingLicensePlate.text]) {
+                    NSLog(@"Not the receiving user");
+
+                    return;
+                }else{
+                    self.usersObjectId = user.objectId;
+
+                    return; 
+                }
+            }
         }
 
     }];
+
 
     PFObject *message = [PFObject objectWithClassName:@"Message"];
     message[@"text"] = self.typedMessage.text;
@@ -109,8 +127,6 @@
     message[@"to"] = self.receivingLicensePlate.text;
     message[@"senderId"] =[[PFUser currentUser] objectId];
     message[@"senderName"] = [[PFUser currentUser] username];
-    //message[@"usersObjectId"] = self.usersObjectId;
-    //NSLog(@"%@",  message[@"usersObjectId"]);
 
     [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         message[@"photo"] = file;
@@ -124,15 +140,33 @@
                 PFQuery *pushQuery = [PFInstallation query];
                 [pushQuery whereKey:@"installationUser" equalTo:[[PFUser currentUser] objectId]];
 
-                PFQuery *pushQueryy = [PFInstallation query];
-                [pushQueryy whereKey:@"installationUser" equalTo:self.usersObjectId];
-                PFPush *push = [[PFPush alloc] init];
-                [push setQuery:pushQueryy];
-                [push setMessage:message[@"text"]];
-                [push sendPushInBackground];
+
+                //Checks if that objectID is nil, if it is than just update the senders table, if its not nil than send a push
+                if (self.usersObjectId != nil) {
+                    PFQuery *pushQueryy = [PFInstallation query];
+                    [pushQueryy whereKey:@"installationUser" equalTo:self.usersObjectId];
+
+//                    PFPush *push = [[PFPush alloc] init];
+//                    [push setQuery:pushQueryy];
+//                    [push setMessage:message[@"text"]];
+//                    [push sendPushInBackground];
+
+
+                    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+                                          self.typedMessage.text, @"alert",
+                                          @"Increment", @"badge",
+                                          @"car-horn.wav", @"sound",
+                                          nil];
+                    PFPush *push = [[PFPush alloc] init];
+                    [push setQuery:pushQueryy];
+                    [push setData:data];
+                    [push sendPushInBackground];
+
+                }
+
 
                 //Sends a in-code notification to update the sent table view in SentReceiveViewController
-                //[[NSNotificationCenter defaultCenter] postNotificationName:@"onSendButtonPressed" object:self.typedMessage.text];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"onSendButtonPressed" object:self.typedMessage.text];
 
             }
         }];

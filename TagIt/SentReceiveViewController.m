@@ -28,6 +28,8 @@
     [self loadSentMessages];
     [self loadReceivedMessages];
 
+    self.refreshButton.hidden = YES; 
+
     //self.segmentedControl.backgroundColor = [UIColor whiteColor];
     self.segmentedControl.tintColor = [UIColor whiteColor];
     self.refreshButton.tintColor = [UIColor whiteColor];
@@ -35,8 +37,6 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadSentMessages) name:@"onSendButtonPressed" object:nil];
 }
-
-
 
 #pragma mark QUERYING FOR MESSAGES SENT AND RECEIVED
 -(void)loadSentMessages{
