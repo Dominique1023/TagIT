@@ -22,7 +22,7 @@
      UIRemoteNotificationTypeSound];
 
 
-
+    [[UITabBar appearance] setSelectedImageTintColor:[UIColor redColor]];
 
     return YES;
 }

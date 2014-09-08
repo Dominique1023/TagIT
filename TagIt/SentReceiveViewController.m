@@ -24,14 +24,26 @@
 @implementation SentReceiveViewController
 
 - (void)viewDidLoad{
+
+   // [self.tabBarController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"Messages Tab"] withFinishedUnselectedImage:[UIImage imageNamed:@"Messages Tab"]];
+
+   // [self.tabBarController.tabBarItem initWithTitle:@"" image:[UIImage imageNamed:@"Messages Tab"] selectedImage:[UIImage imageNamed:@"Messages Tab"]];
+
     [super viewDidLoad];
     [self loadSentMessages];
     [self loadReceivedMessages];
+
+    self.sentTableView.separatorColor = [UIColor clearColor];
+    self.receivedTableView.separatorColor = [UIColor clearColor];
 
     //self.segmentedControl.backgroundColor = [UIColor whiteColor];
     self.segmentedControl.tintColor = [UIColor whiteColor];
     self.refreshButton.tintColor = [UIColor whiteColor];
     self.receivedTableView.hidden = YES;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    self.tabBarController.selectedIndex = 1;
 }
 
 #pragma mark QUERYING FOR MESSAGES SENT AND RECEIVED
@@ -95,6 +107,12 @@
 
         [tempObject[@"photo"] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             cell.myImageView.image = [UIImage imageWithData:data];
+            cell.myImageView.layer.cornerRadius=8;
+            cell.myImageView.layer.borderWidth=2.0;
+            cell.myImageView.layer.masksToBounds = YES;
+
+            cell.myImageView.layer.borderColor=[[UIColor colorWithRed:250.f/255.f green:80.f/255.f blue:84.f/255.f alpha:1.f] CGColor];
+
         }];
 
 
@@ -110,7 +128,21 @@
         cell.message = tempObject;
 
         [tempObject[@"photo"] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+
+//            if (data == nil){
+//
+//                cell.receivedImageView.image = [UIImage  imageNamed:@"Icon" ];
+//                 }
+
             cell.receivedImageView.image = [UIImage imageWithData:data];
+
+            cell.receivedImageView.image = [UIImage imageWithData:data];
+            cell.receivedImageView.layer.cornerRadius=8;
+            cell.receivedImageView.layer.borderWidth=2.0;
+            cell.receivedImageView.layer.masksToBounds = YES;
+
+            cell.receivedImageView.layer.borderColor=[[UIColor colorWithRed:250.f/255.f green:80.f/255.f blue:84.f/255.f alpha:1.f] CGColor];
+            
         }];
 
 
