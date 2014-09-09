@@ -155,7 +155,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dP9-Mn-ipG">
-                                <rect key="frame" x="10" y="221" width="57" height="30"/>
+                                <rect key="frame" x="10" y="221" width="94" height="30"/>
                                 <state key="normal" backgroundImage="Send Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -164,7 +164,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3yv-zO-DcN" userLabel="Add Photo Button">
-                                <rect key="frame" x="230" y="221" width="74" height="30"/>
+                                <rect key="frame" x="189" y="221" width="120" height="30"/>
                                 <state key="normal" backgroundImage="Add Photo Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -185,18 +185,18 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eDe-Jg-has">
                                 <rect key="frame" x="35" y="261" width="250" height="250"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zX0-CI-iO7">
-                                <rect key="frame" x="222" y="221" width="82" height="30"/>
-                                <state key="normal" title="Clear Photo">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="RoadRage" translatesAutoresizingMaskIntoConstraints="NO" id="nkt-aT-Z7q">
+                                <rect key="frame" x="24" y="22" width="275" height="42"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zX0-CI-iO7">
+                                <rect key="frame" x="168" y="221" width="142" height="30"/>
+                                <state key="normal" backgroundImage="Clear Photo">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="onClearPhotoButtonPressed:" destination="w1i-Ut-GCG" eventType="touchUpInside" id="H1E-4G-47D"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="RoadRage" translatesAutoresizingMaskIntoConstraints="NO" id="nkt-aT-Z7q">
-                                <rect key="frame" x="24" y="22" width="275" height="42"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -248,18 +248,18 @@
                                                     <rect key="frame" x="20" y="10" width="280" height="280"/>
                                                 </imageView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="Sent Message" translatesAutoresizingMaskIntoConstraints="NO" id="7lq-b7-exg">
-                                                    <rect key="frame" x="20" y="306" width="175" height="72"/>
+                                                    <rect key="frame" x="20" y="315" width="280" height="50"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="To: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRZ-sS-YpJ" userLabel="Label - To:">
-                                                    <rect key="frame" x="20" y="290" width="25" height="21"/>
+                                                    <rect key="frame" x="20" y="295" width="25" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POU-ea-Thh">
-                                                    <rect key="frame" x="53" y="290" width="142" height="21"/>
+                                                    <rect key="frame" x="53" y="295" width="142" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -358,7 +358,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EyU-qf-eJ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1927" y="402"/>
+            <point key="canvasLocation" x="1927" y="401"/>
         </scene>
         <!--Image View Controller-->
         <scene sceneID="Soc-qY-Ucz">
@@ -397,16 +397,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="389"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Filler" translatesAutoresizingMaskIntoConstraints="NO" id="8kh-cN-xzU">
-                                                    <rect key="frame" x="20" y="15" width="280" height="280"/>
-                                                </imageView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Message Here" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwm-pG-jIf">
-                                                    <rect key="frame" x="20" y="318" width="280" height="48"/>
+                                                    <rect key="frame" x="20" y="315" width="280" height="50"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Filler" translatesAutoresizingMaskIntoConstraints="NO" id="8kh-cN-xzU">
+                                                    <rect key="frame" x="20" y="15" width="280" height="280"/>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
@@ -558,11 +557,12 @@
     </scenes>
     <resources>
         <image name=" Create Button" width="84" height="27"/>
-        <image name="Add Photo Button" width="113" height="28"/>
+        <image name="Add Photo Button" width="120" height="28"/>
         <image name="BG" width="320" height="64"/>
         <image name="Background" width="320" height="568"/>
         <image name="Cancel Button" width="84" height="27"/>
         <image name="Change Password" width="270" height="28"/>
+        <image name="Clear Photo" width="130" height="28"/>
         <image name="Confirm Button" width="270" height="28"/>
         <image name="Contact Us" width="270" height="28"/>
         <image name="Done Button" width="84" height="27"/>
@@ -576,7 +576,7 @@
         <image name="Reset Email Rectangle " width="270" height="34"/>
         <image name="Road" width="318" height="454"/>
         <image name="RoadRage" width="280" height="41"/>
-        <image name="Send Button" width="84" height="27"/>
+        <image name="Send Button" width="84" height="28"/>
         <image name="SettingsTab" width="72" height="19"/>
         <image name="Sign-Up Button " width="84" height="28"/>
         <image name="Unblock All Users" width="270" height="28"/>
