@@ -25,10 +25,6 @@
 
 - (void)viewDidLoad{
 
-   // [self.tabBarController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"Messages Tab"] withFinishedUnselectedImage:[UIImage imageNamed:@"Messages Tab"]];
-
-   // [self.tabBarController.tabBarItem initWithTitle:@"" image:[UIImage imageNamed:@"Messages Tab"] selectedImage:[UIImage imageNamed:@"Messages Tab"]];
-
     [super viewDidLoad];
     [self loadSentMessages];
     [self loadReceivedMessages];
@@ -49,7 +45,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.tabBarController.selectedIndex = 1;
+   // self.tabBarController.selectedIndex = 1;
 }
 
 #pragma mark QUERYING FOR MESSAGES SENT AND RECEIVED
@@ -109,18 +105,20 @@
 
         PFObject *tempObject = [self.sentMessages objectAtIndex:indexPath.row];
         cell.userMessageView.text = tempObject[@"text"];
+        cell.userMessageView.textColor = [UIColor grayColor];
         cell.receiverLabel.text = tempObject[@"to"];
+        cell.toLabel.textColor =[UIColor colorWithRed:250.f/255.f green:80.f/255.f blue:84.f/255.f alpha:1.f];
 
         [tempObject[@"photo"] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-            cell.myImageView.image = [UIImage imageWithData:data];
             cell.myImageView.layer.cornerRadius=8;
             cell.myImageView.layer.borderWidth=2.0;
             cell.myImageView.layer.masksToBounds = YES;
-
             cell.myImageView.layer.borderColor=[[UIColor colorWithRed:250.f/255.f green:80.f/255.f blue:84.f/255.f alpha:1.f] CGColor];
+            if (data == nil)
+                return;
+            cell.myImageView.image = [UIImage imageWithData:data];
 
         }];
-
 
         return cell;
     }else{
@@ -130,25 +128,22 @@
 
         PFObject *tempObject = [self.receivedMessages objectAtIndex:indexPath.row];
         cell.receivedMessage.text = tempObject[@"text"];
+         cell.receivedMessage.textColor = [UIColor grayColor];
+        cell.blockButton.tintColor = [UIColor colorWithRed:250.f/255.f green:80.f/255.f blue:84.f/255.f alpha:1.f];
         
         cell.message = tempObject;
 
         [tempObject[@"photo"] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
 
-//            if (data == nil){
-//
-//                cell.receivedImageView.image = [UIImage  imageNamed:@"Icon" ];
-//                 }
 
-            cell.receivedImageView.image = [UIImage imageWithData:data];
-
-            cell.receivedImageView.image = [UIImage imageWithData:data];
             cell.receivedImageView.layer.cornerRadius=8;
             cell.receivedImageView.layer.borderWidth=2.0;
             cell.receivedImageView.layer.masksToBounds = YES;
-
             cell.receivedImageView.layer.borderColor=[[UIColor colorWithRed:250.f/255.f green:80.f/255.f blue:84.f/255.f alpha:1.f] CGColor];
-            
+
+            if (data == nil)
+                return;
+            cell.receivedImageView.image = [UIImage imageWithData:data];
         }];
 
 

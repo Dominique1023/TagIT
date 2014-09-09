@@ -12,5 +12,6 @@
 @property (strong, nonatomic) IBOutlet UITextView *userMessageView;
 @property (strong, nonatomic) IBOutlet UILabel *receiverLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *myImageView;
+@property (strong, nonatomic) IBOutlet UILabel *toLabel;
 
 @end
