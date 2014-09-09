@@ -566,7 +566,7 @@
         <image name="Confirm Button" width="270" height="28"/>
         <image name="Contact Us" width="270" height="28"/>
         <image name="Done Button" width="84" height="27"/>
-        <image name="Filler" width="360" height="360"/>
+        <image name="Filler" width="256" height="256"/>
         <image name="License Rectangle" width="283" height="33"/>
         <image name="Log In Button" width="84" height="28"/>
         <image name="Log Out Button " width="270" height="28"/>
