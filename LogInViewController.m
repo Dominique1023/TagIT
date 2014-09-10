@@ -11,6 +11,7 @@
 
 @interface LogInViewController () <UIAlertViewDelegate, UITextFieldDelegate>
 
+
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *licensePlateTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
@@ -24,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelResetPasswordButton;
 @property UIAlertView *forgotPasswordAlertView;
+@property BOOL signUpOrCancel;
 
 @end
 
@@ -32,6 +34,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
 
+    self.signUpOrCancel = NO;
 
     self.licensePlateTextField.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     [self.licensePlateTextField.text uppercaseString];
@@ -79,11 +82,17 @@
 
 //lets user sign up
 - (IBAction)onSignUpButtonPressed:(UIButton *)sender{
-    if ([sender.titleLabel.text isEqualToString:@"Sign-Up"]){
 
-        //moves everything up and changes "signup" to "cancel"
-        [sender setTitle:@"Cancel" forState:UIControlStateNormal];
-        [sender setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+
+    if (self.signUpOrCancel == NO) {
+   // }
+
+        // if ([sender.titleLabel.text isEqualToString:@"Sign-Up"]){
+        // moves everything up and changes "signup" to "cancel"
+       // [sender setTitle:@"Cancel" forState:UIControlStateNormal];
+       // [sender setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+
+   [self.signUpButton setBackgroundImage:[UIImage imageNamed:@"CancelButton"] forState:UIControlStateNormal];
 
         [UIView animateWithDuration:1.2 animations:^{
             self.logInButton.hidden = YES;
@@ -110,12 +119,17 @@
         }completion:^(BOOL finished){
             sender.enabled = YES;
             self.createAccountButton.hidden = NO;
+
+            self.signUpOrCancel = YES;
+
         }];
     }else{
 
          //moves everything down and changes "cancel" to "signup"
-        [sender setTitle:@"Sign-Up" forState:UIControlStateNormal];
-        [sender setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        //[sender setTitle:@"Sign-Up" forState:UIControlStateNormal];
+        //[sender setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+
+   [self.signUpButton setBackgroundImage:[UIImage imageNamed:@"SignUpButton"] forState:UIControlStateNormal];
 
         [UIView animateWithDuration:1.2 animations:^{
             self.roadRageLabel.transform = CGAffineTransformMakeTranslation(0, -90);
@@ -140,6 +154,8 @@
         }completion:^(BOOL finished){
             sender.enabled = YES;
             self.emailTextField.hidden = YES;
+
+            self.signUpOrCancel = NO;
         }];
     }
 }

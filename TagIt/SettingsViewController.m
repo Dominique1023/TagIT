@@ -67,48 +67,50 @@
         }
 
     }else if(alertView==self.changeEmailAlertView) {
-        PFUser *user = [PFUser currentUser];
+        if (buttonIndex != alertView.cancelButtonIndex) {
+            PFUser *user = [PFUser currentUser];
 
-        NSString *newEmail = [alertView textFieldAtIndex:0].text;
-        NSLog(@"%@", newEmail);
+            NSString *newEmail = [alertView textFieldAtIndex:0].text;
+            NSLog(@"%@", newEmail);
 
-        if (![newEmail  isEqual: @""]){
+            if (![newEmail  isEqual: @""]){
 
-            if ([newEmail rangeOfString:@"@"].location == NSNotFound){
+                if ([newEmail rangeOfString:@"@"].location == NSNotFound){
 
-                UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Invalid Email"
+                    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Invalid Email"
+                                                                       message:nil
+                                                                      delegate:nil
+                                                             cancelButtonTitle:@"OK"
+                                                             otherButtonTitles:nil, nil];
+                    [alertView show];
+                } else{
+
+                    NSLog(@"Email is not nil and has @ symbol");
+
+                    [user setEmail:newEmail];
+                    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        NSLog(@"email changed");
+                        NSLog(@"%@", newEmail);
+                    }];
+
+
+                }
+
+            } else {
+
+                UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Email Field Empty"
                                                                    message:nil
                                                                   delegate:nil
                                                          cancelButtonTitle:@"OK"
                                                          otherButtonTitles:nil, nil];
                 [alertView show];
-            } else{
-
-                NSLog(@"Email is not nil and has @ symbol");
-
-                [user setEmail:newEmail];
-                [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    NSLog(@"email changed");
-                    NSLog(@"%@", newEmail);
-                }];
-
-
+                
             }
-
-        } else {
-
-            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Email Field Empty"
-                                                               message:nil
-                                                              delegate:nil
-                                                     cancelButtonTitle:@"OK"
-                                                     otherButtonTitles:nil, nil];
-            [alertView show];
             
-        }
-        
-        
-        self.changeEmailTextField.text = @"";
+            
+            self.changeEmailTextField.text = @"";
 
+        }
     }
 
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <scenes>
@@ -40,7 +41,7 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1f-vO-ghT">
                                         <rect key="frame" x="25" y="180" width="84" height="28"/>
-                                        <state key="normal" backgroundImage="Sign-Up Button ">
+                                        <state key="normal" backgroundImage="SignUpButton">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
                                         <connections>
@@ -91,7 +92,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NjO-wp-aJQ" userLabel="Button Cancel Password Reset">
                                         <rect key="frame" x="8" y="170" width="84" height="28"/>
-                                        <state key="normal" backgroundImage="Cancel Button">
+                                        <state key="normal" backgroundImage="CancelButton">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -100,13 +101,10 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="RoadRage" translatesAutoresizingMaskIntoConstraints="NO" id="Qd6-gR-KmK">
-                                        <rect key="frame" x="-22" y="-5" width="290" height="64"/>
+                                        <rect key="frame" x="-13" y="33" width="278" height="59"/>
                                     </imageView>
                                 </subviews>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="RoadRage" translatesAutoresizingMaskIntoConstraints="NO" id="pMh-Ka-hbK">
-                                <rect key="frame" x="16" y="28" width="290" height="64"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -549,7 +547,7 @@
         <image name="Add Photo Button" width="120" height="28"/>
         <image name="BG" width="320" height="64"/>
         <image name="Background" width="320" height="568"/>
-        <image name="Cancel Button" width="84" height="27"/>
+        <image name="CancelButton" width="84" height="27"/>
         <image name="Change Password" width="270" height="28"/>
         <image name="Clear Photo" width="130" height="28"/>
         <image name="Confirm Button" width="270" height="28"/>
@@ -564,7 +562,7 @@
         <image name="RoadRage" width="280" height="41"/>
         <image name="Send Button" width="84" height="28"/>
         <image name="SettingsTab" width="72" height="19"/>
-        <image name="Sign-Up Button " width="84" height="28"/>
+        <image name="SignUpButton" width="84" height="28"/>
         <image name="Unblock All Users" width="270" height="28"/>
         <image name="curvedRoad" width="320" height="563"/>
     </resources>
@@ -577,6 +575,6 @@
         </simulatedScreenMetrics>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="AMJ-MD-8BE"/>
+        <segue reference="r0G-hu-Lyv"/>
     </inferredMetricsTieBreakers>
 </document>

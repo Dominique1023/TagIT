@@ -13,7 +13,6 @@
 		0803087419ABB90C00199B95 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0803087219ABB90C00199B95 /* InfoPlist.strings */; };
 		0803087619ABB90C00199B95 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0803087519ABB90C00199B95 /* main.m */; };
 		0803087A19ABB90C00199B95 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0803087919ABB90C00199B95 /* AppDelegate.m */; };
-		0803087D19ABB90C00199B95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0803087B19ABB90C00199B95 /* Main.storyboard */; };
 		0803088A19ABB90C00199B95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0803086919ABB90C00199B95 /* Foundation.framework */; };
 		0803088B19ABB90C00199B95 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0803086D19ABB90C00199B95 /* UIKit.framework */; };
 		0803089319ABB90D00199B95 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0803089119ABB90D00199B95 /* InfoPlist.strings */; };
@@ -32,6 +31,7 @@
 		080308B519ABBAB600199B95 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 080308B419ABBAB600199B95 /* SystemConfiguration.framework */; };
 		080308B819ABBB1900199B95 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 080308B719ABBB1900199B95 /* Parse.framework */; };
 		080308BB19ABBDAC00199B95 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 080308BA19ABBDAC00199B95 /* LogInViewController.m */; };
+		083E499219C0B9CC00850515 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 083E499119C0B9CC00850515 /* Main.storyboard */; };
 		0889967C19ABD2CB001D3425 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0889967B19ABD2CB001D3425 /* Images.xcassets */; };
 		088996C019AE80EA001D3425 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 088996BF19AE80EA001D3425 /* SettingsViewController.m */; };
 		5D0B43C719AD1F4A00B91F86 /* SentReceiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0B43C619AD1F4A00B91F86 /* SentReceiveViewController.m */; };
@@ -65,7 +65,6 @@
 		0803087719ABB90C00199B95 /* TagIt-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TagIt-Prefix.pch"; sourceTree = "<group>"; };
 		0803087819ABB90C00199B95 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0803087919ABB90C00199B95 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		0803087C19ABB90C00199B95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0803088719ABB90C00199B95 /* RoadRageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoadRageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0803089019ABB90D00199B95 /* TagItTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TagItTests-Info.plist"; sourceTree = "<group>"; };
 		0803089219ABB90D00199B95 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -85,6 +84,7 @@
 		080308B719ABBB1900199B95 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		080308B919ABBDAC00199B95 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogInViewController.h; path = ../LogInViewController.h; sourceTree = "<group>"; };
 		080308BA19ABBDAC00199B95 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogInViewController.m; path = ../LogInViewController.m; sourceTree = "<group>"; };
+		083E499119C0B9CC00850515 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		0889967B19ABD2CB001D3425 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		088996BE19AE80EA001D3425 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		088996BF19AE80EA001D3425 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
@@ -185,8 +185,8 @@
 		0803086F19ABB90C00199B95 /* TagIt */ = {
 			isa = PBXGroup;
 			children = (
+				083E499119C0B9CC00850515 /* Main.storyboard */,
 				0889967B19ABD2CB001D3425 /* Images.xcassets */,
-				0803087B19ABB90C00199B95 /* Main.storyboard */,
 				080308B919ABBDAC00199B95 /* LogInViewController.h */,
 				080308BA19ABBDAC00199B95 /* LogInViewController.m */,
 				5DE3061319ACD7CB006E2DBF /* SendViewController.h */,
@@ -323,7 +323,7 @@
 				0889967C19ABD2CB001D3425 /* Images.xcassets in Resources */,
 				0803087419ABB90C00199B95 /* InfoPlist.strings in Resources */,
 				96231CEC19BE343500C9F2DF /* car-horn.wav in Resources */,
-				0803087D19ABB90C00199B95 /* Main.storyboard in Resources */,
+				083E499219C0B9CC00850515 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,14 +380,6 @@
 				0803087319ABB90C00199B95 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		0803087B19ABB90C00199B95 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0803087C19ABB90C00199B95 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		0803089119ABB90D00199B95 /* InfoPlist.strings */ = {
