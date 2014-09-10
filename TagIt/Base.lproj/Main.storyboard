@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <scenes>
         <!--Log In View Controller-->
@@ -101,10 +100,13 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="RoadRage" translatesAutoresizingMaskIntoConstraints="NO" id="Qd6-gR-KmK">
-                                        <rect key="frame" x="-22" y="20" width="290" height="64"/>
+                                        <rect key="frame" x="-22" y="-5" width="290" height="64"/>
                                     </imageView>
                                 </subviews>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="RoadRage" translatesAutoresizingMaskIntoConstraints="NO" id="pMh-Ka-hbK">
+                                <rect key="frame" x="16" y="28" width="290" height="64"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -244,7 +246,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="389"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Filler" translatesAutoresizingMaskIntoConstraints="NO" id="8EM-HC-f5D">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8EM-HC-f5D">
                                                     <rect key="frame" x="20" y="10" width="280" height="280"/>
                                                 </imageView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="Sent Message" translatesAutoresizingMaskIntoConstraints="NO" id="7lq-b7-exg">
@@ -296,7 +298,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Filler" translatesAutoresizingMaskIntoConstraints="NO" id="tGg-Tp-miL">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tGg-Tp-miL">
                                                     <rect key="frame" x="20" y="10" width="280" height="280"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZEf-en-Irb">
@@ -403,7 +405,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Filler" translatesAutoresizingMaskIntoConstraints="NO" id="8kh-cN-xzU">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8kh-cN-xzU">
                                                     <rect key="frame" x="20" y="15" width="280" height="280"/>
                                                 </imageView>
                                             </subviews>
@@ -462,8 +464,31 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BG" translatesAutoresizingMaskIntoConstraints="NO" id="N3c-qz-nl2">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1LB-m5-VYh">
+                                <rect key="frame" x="20" y="241" width="280" height="30"/>
+                                <state key="normal" backgroundImage="Change Password">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onChangePasswordButtonChanged:" destination="qDd-HJ-DYf" eventType="touchUpInside" id="faV-72-Uy5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tnt-kj-AFt">
+                                <rect key="frame" x="20" y="182" width="280" height="30"/>
+                                <state key="normal" backgroundImage="Confirm Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onChangeEmailButtonPressed:" destination="qDd-HJ-DYf" eventType="touchUpInside" id="CMH-K4-ClR"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCR-Gf-5jk">
+                                <rect key="frame" x="82" y="20" width="157" height="31"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="phv-LN-UV0">
-                                <rect key="frame" x="20" y="392" width="280" height="30"/>
+                                <rect key="frame" x="20" y="361" width="280" height="30"/>
                                 <state key="normal" backgroundImage="Log Out Button ">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -473,48 +498,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="right" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBz-8o-csJ">
-                                <rect key="frame" x="20" y="329" width="280" height="30"/>
+                                <rect key="frame" x="20" y="301" width="280" height="30"/>
                                 <state key="normal" backgroundImage="Unblock All Users">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="onUnblockAllUsersButtonPressed:" destination="qDd-HJ-DYf" eventType="touchUpInside" id="X00-vx-LaA"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1LB-m5-VYh">
-                                <rect key="frame" x="20" y="269" width="280" height="30"/>
-                                <state key="normal" backgroundImage="Change Password">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onChangePasswordButtonChanged:" destination="qDd-HJ-DYf" eventType="touchUpInside" id="faV-72-Uy5"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tnt-kj-AFt">
-                                <rect key="frame" x="20" y="148" width="280" height="30"/>
-                                <state key="normal" backgroundImage="Confirm Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onChangeEmailButtonPressed:" destination="qDd-HJ-DYf" eventType="touchUpInside" id="CMH-K4-ClR"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="                  Change Email Address" minimumFontSize="17" background="Reset Email Rectangle " translatesAutoresizingMaskIntoConstraints="NO" id="ebs-ls-f5A">
-                                <rect key="frame" x="20" y="101" width="280" height="30"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCR-Gf-5jk">
-                                <rect key="frame" x="82" y="20" width="157" height="31"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PGb-5o-xPe">
-                                <rect key="frame" x="20" y="456" width="280" height="30"/>
-                                <state key="normal" backgroundImage="Contact Us">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -524,7 +514,6 @@
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="changeEmailTextField" destination="ebs-ls-f5A" id="DXG-Ga-1wB"/>
                         <outlet property="userLabel" destination="sCR-Gf-5jk" id="thQ-un-iPt"/>
                     </connections>
                 </viewController>
@@ -564,16 +553,13 @@
         <image name="Change Password" width="270" height="28"/>
         <image name="Clear Photo" width="130" height="28"/>
         <image name="Confirm Button" width="270" height="28"/>
-        <image name="Contact Us" width="270" height="28"/>
         <image name="Done Button" width="84" height="27"/>
-        <image name="Filler" width="256" height="256"/>
         <image name="License Rectangle" width="283" height="33"/>
         <image name="Log In Button" width="84" height="28"/>
         <image name="Log Out Button " width="270" height="28"/>
         <image name="MessageField Rectangle" width="284" height="93"/>
         <image name="MessagesTab" width="90" height="19"/>
         <image name="Rage" width="64" height="26"/>
-        <image name="Reset Email Rectangle " width="270" height="34"/>
         <image name="Road" width="318" height="454"/>
         <image name="RoadRage" width="280" height="41"/>
         <image name="Send Button" width="84" height="28"/>

@@ -11,7 +11,8 @@
 @interface SettingsViewController () <UITextFieldDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *userLabel;
 @property (weak, nonatomic) IBOutlet UITextField *changeEmailTextField;
-
+@property UIAlertView *unblockAlertView;
+@property UIAlertView *changeEmailAlertView;
 @end
 
 @implementation SettingsViewController
@@ -32,38 +33,87 @@
 - (IBAction)onUnblockAllUsersButtonPressed:(id)sender{
 
     //confirming from the user that they want to remove all blocked users
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Warning!" message:@"This will unblock all license plates" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Continue", nil];
+    self.unblockAlertView = [[UIAlertView alloc] initWithTitle:@"Warning!" message:@"This will unblock all license plates" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Continue", nil];
 
-    [alertView show];
+    [self.unblockAlertView show];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex != alertView.cancelButtonIndex) {
-        PFUser *user = [PFUser currentUser];
+    if (alertView==self.unblockAlertView) {
+        if (buttonIndex != alertView.cancelButtonIndex) {
+            PFUser *user = [PFUser currentUser];
 
-        //creating a new NSMutableArray and setting it the currentUsers blockedUsers array on parse
-        NSMutableArray * unblockUsersArray = user[@"blockedUsers"];
+            //creating a new NSMutableArray and setting it the currentUsers blockedUsers array on parse
+            NSMutableArray * unblockUsersArray = user[@"blockedUsers"];
 
-        //if they haven't blocked anyone than init a new NSMutableArray, other wise remove all objects
-        if (unblockUsersArray == nil) {
-            unblockUsersArray = [NSMutableArray new];
-        }else {
-            [unblockUsersArray removeAllObjects];
+            //if they haven't blocked anyone than init a new NSMutableArray, other wise remove all objects
+            if (unblockUsersArray == nil) {
+                unblockUsersArray = [NSMutableArray new];
+            }else {
+                [unblockUsersArray removeAllObjects];
+            }
+
+            //updating the array on parse
+            user[@"blockedUsers"] = unblockUsersArray;
+
+            //save the empty array on parse, removing all the blocked users
+            [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (error) {
+                    NSLog(@"Error");
+                }else {
+                    NSLog(@"successfully unblocked all users");
+                }
+            }];
         }
 
-        //updating the array on parse
-        user[@"blockedUsers"] = unblockUsersArray;
+    }else if(alertView==self.changeEmailAlertView) {
+        PFUser *user = [PFUser currentUser];
 
-        //save the empty array on parse, removing all the blocked users
-        [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (error) {
-                NSLog(@"Error");
-            }else {
-                NSLog(@"successfully unblocked all users");
+        NSString *newEmail = [alertView textFieldAtIndex:0].text;
+        NSLog(@"%@", newEmail);
+
+        if (![newEmail  isEqual: @""]){
+
+            if ([newEmail rangeOfString:@"@"].location == NSNotFound){
+
+                UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Invalid Email"
+                                                                   message:nil
+                                                                  delegate:nil
+                                                         cancelButtonTitle:@"OK"
+                                                         otherButtonTitles:nil, nil];
+                [alertView show];
+            } else{
+
+                NSLog(@"Email is not nil and has @ symbol");
+
+                [user setEmail:newEmail];
+                [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    NSLog(@"email changed");
+                    NSLog(@"%@", newEmail);
+                }];
+
+
             }
-        }];
+
+        } else {
+
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Email Field Empty"
+                                                               message:nil
+                                                              delegate:nil
+                                                     cancelButtonTitle:@"OK"
+                                                     otherButtonTitles:nil, nil];
+            [alertView show];
+            
+        }
+        
+        
+        self.changeEmailTextField.text = @"";
+
     }
-}
+
+
+
+    }
 
 -(void)showUserLoggedInLabel{
     PFUser *user = [PFUser currentUser];
@@ -92,47 +142,12 @@
 }
 
 - (IBAction)onChangeEmailButtonPressed:(id)sender{
-    PFUser *user = [PFUser currentUser];
+    self.changeEmailAlertView = [[UIAlertView alloc]initWithTitle:@"Email Change" message:@"Enter new email address" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Confirm", nil];
+    self.changeEmailAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField *changeEmailTextField = [self.changeEmailAlertView textFieldAtIndex:0];
+    changeEmailTextField.keyboardType = UIKeyboardTypeDefault;
+    [self.changeEmailAlertView show];
 
-    NSString *newEmail = self.changeEmailTextField.text;
-    NSLog(@"%@", newEmail);
-
-    if (![newEmail  isEqual: @""]){
-
-        if ([newEmail rangeOfString:@"@"].location == NSNotFound){
-
-            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Invalid Email"
-                                                               message:nil
-                                                              delegate:nil
-                                                     cancelButtonTitle:@"OK"
-                                                     otherButtonTitles:nil, nil];
-            [alertView show];
-        } else{
-
-            NSLog(@"Email is not nil and has @ symbol");
-
-            [user setEmail:newEmail];
-            [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                NSLog(@"email changed");
-                NSLog(@"%@", newEmail);
-            }];
-
-
-        }
-
-    } else {
-
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Email Field Empty"
-                                                        message:nil
-                                                        delegate:nil
-                                                        cancelButtonTitle:@"OK"
-                                                        otherButtonTitles:nil, nil];
-        [alertView show];
-
-    }
-
-
-    self.changeEmailTextField.text = @"";
 }
 
 @end

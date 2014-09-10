@@ -288,10 +288,10 @@
 				ORGANIZATIONNAME = MobileMakers;
 				TargetAttributes = {
 					0803086519ABB90C00199B95 = {
-						DevelopmentTeam = KTXSHTJLS6;
+						DevelopmentTeam = Q92J65ZBJQ;
 					};
 					0803088619ABB90C00199B95 = {
-						DevelopmentTeam = KTXSHTJLS6;
+						DevelopmentTeam = Q92J65ZBJQ;
 						TestTargetID = 0803086519ABB90C00199B95;
 					};
 				};
@@ -491,7 +491,7 @@
 				GCC_PREFIX_HEADER = "TagIt/TagIt-Prefix.pch";
 				INFOPLIST_FILE = "TagIt/TagIt-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "583eea85-195d-438d-bac4-feb4c5bacc85";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -512,7 +512,7 @@
 				GCC_PREFIX_HEADER = "TagIt/TagIt-Prefix.pch";
 				INFOPLIST_FILE = "TagIt/TagIt-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "583eea85-195d-438d-bac4-feb4c5bacc85";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

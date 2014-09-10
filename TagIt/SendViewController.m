@@ -74,13 +74,8 @@
 //uploads message, user and photo up to parse
 - (IBAction)sendOnVentButtonPressed:(id)sender{
 
-
-//    NSString *lastCharacter = [self.receivingLicensePlate.text substringFromIndex: self.receivingLicensePlate.text.length -1 ];
-//
-//    if ([lastCharacter  isEqual: @" "]) {
-//        NSLog(@"Testing Empty String");
-//    }
-
+    self.receivingLicensePlate.text = [self.receivingLicensePlate.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    self.receivingLicensePlate.text = [self.receivingLicensePlate.text stringByReplacingOccurrencesOfString:@"-" withString:@""];
 
 
     if ([self.receivingLicensePlate.text isEqualToString:@""]) {

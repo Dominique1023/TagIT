@@ -70,8 +70,13 @@
         cell.mySentImageView.layer.borderColor=[[UIColor colorWithRed:250.f/255.f green:80.f/255.f blue:84.f/255.f alpha:1.f] CGColor];
 
         if (data == nil)
-            return;
-        
+        {
+            UIImage *image = [UIImage imageNamed:@"FillerIcon"];
+            NSData *imageData = UIImagePNGRepresentation(image);
+            data = imageData;
+        }
+
+
         cell.mySentImageView.image = [UIImage imageWithData:data];
     }];
     

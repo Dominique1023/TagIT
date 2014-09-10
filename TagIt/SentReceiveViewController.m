@@ -110,12 +110,18 @@
         cell.toLabel.textColor =[UIColor colorWithRed:250.f/255.f green:80.f/255.f blue:84.f/255.f alpha:1.f];
 
         [tempObject[@"photo"] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (data == nil)
+            {
+                UIImage *image = [UIImage imageNamed:@"FillerIcon"];
+                NSData *imageData = UIImagePNGRepresentation(image);
+                data = imageData;
+            }
+
+
             cell.myImageView.layer.cornerRadius=8;
             cell.myImageView.layer.borderWidth=2.0;
             cell.myImageView.layer.masksToBounds = YES;
-            cell.myImageView.layer.borderColor=[[UIColor colorWithRed:250.f/255.f green:80.f/255.f blue:84.f/255.f alpha:1.f] CGColor];
-            if (data == nil)
-                return;
+            cell.myImageView.layer.borderColor=[[UIColor colorWithRed:208.f/255.f green:2.f/255.f blue:27.f/255.f alpha:1.f] CGColor];
             cell.myImageView.image = [UIImage imageWithData:data];
 
         }];
@@ -142,7 +148,12 @@
             cell.receivedImageView.layer.borderColor=[[UIColor colorWithRed:250.f/255.f green:80.f/255.f blue:84.f/255.f alpha:1.f] CGColor];
 
             if (data == nil)
-                return;
+            {
+                UIImage *image = [UIImage imageNamed:@"FillerIcon"];
+                NSData *imageData = UIImagePNGRepresentation(image);
+                data = imageData;
+            }
+
             cell.receivedImageView.image = [UIImage imageWithData:data];
         }];
 

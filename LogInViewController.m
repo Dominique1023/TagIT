@@ -146,6 +146,11 @@
 
 //Allows user to log in
 - (IBAction)onLogInTapped:(UIButton *)sender{
+
+    self.licensePlateTextField.text = [self.licensePlateTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    self.licensePlateTextField.text = [self.licensePlateTextField.text stringByReplacingOccurrencesOfString:@"-" withString:@""];
+
+
     NSString  *username = self.licensePlateTextField.text;
     NSString *password = self.passwordField.text;
 
@@ -224,6 +229,11 @@
 }
 
 - (IBAction)onCreateNewAccount:(UIButton *)sender{
+
+    self.licensePlateTextField.text = [self.licensePlateTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    self.licensePlateTextField.text = [self.licensePlateTextField.text stringByReplacingOccurrencesOfString:@"-" withString:@""];
+
+
     PFUser *user = [PFUser user];
     user.username = self.licensePlateTextField.text;
     user.password = self.passwordField.text;

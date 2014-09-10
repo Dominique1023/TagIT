@@ -28,6 +28,57 @@
     return YES;
 }
 
+-(void)applicationDidFinishLaunching:(UIApplication *)application {
+
+    [self alertOnLaunch];
+
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ([alertView isEqual:self.alertView]) {
+        [self alertForTerms];
+    }
+    if ([alertView isEqual:self.alertViewOne]) {
+        if (buttonIndex == 0) {
+            [self alertOnLaunch];
+
+        }
+        if (buttonIndex == 1) {
+            NSLog(@"ACCEPTED");
+        }
+    }
+}
+
+
+-(void)alertOnLaunch {
+
+    self.alertView = [[UIAlertView alloc] initWithTitle:@"Rules of the Road"
+                                                message:[NSString stringWithFormat:@"#1 Using this App while operating a moterized vehicle is Prohibited. \n #2 DO NOT PROCEED unless you completely understand and agree to the terms of use.\n #3 Just in case you where wondering...your license plate number will never be shared with any other drivers but your RAGE message most certainly will...you can thank us later :)"]
+                                               delegate:self
+                                      cancelButtonTitle:@"Terms of Use"
+                                      otherButtonTitles:nil];
+    [self.alertView show];
+
+}
+
+-(void)alertForTerms {
+
+    self.alertViewOne = [[UIAlertView alloc] initWithTitle:@"Terms of Use"
+                                                   message:[NSString stringWithFormat:@"•	No posting of threats of physical or bodily harm \n •	No uploading inappropriate images ie copyrighted material, sexually explicit material, etc. \n •	Use of RoadRage while operating a vehicle is PROHIBITED \n •	RoadRage and its affiliates are not responsible and/or accountable for any of the content posted.\n •	RoadRage reserves the right to allow, deny, and/or remove any content on the site as needed. \n •	RoadRage may provide your IP address to authorities in the event of illegal activity. \n •	If you have any questions please email us at RoadRageSupport@flashpointapps.com \n •	Again, DO NOT proceed to use RoadRage unless you completely understand, accept, and agree to all of these terms."]
+                                                  delegate:self
+                                         cancelButtonTitle:@"Decline"
+                                         otherButtonTitles:@"Accept",nil];
+    [self.alertViewOne show];
+
+}
+
+
+
+
+
+
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -48,6 +99,8 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
     {
+
+        [self applicationDidFinishLaunching:application];
 
         PFUser *currentUser = [PFUser currentUser];
         if (currentUser) {
