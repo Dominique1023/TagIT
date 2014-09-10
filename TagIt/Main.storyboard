@@ -21,26 +21,26 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LJA-iW-20u">
-                                <rect key="frame" x="37" y="142" width="247" height="322"/>
+                                <rect key="frame" x="37" y="54" width="247" height="463"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="THl-mc-006">
-                                        <rect key="frame" x="6" y="62" width="233" height="30"/>
+                                        <rect key="frame" x="6" y="150" width="233" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="License Plate" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Jvq-2d-gNe">
-                                        <rect key="frame" x="6" y="100" width="233" height="30"/>
+                                        <rect key="frame" x="6" y="188" width="233" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pasword" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="zin-Cr-aS2">
-                                        <rect key="frame" x="6" y="138" width="233" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="zin-Cr-aS2">
+                                        <rect key="frame" x="6" y="226" width="233" height="30"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1f-vO-ghT">
-                                        <rect key="frame" x="25" y="180" width="84" height="28"/>
+                                        <rect key="frame" x="10" y="268" width="84" height="28"/>
                                         <state key="normal" backgroundImage="SignUpButton">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
@@ -49,7 +49,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="blC-GY-dNK">
-                                        <rect key="frame" x="136" y="180" width="84" height="28"/>
+                                        <rect key="frame" x="154" y="268" width="84" height="28"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
                                         <state key="normal" backgroundImage="Log In Button">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -60,7 +60,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v1d-kF-i1i">
-                                        <rect key="frame" x="81" y="120" width="84" height="28"/>
+                                        <rect key="frame" x="81" y="208" width="84" height="28"/>
                                         <state key="normal" backgroundImage=" Create Button">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -70,18 +70,18 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter email address to reset password" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="170" translatesAutoresizingMaskIntoConstraints="NO" id="hYd-0P-JEa">
-                                        <rect key="frame" x="38" y="42" width="170" height="70"/>
+                                        <rect key="frame" x="38" y="130" width="170" height="70"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iIQ-4g-Gap">
-                                        <rect key="frame" x="6" y="122" width="233" height="30"/>
+                                        <rect key="frame" x="6" y="210" width="233" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WeF-E6-coE">
-                                        <rect key="frame" x="154" y="170" width="84" height="28"/>
+                                        <rect key="frame" x="154" y="258" width="84" height="28"/>
                                         <state key="normal" backgroundImage="Done Button">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -91,7 +91,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NjO-wp-aJQ" userLabel="Button Cancel Password Reset">
-                                        <rect key="frame" x="8" y="170" width="84" height="28"/>
+                                        <rect key="frame" x="10" y="258" width="84" height="28"/>
                                         <state key="normal" backgroundImage="CancelButton">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -101,7 +101,7 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="RoadRage" translatesAutoresizingMaskIntoConstraints="NO" id="Qd6-gR-KmK">
-                                        <rect key="frame" x="-13" y="33" width="278" height="59"/>
+                                        <rect key="frame" x="-13" y="121" width="278" height="59"/>
                                     </imageView>
                                 </subviews>
                             </view>
@@ -471,9 +471,9 @@
                                     <action selector="onChangePasswordButtonChanged:" destination="qDd-HJ-DYf" eventType="touchUpInside" id="faV-72-Uy5"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tnt-kj-AFt">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tnt-kj-AFt">
                                 <rect key="frame" x="20" y="182" width="280" height="30"/>
-                                <state key="normal" backgroundImage="Confirm Button">
+                                <state key="normal" backgroundImage="ChangeEmailButton">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -486,7 +486,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="phv-LN-UV0">
-                                <rect key="frame" x="20" y="361" width="280" height="30"/>
+                                <rect key="frame" x="20" y="359" width="280" height="30"/>
                                 <state key="normal" backgroundImage="Log Out Button ">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -496,7 +496,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="right" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBz-8o-csJ">
-                                <rect key="frame" x="20" y="301" width="280" height="30"/>
+                                <rect key="frame" x="20" y="300" width="280" height="30"/>
                                 <state key="normal" backgroundImage="Unblock All Users">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -549,8 +549,8 @@
         <image name="Background" width="320" height="568"/>
         <image name="CancelButton" width="84" height="27"/>
         <image name="Change Password" width="270" height="28"/>
+        <image name="ChangeEmailButton" width="270" height="28"/>
         <image name="Clear Photo" width="130" height="28"/>
-        <image name="Confirm Button" width="270" height="28"/>
         <image name="Done Button" width="84" height="27"/>
         <image name="License Rectangle" width="283" height="33"/>
         <image name="Log In Button" width="84" height="28"/>

@@ -70,6 +70,8 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:YES];
 
+    self.signUpOrCancel = NO;
+
     if (![PFUser currentUser]){
         NSLog(@"User needs to sign in");
     }else{

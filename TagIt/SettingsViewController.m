@@ -62,6 +62,7 @@
                     NSLog(@"Error");
                 }else {
                     NSLog(@"successfully unblocked all users");
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"Unblock and reload" object:nil];
                 }
             }];
         }

@@ -54,7 +54,7 @@
 -(void)alertOnLaunch {
 
     self.alertView = [[UIAlertView alloc] initWithTitle:@"Rules of the Road"
-                                                message:[NSString stringWithFormat:@"#1 Using this App while operating a moterized vehicle is Prohibited. \n #2 DO NOT PROCEED unless you completely understand and agree to the terms of use.\n #3 Just in case you where wondering...your license plate number will never be shared with any other drivers but your RAGE message most certainly will...you can thank us later :)"]
+                                                message:[NSString stringWithFormat:@"#1 Using this app while operating a motorized vehicle is Prohibited. \n #2 DO NOT PROCEED unless you completely understand and agree to the terms of use.\n #3 Just in case you where wondering...your license plate number will never be shared with any other drivers but your RAGE message most certainly will...you can thank us later :)"]
                                                delegate:self
                                       cancelButtonTitle:@"Terms of Use"
                                       otherButtonTitles:nil];
@@ -65,7 +65,7 @@
 -(void)alertForTerms {
 
     self.alertViewOne = [[UIAlertView alloc] initWithTitle:@"Terms of Use"
-                                                   message:[NSString stringWithFormat:@"•	No posting of threats of physical or bodily harm \n •	No uploading inappropriate images ie copyrighted material, sexually explicit material, etc. \n •	Use of RoadRage while operating a vehicle is PROHIBITED \n •	RoadRage and its affiliates are not responsible and/or accountable for any of the content posted.\n •	RoadRage reserves the right to allow, deny, and/or remove any content on the site as needed. \n •	RoadRage may provide your IP address to authorities in the event of illegal activity. \n •	If you have any questions please email us at RoadRageSupport@flashpointapps.com \n •	Again, DO NOT proceed to use RoadRage unless you completely understand, accept, and agree to all of these terms."]
+                                                   message:[NSString stringWithFormat:@"•	No posting of threats of physical or bodily harm \n •	No uploading inappropriate images i.e.  copyrighted material, sexually explicit material, etc. \n •	Use of RoadRage while operating a vehicle is PROHIBITED \n •	RoadRage and its affiliates are not responsible and/or accountable for any of the content posted.\n •	RoadRage reserves the right to allow, deny, and/or remove any content on the site as needed. \n •	RoadRage may provide your IP address to authorities in the event of illegal activity. \n •	If you have any questions please email us at RoadRageSupport@flashpointapps.com \n •	Again, DO NOT proceed to use RoadRage unless you completely understand, accept, and agree to all of these terms."]
                                                   delegate:self
                                          cancelButtonTitle:@"Decline"
                                          otherButtonTitles:@"Accept",nil];
@@ -98,39 +98,41 @@
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
-    {
+{
 
-        [self applicationDidFinishLaunching:application];
+        [self alertOnLaunch];
 
-        PFUser *currentUser = [PFUser currentUser];
-        if (currentUser) {
-            //save the installation
-            PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-            currentInstallation[@"installationUser"] = [[PFUser currentUser]objectId];
-            // here we add a column to the installation table and store the current user’s ID
-            // this way we can target specific users later
-
-            // while we’re at it, this is a good place to reset our app’s badge count
-            // you have to do this locally as well as on the parse server by updating
-            // the PFInstallation object
-            if (currentInstallation.badge != 0) {
-                currentInstallation.badge = 0;
-                [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    if (error) {
-                        // Handle error here with an alert…
-                    }
-                    else {
-                        // only update locally if the remote update succeeded so they always match
-                        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-                        NSLog(@"updated badge");
-                    }
-                }];
-            }
-        } else {
-            
-            [PFUser logOut];
-            // show the signup screen here....
-        }
+//        [self applicationDidFinishLaunching:application];
+//
+//        PFUser *currentUser = [PFUser currentUser];
+//        if (currentUser) {
+//            //save the installation
+//            PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+//            currentInstallation[@"installationUser"] = [[PFUser currentUser]objectId];
+//            // here we add a column to the installation table and store the current user’s ID
+//            // this way we can target specific users later
+//
+//            // while we’re at it, this is a good place to reset our app’s badge count
+//            // you have to do this locally as well as on the parse server by updating
+//            // the PFInstallation object
+//            if (currentInstallation.badge != 0) {
+//                currentInstallation.badge = 0;
+//                [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//                    if (error) {
+//                        // Handle error here with an alert…
+//                    }
+//                    else {
+//                        // only update locally if the remote update succeeded so they always match
+//                        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+//                        NSLog(@"updated badge");
+//                    }
+//                }];
+//            }
+//        } else {
+//            
+//            [PFUser logOut];
+//            // show the signup screen here....
+//        }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -145,15 +147,15 @@
 }
 
 
-- (void)application:(UIApplication *)application
-didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
     // Store the deviceToken in the current installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-  [currentInstallation setDeviceTokenFromData:newDeviceToken];
-    currentInstallation.channels = @[@"global"];
+    currentInstallation[@"installationUser"] = [[PFUser currentUser]objectId];
+    [currentInstallation setDeviceTokenFromData:newDeviceToken];
+//    currentInstallation.channels = @[@"global"];
     [currentInstallation saveInBackground];
-    [PFPush storeDeviceToken:newDeviceToken];
-    [PFPush subscribeToChannelInBackground:@""];
+//    [PFPush storeDeviceToken:newDeviceToken];
+//    [PFPush subscribeToChannelInBackground:@""];
 
 }
 

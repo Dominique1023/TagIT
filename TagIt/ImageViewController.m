@@ -67,7 +67,7 @@
         cell.mySentImageView.layer.cornerRadius=8;
         cell.mySentImageView.layer.borderWidth=2.0;
         cell.mySentImageView.layer.masksToBounds = YES;
-        cell.mySentImageView.layer.borderColor=[[UIColor colorWithRed:250.f/255.f green:80.f/255.f blue:84.f/255.f alpha:1.f] CGColor];
+        cell.mySentImageView.layer.borderColor = [[UIColor colorWithRed:208.f/255.f green:2.f/255.f blue:27.f/255.f alpha:1.f] CGColor];
 
         if (data == nil)
         {

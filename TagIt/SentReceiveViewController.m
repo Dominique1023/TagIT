@@ -42,6 +42,8 @@
     self.receivedTableView.hidden = YES;
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadSentMessages) name:@"onSendButtonPressed" object:nil];
+
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loadReceivedMessages) name:@"Unblock and reload" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -121,7 +123,7 @@
             cell.myImageView.layer.cornerRadius=8;
             cell.myImageView.layer.borderWidth=2.0;
             cell.myImageView.layer.masksToBounds = YES;
-            cell.myImageView.layer.borderColor=[[UIColor colorWithRed:208.f/255.f green:2.f/255.f blue:27.f/255.f alpha:1.f] CGColor];
+            cell.myImageView.layer.borderColor= [[UIColor colorWithRed:208.f/255.f green:2.f/255.f blue:27.f/255.f alpha:1.f] CGColor];
             cell.myImageView.image = [UIImage imageWithData:data];
 
         }];
@@ -145,7 +147,7 @@
             cell.receivedImageView.layer.cornerRadius=8;
             cell.receivedImageView.layer.borderWidth=2.0;
             cell.receivedImageView.layer.masksToBounds = YES;
-            cell.receivedImageView.layer.borderColor=[[UIColor colorWithRed:250.f/255.f green:80.f/255.f blue:84.f/255.f alpha:1.f] CGColor];
+            cell.receivedImageView.layer.borderColor = [[UIColor colorWithRed:208.f/255.f green:2.f/255.f blue:27.f/255.f alpha:1.f] CGColor];
 
             if (data == nil)
             {
