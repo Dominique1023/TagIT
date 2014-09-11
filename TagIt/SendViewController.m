@@ -104,8 +104,8 @@
 
                 if (![username isEqualToString:self.receivingLicensePlate.text]) {
                     NSLog(@"Not the receiving user");
-
-                    return;
+//If the return below is uncommented Push Notifications DO NOT WORK!!!!!
+                    //return;
                 }else{
                     self.usersObjectId = user.objectId;
 

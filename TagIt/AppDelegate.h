@@ -13,4 +13,5 @@
 @property (strong, nonatomic) UIWindow *window;
 @property UIAlertView *alertView;
 @property UIAlertView *alertViewOne;
+@property NSString *currentDevice;
 @end

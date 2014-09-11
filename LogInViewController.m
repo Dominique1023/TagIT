@@ -165,16 +165,20 @@
 
         if (error) {
             NSLog(@"%@", error);
+            NSLog(@"User can not log in");
+
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:@"The email or password you entered is incorrect." delegate:self cancelButtonTitle:@"Retry" otherButtonTitles:@"Forgot Password", nil];
+
+            [alertView show];
+
         }else{
             if (user) {
                 NSLog(@"User logged in");
                 [self performSegueWithIdentifier:@"initialSegue" sender:self];
+                //updates PFInstallation installedUser to currently logged in user
+                [self addCurrentUserObjectId];
+
             }else{
-                NSLog(@"User can not log in");
-
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:@"The email or password you entered is incorrect." delegate:self cancelButtonTitle:@"Retry" otherButtonTitles:@"Forgot Password", nil];
-
-                [alertView show];
 
                 self.licensePlateTextField.text = @"";
                 self.passwordField.text = @"";
@@ -253,9 +257,15 @@
     user.password = self.passwordField.text;
     user.email = self.emailTextField.text;
 
+
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         if (!error){
             [self performSegueWithIdentifier:@"initialSegue" sender:self];
+            
+            //updates PFInstallation installedUser to currently logged in user
+            [self addCurrentUserObjectId];
+
+
         }else{
             NSString *errorString = [[error userInfo] objectForKey:@"error"];
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:[NSString stringWithFormat:@"Looks like we have a small issue: %@", errorString] delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil, nil];
@@ -274,5 +284,19 @@
 
     return YES;
 }
+
+    //method called on log in and in  create new account
+- (void)addCurrentUserObjectId
+{
+    PFInstallation *installation = [PFInstallation currentInstallation];
+    installation[@"installationUser"] = [PFUser currentUser].objectId;
+    [installation saveInBackground];
+}
+
+
+
+
+
+
 
 @end
