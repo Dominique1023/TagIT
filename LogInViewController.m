@@ -2,15 +2,14 @@
 //  LogInViewController.m
 //  TagIt
 //
-//  Created by Steven Sickler on 8/25/14.
-//  Copyright (c) 2014 MobileMakers. All rights reserved.
+//  Created by Alex Hudson, Dominique Vasquez, Steven Sickler on 8/25/14.
+//  Copyright (c) 2014 RoadRage. All rights reserved.
 //
 
 #import "LogInViewController.h"
 #import "SendViewController.h"
 
 @interface LogInViewController () <UIAlertViewDelegate, UITextFieldDelegate>
-
 
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *licensePlateTextField;
@@ -25,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelResetPasswordButton;
 @property UIAlertView *forgotPasswordAlertView;
-@property BOOL signUpOrCancel;
+@property BOOL isCancelShowing;
 
 @end
 
@@ -34,7 +33,8 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
 
-    self.signUpOrCancel = NO;
+    //because were changing one buttons image to cancel in a certain view, to keep track of which image is showing.
+    self.isCancelShowing = NO;
 
     self.licensePlateTextField.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     [self.licensePlateTextField.text uppercaseString];
@@ -63,6 +63,7 @@
     }];
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(textFieldShouldReturn:)];
+
     [self.view addGestureRecognizer:tap];
 }
 
@@ -70,7 +71,7 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:YES];
 
-    self.signUpOrCancel = NO;
+    self.isCancelShowing = NO;
 
     if (![PFUser currentUser]){
         NSLog(@"User needs to sign in");
@@ -84,17 +85,9 @@
 
 //lets user sign up
 - (IBAction)onSignUpButtonPressed:(UIButton *)sender{
+    if (self.isCancelShowing == NO) {
 
-
-    if (self.signUpOrCancel == NO) {
-   // }
-
-        // if ([sender.titleLabel.text isEqualToString:@"Sign-Up"]){
-        // moves everything up and changes "signup" to "cancel"
-       // [sender setTitle:@"Cancel" forState:UIControlStateNormal];
-       // [sender setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-
-   [self.signUpButton setBackgroundImage:[UIImage imageNamed:@"CancelButton"] forState:UIControlStateNormal];
+        [self.signUpButton setBackgroundImage:[UIImage imageNamed:@"CancelButton"] forState:UIControlStateNormal];
 
         [UIView animateWithDuration:1.2 animations:^{
             self.logInButton.hidden = YES;
@@ -121,18 +114,14 @@
         }completion:^(BOOL finished){
             sender.enabled = YES;
             self.createAccountButton.hidden = NO;
-
-            self.signUpOrCancel = YES;
+            self.isCancelShowing = YES;
 
         }];
+
     }else{
+        [self.signUpButton setBackgroundImage:[UIImage imageNamed:@"SignUpButton"] forState:UIControlStateNormal];
 
-         //moves everything down and changes "cancel" to "signup"
-        //[sender setTitle:@"Sign-Up" forState:UIControlStateNormal];
-        //[sender setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-
-   [self.signUpButton setBackgroundImage:[UIImage imageNamed:@"SignUpButton"] forState:UIControlStateNormal];
-
+        //Animations to move/hide labels and textfields instead of going to a new view controller for login and signup views
         [UIView animateWithDuration:1.2 animations:^{
             self.roadRageLabel.transform = CGAffineTransformMakeTranslation(0, -90);
             self.roadRageLabel.transform = CGAffineTransformMakeTranslation(0, 5);
@@ -149,15 +138,15 @@
             self.emailTextField.alpha = 0;
             self.createAccountButton.hidden = YES;
             self.logInButton.hidden = NO;
-            sender.enabled = NO;
             self.licensePlateTextField.text = @"";
             self.passwordField.text = @"";
+            sender.enabled = NO;
 
         }completion:^(BOOL finished){
             sender.enabled = YES;
             self.emailTextField.hidden = YES;
+            self.isCancelShowing = NO;
 
-            self.signUpOrCancel = NO;
         }];
     }
 }
@@ -165,25 +154,31 @@
 //Allows user to log in
 - (IBAction)onLogInTapped:(UIButton *)sender{
 
+    //trims the white space and/or - in license plates for uniform license plates
     self.licensePlateTextField.text = [self.licensePlateTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     self.licensePlateTextField.text = [self.licensePlateTextField.text stringByReplacingOccurrencesOfString:@"-" withString:@""];
-
 
     NSString  *username = self.licensePlateTextField.text;
     NSString *password = self.passwordField.text;
 
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser *user, NSError *error) {
-        if (user) {
-            NSLog(@"User logged in");
-            [self performSegueWithIdentifier:@"initialSegue" sender:self];
+
+        if (error) {
+            NSLog(@"%@", error);
         }else{
-            NSLog(@"User can not log in");
+            if (user) {
+                NSLog(@"User logged in");
+                [self performSegueWithIdentifier:@"initialSegue" sender:self];
+            }else{
+                NSLog(@"User can not log in");
 
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:[NSString stringWithFormat:@"The email or password you entered is incorrect."] delegate:self cancelButtonTitle:@"Retry" otherButtonTitles:@"Forgot password", nil];
-            [alertView show];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:@"The email or password you entered is incorrect." delegate:self cancelButtonTitle:@"Retry" otherButtonTitles:@"Forgot Password", nil];
 
-            self.licensePlateTextField.text = @"";
-            self.passwordField.text = @"";
+                [alertView show];
+
+                self.licensePlateTextField.text = @"";
+                self.passwordField.text = @"";
+            }
         }
     }];
 }
@@ -203,8 +198,8 @@
     }
 }
 
-//when user touches cancel on forget password, returns to login
-- (IBAction)onCancelResetPasswordButtonPressed:(id)sender {
+//when user touches cancel on forget password, returns to login view
+- (IBAction)onCancelResetPasswordButtonPressed:(id)sender{
     self.forgotPasswordLabel.hidden = YES;
     self.forgotPasswordTextField.hidden = YES;
     self.roadRageLabel.hidden = NO;
@@ -216,19 +211,20 @@
     self.cancelResetPasswordButton.hidden = YES;
 }
 
-//Sends email to user to request password
-- (IBAction)onDoneButtonPressed:(id)sender {
-    NSString *email = self.forgotPasswordTextField.text;
+//Sends email to user to request new password
+- (IBAction)onDoneButtonPressed:(id)sender{
+    NSString *forgotPasswordEmail = self.forgotPasswordTextField.text;
 
-    [PFUser requestPasswordResetForEmailInBackground:email block:^(BOOL succeeded, NSError *error) {
+    [PFUser requestPasswordResetForEmailInBackground:forgotPasswordEmail block:^(BOOL succeeded, NSError *error) {
 
-        if (error) {
-            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Invalid Email Address Try Again" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
-            [alertView show];
+        if (error){
+            UIAlertView *errorAlertView = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Invalid email address. \n Please try again" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
 
-        } else {
-            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Please check your email to complete password reset" message:nil delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
-            [alertView show];
+            [errorAlertView show];
+
+        }else{
+            UIAlertView *confirmationAlertView = [[UIAlertView alloc]initWithTitle:@"Please check your email to complete password reset" message:nil delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
+            [confirmationAlertView show];
 
             self.forgotPasswordTextField.text = @"";
             [self.forgotPasswordTextField resignFirstResponder];
@@ -242,16 +238,16 @@
             self.signUpButton.hidden = NO;
             self.doneButton.hidden = YES;
         }
-
     }];
 }
 
 - (IBAction)onCreateNewAccount:(UIButton *)sender{
 
+    //trims the white space and/or - in license plates for uniform license plates
     self.licensePlateTextField.text = [self.licensePlateTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     self.licensePlateTextField.text = [self.licensePlateTextField.text stringByReplacingOccurrencesOfString:@"-" withString:@""];
 
-
+    //license plates are usernames
     PFUser *user = [PFUser user];
     user.username = self.licensePlateTextField.text;
     user.password = self.passwordField.text;

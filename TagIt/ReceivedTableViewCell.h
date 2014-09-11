@@ -2,15 +2,13 @@
 //  ReceivedTableViewCell.h
 //  TagIt
 //
-//  Created by Alex Hudson on 8/27/14.
-//  Copyright (c) 2014 MobileMakers. All rights reserved.
+//  Created by Alex Hudson, Dominique Vasquez, Steven Sickler on 8/27/14.
+//  Copyright (c) 2014 RoadRage. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-
 @protocol ReceivedTableViewCellDelegate
-
 -(void) reloadReceivedTableView;
 
 @end
@@ -20,9 +18,7 @@
 @property (strong, nonatomic) IBOutlet UITextView *receivedMessage;
 @property (weak, nonatomic) IBOutlet UIButton *blockButton;
 @property NSMutableArray *blockedUsers;
-@property PFObject *message; 
-
-
+@property PFObject *message;
 @property id<ReceivedTableViewCellDelegate> delegate;
 
 -(IBAction)onBlockButtonPressed:(id)sender;

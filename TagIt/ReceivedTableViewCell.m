@@ -2,8 +2,8 @@
 //  ReceivedTableViewCell.m
 //  TagIt
 //
-//  Created by Alex Hudson on 8/27/14.
-//  Copyright (c) 2014 MobileMakers. All rights reserved.
+//  Created by Alex Hudson, Dominique Vasquez, Steven Sickler on 8/27/14.
+//  Copyright (c) 2014 RoadRage. All rights reserved.
 //
 
 #import "ReceivedTableViewCell.h"
@@ -14,12 +14,11 @@
 
 - (IBAction)onBlockButtonPressed:(id)sender {
     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Warning!" message:@"Are you sure you want to block all messages from this license plate" delegate:self cancelButtonTitle:@"Nevermind" otherButtonTitles:@"I'm Sure", nil];
-    [alert show];
 
+    [alert show];
 }
 
--(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex != alertView.cancelButtonIndex) {
         //grabbing the current user to access the blockedUsers array on parse
         PFUser *currentUser = [PFUser currentUser];
@@ -32,10 +31,9 @@
         NSMutableArray * blockedUsersArray = [currentUser[@"blockedUsers"] mutableCopy];
 
         //if the currentUser hasn't blocked anyone than init a new NSMutableArray
-        if (blockedUsersArray == nil) {
+        if (blockedUsersArray == nil){
             blockedUsersArray = [NSMutableArray new];
         }
-
 
         //Asing if the blocked has already been blocked
         BOOL isTheUserThere = NO;
@@ -51,7 +49,6 @@
                 break;
             }
         }
-
 
         //for the users that are not in the blockedUsersArray, add and update the currentUsers blocked
         if (isTheUserThere == NO) {

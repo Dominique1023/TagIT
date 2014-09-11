@@ -2,7 +2,7 @@
 //  SettingsViewController.m
 //  TagIt
 //
-//  Created by Steven Sickler on 8/27/14.
+//  Created by Alex Hudson, Dominique Vasquez, Steven Sickler on 8/27/14.
 //  Copyright (c) 2014 MobileMakers. All rights reserved.
 //
 
@@ -10,7 +10,6 @@
 
 @interface SettingsViewController () <UITextFieldDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *userLabel;
-@property (weak, nonatomic) IBOutlet UITextField *changeEmailTextField;
 @property UIAlertView *unblockAlertView;
 @property UIAlertView *changeEmailAlertView;
 @end
@@ -39,7 +38,8 @@
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (alertView==self.unblockAlertView) {
+    //If its the unblock alertview being shown
+    if (alertView == self.unblockAlertView) {
         if (buttonIndex != alertView.cancelButtonIndex) {
             PFUser *user = [PFUser currentUser];
 
@@ -47,9 +47,9 @@
             NSMutableArray * unblockUsersArray = user[@"blockedUsers"];
 
             //if they haven't blocked anyone than init a new NSMutableArray, other wise remove all objects
-            if (unblockUsersArray == nil) {
+            if (unblockUsersArray == nil){
                 unblockUsersArray = [NSMutableArray new];
-            }else {
+            }else{
                 [unblockUsersArray removeAllObjects];
             }
 
@@ -66,8 +66,8 @@
                 }
             }];
         }
-
-    }else if(alertView==self.changeEmailAlertView) {
+        //or if the change email alert view is being shown
+    }else if(alertView == self.changeEmailAlertView) {
         if (buttonIndex != alertView.cancelButtonIndex) {
             PFUser *user = [PFUser currentUser];
 
@@ -76,47 +76,26 @@
 
             if (![newEmail  isEqual: @""]){
 
+                //prevents the user from accidentally setting a blank email
                 if ([newEmail rangeOfString:@"@"].location == NSNotFound){
+                    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Invalid Email" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
 
-                    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Invalid Email"
-                                                                       message:nil
-                                                                      delegate:nil
-                                                             cancelButtonTitle:@"OK"
-                                                             otherButtonTitles:nil, nil];
                     [alertView show];
-                } else{
-
-                    NSLog(@"Email is not nil and has @ symbol");
-
+                }else{
                     [user setEmail:newEmail];
                     [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                         NSLog(@"email changed");
                         NSLog(@"%@", newEmail);
                     }];
-
-
                 }
+            }else{
+                UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Email Field Empty" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
 
-            } else {
-
-                UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Email Field Empty"
-                                                                   message:nil
-                                                                  delegate:nil
-                                                         cancelButtonTitle:@"OK"
-                                                         otherButtonTitles:nil, nil];
                 [alertView show];
-                
             }
-            
-            
-            self.changeEmailTextField.text = @"";
-
         }
     }
-
-
-
-    }
+}
 
 -(void)showUserLoggedInLabel{
     PFUser *user = [PFUser currentUser];
@@ -137,20 +116,14 @@
     }];
 }
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    //[self.blockedUserTextField resignFirstResponder];
-    [self.changeEmailTextField resignFirstResponder];
-    
-    return YES;
-}
-
 - (IBAction)onChangeEmailButtonPressed:(id)sender{
     self.changeEmailAlertView = [[UIAlertView alloc]initWithTitle:@"Email Change" message:@"Enter new email address" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Confirm", nil];
+
     self.changeEmailAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     UITextField *changeEmailTextField = [self.changeEmailAlertView textFieldAtIndex:0];
     changeEmailTextField.keyboardType = UIKeyboardTypeDefault;
-    [self.changeEmailAlertView show];
 
+    [self.changeEmailAlertView show];
 }
 
 @end

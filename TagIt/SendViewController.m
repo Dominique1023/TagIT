@@ -2,8 +2,8 @@
 //  SendViewController.m
 //  TagIt
 //
-//  Created by Alex Hudson on 8/26/14.
-//  Copyright (c) 2014 MobileMakers. All rights reserved.
+//  Created by Alex Hudson, Dominique Vasquez, Steven Sickler on 8/26/14.
+//  Copyright (c) 2014 RoadRage. All rights reserved.
 //
 
 #import "SendViewController.h"
@@ -13,6 +13,7 @@
     UIActionSheet * actionSheet;
     UIImagePickerController * imagePicker;
 }
+
 @property (strong, nonatomic) IBOutlet UIImageView *photoImageView;
 @property (strong, nonatomic) IBOutlet UITextView *typedMessage;
 @property (strong, nonatomic) IBOutlet UITextField *receivingLicensePlate;
@@ -30,9 +31,9 @@
     //Turining all license plate to caps. NOTE: this ONLY works using the device/simulators keyboard!!!!
     //Shows the characters as all caps when the user is typing it
     self.receivingLicensePlate.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+
     //changes all the characters to to caps
     [self.receivingLicensePlate.text uppercaseString];
-
 
     self.clearPhotoButton.hidden = YES;
 
@@ -42,26 +43,15 @@
     //turns off auto correct for license plate field
     [self.receivingLicensePlate setAutocorrectionType:UITextAutocorrectionTypeNo];
 
-    //self.receivingLicensePlate.placeholder.
-
+    //Changes the text color of the placeholder text
     UIColor *color = [UIColor grayColor];
-    self.receivingLicensePlate.attributedPlaceholder =
-    [[NSAttributedString alloc]
-     initWithString:@"Driver's License Plate"
-     attributes:@{NSForegroundColorAttributeName:color}];
+    self.receivingLicensePlate.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"Driver's License Plate" attributes:@{NSForegroundColorAttributeName:color}];
 
     self.typedMessage.backgroundColor = [UIColor clearColor];
 
-    // hides keyboard when user touches outside of text fields
+    //hides keyboard when user touches outside of text fields
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(textFieldShouldReturn:)];
     [self.view addGestureRecognizer:tap];
-}
-
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [self.typedMessage resignFirstResponder];
-    [self.receivingLicensePlate resignFirstResponder];
-
-    return YES;
 }
 
 - (IBAction)onClearPhotoButtonPressed:(id)sender {
@@ -71,13 +61,14 @@
     self.photoImageView.layer.borderWidth = 0.0;
 }
 
-//uploads message, user and photo up to parse
+//uploads message, user, and photo up to parse
 - (IBAction)sendOnVentButtonPressed:(id)sender{
 
+    //trims the white space and/or - in license plates for uniform license plates
     self.receivingLicensePlate.text = [self.receivingLicensePlate.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     self.receivingLicensePlate.text = [self.receivingLicensePlate.text stringByReplacingOccurrencesOfString:@"-" withString:@""];
 
-
+    //Checking for empty fields when a user sends a message or photo
     if ([self.receivingLicensePlate.text isEqualToString:@""]) {
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Error!" message:@"Enter License Plate" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alertView show];
@@ -85,15 +76,17 @@
         return;
     }
 
-    if ([self.typedMessage.text isEqualToString:@""] || [self.photoImageView.image isEqual:nil]) {
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Enter a Message or Picture" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    //requires the user to send a message
+    if ([self.typedMessage.text isEqualToString:@""]) {
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Enter a message" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
         [alertView show];
 
         return;
     }
 
     UIImage *image = self.photoImageView.image;
-    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
+    //NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
+    NSData *imageData = UIImagePNGRepresentation(image); 
     PFFile *file = [PFFile fileWithData:imageData];
 
     //Quering so Push Notification sends to only the receiving user
@@ -149,36 +142,21 @@
                     PFQuery *pushQueryy = [PFInstallation query];
                     [pushQueryy whereKey:@"installationUser" equalTo:self.usersObjectId];
 
-//                    PFPush *push = [[PFPush alloc] init];
-//                    [push setQuery:pushQueryy];
-//                    [push setMessage:message[@"text"]];
-//                    [push sendPushInBackground];
-
-
-                    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
-                                          self.typedMessage.text, @"alert",
-                                          @"Increment", @"badge",
-                                          @"car-horn.wav", @"sound",
-                                          nil];
+                    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:self.typedMessage.text, @"alert", @"Increment", @"badge", @"car-horn.wav", @"sound", nil];
                     PFPush *push = [[PFPush alloc] init];
                     [push setQuery:pushQueryy];
                     [push setData:data];
                     [push sendPushInBackground];
-
                 }
-
 
                 //Sends a in-code notification to update the sent table view in SentReceiveViewController
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"onSendButtonPressed" object:self.typedMessage.text];
-
             }
         }];
-
     }];
 
     [self performSegueWithIdentifier:@"ventPressed" sender:self];
 }
-
 
 #pragma mark UIACTIONSHEET AND UIIMAGEPICKERCONTROLLER DELEGATE METHODS
 -(void)whatSourceType{
@@ -207,8 +185,6 @@
     self.photoImageView.layer.masksToBounds = YES;
 
     self.photoImageView.layer.borderColor=[[UIColor whiteColor] CGColor];
-    //self.photoImageView.layer.borderColor=[[UIColor colorWithRed:250.f/255.f green:80.f/255.f blue:84.f/255.f alpha:1.f] CGColor];
-    //self.photoImageView.layer.borderColor=[UIColor colorWithRed:250 green:80 blue:84 alpha:100];
 
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
@@ -252,6 +228,13 @@
     }else {
         [self choosePhotoFromLibrary];
     }
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.typedMessage resignFirstResponder];
+    [self.receivingLicensePlate resignFirstResponder];
+
+    return YES;
 }
 
 @end

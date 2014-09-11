@@ -2,8 +2,8 @@
 //  SentReceiveViewController.m
 //  TagIt
 //
-//  Created by Alex Hudson on 8/26/14.
-//  Copyright (c) 2014 MobileMakers. All rights reserved.
+//  Created by Alex Hudson, Dominique Vasquez, Steven Sickler on 8/26/14.
+//  Copyright (c) 2014 RoadRage. All rights reserved.
 //
 
 #import "SentReceiveViewController.h"
@@ -15,9 +15,9 @@
 @property (strong, nonatomic) IBOutlet UITableView *sentTableView;
 @property (strong, nonatomic) IBOutlet UITableView *receivedTableView;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (strong, nonatomic) IBOutlet UIButton *refreshButton;
 @property NSArray *sentMessages;
 @property NSMutableArray *receivedMessages;
-@property (strong, nonatomic) IBOutlet UIButton *refreshButton;
 
 @end
 
@@ -29,12 +29,10 @@
     [self loadSentMessages];
     [self loadReceivedMessages];
 
-
     self.sentTableView.separatorColor = [UIColor clearColor];
     self.receivedTableView.separatorColor = [UIColor clearColor];
 
     self.refreshButton.hidden = YES; 
-
 
     //self.segmentedControl.backgroundColor = [UIColor whiteColor];
     self.segmentedControl.tintColor = [UIColor whiteColor];
@@ -44,10 +42,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadSentMessages) name:@"onSendButtonPressed" object:nil];
 
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loadReceivedMessages) name:@"Unblock and reload" object:nil];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-   // self.tabBarController.selectedIndex = 1;
 }
 
 #pragma mark QUERYING FOR MESSAGES SENT AND RECEIVED
@@ -68,7 +62,6 @@
 }
 
 -(void)loadReceivedMessages{
-    //Tells which class to look at
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];
     [query whereKey:@"to" equalTo:[PFUser currentUser].username];
 
@@ -78,21 +71,18 @@
         self.receivedMessages = objects.mutableCopy;
         [self.receivedTableView reloadData];
     }];
-
 }
 
-- (IBAction)onRefreshButtonPressed:(id)sender {
+- (IBAction)onRefreshButtonPressed:(id)sender{
     [self loadReceivedMessages];
     [self loadSentMessages];
 }
 
--(void)reloadReceivedTableView
-{
+-(void)reloadReceivedTableView{
     [self loadReceivedMessages];
 }
 
 #pragma mark TABLEVIEW DELEGATE AND DATASOURCE METHODS
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (self.sentTableView == tableView){
         return self.sentMessages.count;
@@ -112,71 +102,66 @@
         cell.toLabel.textColor =[UIColor colorWithRed:250.f/255.f green:80.f/255.f blue:84.f/255.f alpha:1.f];
 
         [tempObject[@"photo"] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-            if (data == nil)
-            {
+            if (data == nil){
                 UIImage *image = [UIImage imageNamed:@"FillerIcon"];
                 NSData *imageData = UIImagePNGRepresentation(image);
                 data = imageData;
             }
 
-
             cell.myImageView.layer.cornerRadius=8;
             cell.myImageView.layer.borderWidth=2.0;
             cell.myImageView.layer.masksToBounds = YES;
-            cell.myImageView.layer.borderColor= [[UIColor colorWithRed:208.f/255.f green:2.f/255.f blue:27.f/255.f alpha:1.f] CGColor];
+            cell.myImageView.layer.borderColor= [[UIColor colorWithRed:253.f/255.f green:80.f/255.f blue:80.f/255.f alpha:1.f] CGColor];
             cell.myImageView.image = [UIImage imageWithData:data];
 
         }];
 
         return cell;
+
     }else{
         ReceivedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RCell"];
-
         cell.delegate = self;
 
         PFObject *tempObject = [self.receivedMessages objectAtIndex:indexPath.row];
+
         cell.receivedMessage.text = tempObject[@"text"];
-         cell.receivedMessage.textColor = [UIColor grayColor];
-        cell.blockButton.tintColor = [UIColor colorWithRed:250.f/255.f green:80.f/255.f blue:84.f/255.f alpha:1.f];
-        
+        cell.receivedMessage.textColor = [UIColor grayColor];
+        cell.blockButton.tintColor = [UIColor colorWithRed:253.f/255.f green:80.f/255.f blue:80.f/255.f alpha:1.f];
         cell.message = tempObject;
 
-        [tempObject[@"photo"] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        [tempObject[@"photo"] getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
 
-
-            cell.receivedImageView.layer.cornerRadius=8;
-            cell.receivedImageView.layer.borderWidth=2.0;
-            cell.receivedImageView.layer.masksToBounds = YES;
-            cell.receivedImageView.layer.borderColor = [[UIColor colorWithRed:208.f/255.f green:2.f/255.f blue:27.f/255.f alpha:1.f] CGColor];
-
-            if (data == nil)
-            {
+            //if the user doesn't send a photo than a placeholder image will be set
+            if (data == nil){
                 UIImage *image = [UIImage imageNamed:@"FillerIcon"];
                 NSData *imageData = UIImagePNGRepresentation(image);
                 data = imageData;
             }
 
+            cell.receivedImageView.layer.cornerRadius=8;
+            cell.receivedImageView.layer.borderWidth=2.0;
+            cell.receivedImageView.layer.masksToBounds = YES;
+            cell.receivedImageView.layer.borderColor = [[UIColor colorWithRed:253.f/255.f green:80.f/255.f blue:80.f/255.f alpha:1.f] CGColor];
+
             cell.receivedImageView.image = [UIImage imageWithData:data];
         }];
-
-
         return cell;
     }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    ImageViewController * vc = segue.destinationViewController;
+    ImageViewController *vc = segue.destinationViewController;
 
     if ([segue.identifier isEqualToString:@"receivedPhotoSegue"]) {
-        NSIndexPath * indexPath = [self.receivedTableView indexPathForSelectedRow];
-        vc.object =  [self.receivedMessages objectAtIndex:indexPath.row];
-    }
-    else if ([segue.identifier isEqualToString:@"sentPhotoSegue"]){
-        NSIndexPath * indexPath = [self.sentTableView indexPathForSelectedRow];
-        vc.object =  [self.sentMessages objectAtIndex:indexPath.row];
+        NSIndexPath *indexPath = [self.receivedTableView indexPathForSelectedRow];
+        vc.object = [self.receivedMessages objectAtIndex:indexPath.row];
+    }else if ([segue.identifier isEqualToString:@"sentPhotoSegue"]){
+        NSIndexPath *indexPath = [self.sentTableView indexPathForSelectedRow];
+        vc.object = [self.sentMessages objectAtIndex:indexPath.row];
     }
 }
 
+//Because there is a two tableviews in one screen
 - (IBAction)toggleControl:(UISegmentedControl *)control{
     if (control.selectedSegmentIndex == 0) {
         self.receivedTableView.hidden = YES;
