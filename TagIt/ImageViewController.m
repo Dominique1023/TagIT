@@ -28,7 +28,7 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];
 
     [query whereKey:@"to" equalTo:self.object[@"to"]];
-
+    [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
 
         self.sentFeed = objects;
