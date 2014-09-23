@@ -17,10 +17,12 @@
 @property (strong, nonatomic) IBOutlet UIImageView *receivedImageView;
 @property (strong, nonatomic) IBOutlet UITextView *receivedMessage;
 @property (weak, nonatomic) IBOutlet UIButton *blockButton;
+@property (weak, nonatomic) IBOutlet UIButton *reportUserButton;
 @property NSMutableArray *blockedUsers;
 @property PFObject *message;
 @property id<ReceivedTableViewCellDelegate> delegate;
 
 -(IBAction)onBlockButtonPressed:(id)sender;
+
 
 @end

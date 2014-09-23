@@ -126,6 +126,7 @@
 
         cell.receivedMessage.text = tempObject[@"text"];
         cell.receivedMessage.textColor = [UIColor grayColor];
+        cell.reportUserButton.tintColor = [UIColor colorWithRed:253.f/255.f green:80.f/255.f blue:80.f/255.f alpha:1.f];
         cell.blockButton.tintColor = [UIColor colorWithRed:253.f/255.f green:80.f/255.f blue:80.f/255.f alpha:1.f];
         cell.message = tempObject;
 

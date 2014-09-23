@@ -7,7 +7,10 @@
 //
 
 #import "ReceivedTableViewCell.h"
-@interface ReceivedTableViewCell() <UIAlertViewDelegate>
+#import <MessageUI/MessageUI.h>
+
+@interface ReceivedTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
+@property MFMailComposeViewController *mailComposer;
 @end
 
 @implementation ReceivedTableViewCell
@@ -17,6 +20,14 @@
 
     [alert show];
 }
+
+- (IBAction)onReportUserButtonPressed:(id)sender {
+    //disables the button so the user doesn't report the user twice and spam us
+    self.reportUserButton.tintColor = [UIColor lightGrayColor];
+    self.reportUserButton.enabled = NO;
+
+}
+
 
 -(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex != alertView.cancelButtonIndex) {

@@ -165,19 +165,20 @@
 
         if (error) {
             NSLog(@"%@", error);
+            NSLog(@"User can not log in");
+
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:@"The email or password you entered is incorrect." delegate:self cancelButtonTitle:@"Retry" otherButtonTitles:@"Forgot Password", nil];
+
+            [alertView show];
+
+            self.licensePlateTextField.text = @"";
+            self.passwordField.text = @"";
         }else{
             if (user) {
                 NSLog(@"User logged in");
                 [self performSegueWithIdentifier:@"initialSegue" sender:self];
             }else{
-                NSLog(@"User can not log in");
 
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:@"The email or password you entered is incorrect." delegate:self cancelButtonTitle:@"Retry" otherButtonTitles:@"Forgot Password", nil];
-
-                [alertView show];
-
-                self.licensePlateTextField.text = @"";
-                self.passwordField.text = @"";
             }
         }
     }];
