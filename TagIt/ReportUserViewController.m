@@ -12,28 +12,34 @@
 @interface ReportUserViewController ()<MFMailComposeViewControllerDelegate>
 @property MFMailComposeViewController *mailComposer;
 
-
 @end
 
 @implementation ReportUserViewController
 
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
+
+    NSLog(@"%@", self.messageObject);
+
+
 }
 
-/*
- the bug im getting is the code is in the view did appear so everytime the view is coming up it shows the mail composer and it never runs
- the performSegueWithIdentifier method
- 
- i dont know where to put lines 38 - 48 (mailComposer Code) so that it only runs once. i've tried a helper method and call it view did load and it gave me a error and said to put in viewDidAppear or ViewDidDisapper.
- 
-doing it in a way so that when the user presses "report user" button it sends us an automated message will probably get rid of this bug 
-
- */
-
 -(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:YES]; 
+
+    [self sendingEmail];
+
+}
+
+-(void)sendingEmail{
+    //grabbing the user's information so we know who is the one doing the reporting
+    //Also grabbing the message the user received 
+
+    PFUser *currentUser = [PFUser currentUser];
+    NSString *currentUserObjectID = currentUser.objectId;
+    NSString *currentUserUserName = [[PFUser currentUser] username];
+    NSString *messageID = self.messageObject.objectId;
 
     //automatically sets the recipent to us     *** add @"alexhudson07@gmail.com", or @"steven.sickler@yahoo.com" to test   ****
     NSArray *recipent = [[NSArray alloc]initWithObjects:@"dominiquev91@gmail.com", nil];
@@ -41,12 +47,13 @@ doing it in a way so that when the user presses "report user" button it sends us
     //inits a new mail composer and sets properties
     self.mailComposer = [MFMailComposeViewController new];
     self.mailComposer.mailComposeDelegate = self;
-    [self.mailComposer setSubject:@"Test Mail"];
-    [self.mailComposer setMessageBody:@"Test message for test mail" isHTML:NO];
+    [self.mailComposer setSubject:[NSString stringWithFormat:@"Message ID: %@", messageID]];
+    [self.mailComposer setMessageBody: [NSString stringWithFormat:@" \n \n \n \n \n User ID: %@ \n License Plate: %@", currentUserObjectID, currentUserUserName] isHTML:NO];
     [self.mailComposer setToRecipients:recipent];
 
     [self presentViewController:self.mailComposer animated:YES completion:nil];
 }
+
 
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
     if (error) {
@@ -59,7 +66,7 @@ doing it in a way so that when the user presses "report user" button it sends us
     [self dismissViewControllerAnimated:YES completion:^{
         [self performSegueWithIdentifier:@"reportUserSegue" sender:self];
     }];
- 
+
 }
 
 @end

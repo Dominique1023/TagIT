@@ -10,6 +10,7 @@
 #import "SentTableViewCell.h"
 #import "ReceivedTableViewCell.h"
 #import "ImageViewController.h"
+#import "ReportUserViewController.h"
 
 @interface SentReceiveViewController () <UITableViewDataSource, UITableViewDelegate, ReceivedTableViewCellDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *sentTableView;
@@ -152,13 +153,22 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     ImageViewController *vc = segue.destinationViewController;
+    ReportUserViewController *rvc = segue.destinationViewController;
 
     if ([segue.identifier isEqualToString:@"receivedPhotoSegue"]) {
+
         NSIndexPath *indexPath = [self.receivedTableView indexPathForSelectedRow];
         vc.object = [self.receivedMessages objectAtIndex:indexPath.row];
+        
     }else if ([segue.identifier isEqualToString:@"sentPhotoSegue"]){
+
         NSIndexPath *indexPath = [self.sentTableView indexPathForSelectedRow];
         vc.object = [self.sentMessages objectAtIndex:indexPath.row];
+
+    }else if ([segue.identifier isEqualToString:@"reportUserID"]){
+
+        NSIndexPath *indexPath = [self.receivedTableView indexPathForSelectedRow];
+        rvc.messageObject = [self.sentMessages objectAtIndex:indexPath.row];
     }
 }
 
