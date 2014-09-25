@@ -9,8 +9,7 @@
 #import "ReceivedTableViewCell.h"
 #import <MessageUI/MessageUI.h>
 
-@interface ReceivedTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
-@property MFMailComposeViewController *composer;
+@interface ReceivedTableViewCell() <UIAlertViewDelegate>
 @property UIAlertView *blockAlertView;
 @property UIAlertView *reportUserAlertView;
 @end
