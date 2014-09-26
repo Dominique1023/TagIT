@@ -193,7 +193,6 @@
 			isa = PBXGroup;
 			children = (
 				083E499119C0B9CC00850515 /* Main.storyboard */,
-				0889967B19ABD2CB001D3425 /* Images.xcassets */,
 				96CB98E019CE729500A2CA7C /* ReportUserViewController.h */,
 				96CB98E119CE729500A2CA7C /* ReportUserViewController.m */,
 				080308B919ABBDAC00199B95 /* LogInViewController.h */,
@@ -212,6 +211,7 @@
 				5DA2517819B8C45800850053 /* FeedTableViewCell.m */,
 				088996BE19AE80EA001D3425 /* SettingsViewController.h */,
 				088996BF19AE80EA001D3425 /* SettingsViewController.m */,
+				0889967B19ABD2CB001D3425 /* Images.xcassets */,
 				0803087019ABB90C00199B95 /* Supporting Files */,
 			);
 			path = TagIt;
@@ -300,7 +300,7 @@
 						DevelopmentTeam = 6VFN7544GC;
 					};
 					0803088619ABB90C00199B95 = {
-						DevelopmentTeam = KTXSHTJLS6;
+						DevelopmentTeam = 6VFN7544GC;
 						TestTargetID = 0803086519ABB90C00199B95;
 					};
 				};

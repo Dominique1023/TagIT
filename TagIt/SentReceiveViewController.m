@@ -70,6 +70,7 @@
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.receivedMessages = objects.mutableCopy;
+
         [self.receivedTableView reloadData];
     }];
 }
@@ -163,12 +164,15 @@
     }else if ([segue.identifier isEqualToString:@"sentPhotoSegue"]){
 
         NSIndexPath *indexPath = [self.sentTableView indexPathForSelectedRow];
+
         vc.object = [self.sentMessages objectAtIndex:indexPath.row];
 
     }else if ([segue.identifier isEqualToString:@"reportUserID"]){
 
         NSIndexPath *indexPath = [self.receivedTableView indexPathForSelectedRow];
-        rvc.messageObject = [self.sentMessages objectAtIndex:indexPath.row];
+
+        rvc.messageObject = [self.receivedMessages objectAtIndex:indexPath.row];
+
     }
 }
 
