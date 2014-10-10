@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -360,12 +359,23 @@
                                                         <action selector="onBlockButtonPressed:" destination="xOY-Lx-Uaw" eventType="touchUpInside" id="a3X-W2-RBG"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v75-q2-lbh">
+                                                    <rect key="frame" x="218" y="298" width="83" height="30"/>
+                                                    <state key="normal" title="Report User">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="onReportUserButtonPressed:" destination="xOY-Lx-Uaw" eventType="touchUpInside" id="O1l-O4-URE"/>
+                                                        <segue destination="GMa-WR-wkl" kind="modal" identifier="reportUserID" id="Ex8-AI-eEl"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="blockButton" destination="ZEf-en-Irb" id="TaF-1f-HmS"/>
                                             <outlet property="receivedImageView" destination="tGg-Tp-miL" id="lbz-tI-IGe"/>
                                             <outlet property="receivedMessage" destination="pNb-Ok-21C" id="W6s-Vq-z96"/>
+                                            <outlet property="reportUserButton" destination="v75-q2-lbh" id="bXu-0R-36v"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -411,6 +421,27 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EyU-qf-eJ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1927" y="401"/>
+        </scene>
+        <!--Report User View Controller-->
+        <scene sceneID="piG-32-Kv1">
+            <objects>
+                <viewController id="GMa-WR-wkl" customClass="ReportUserViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YEQ-45-vfT"/>
+                        <viewControllerLayoutGuide type="bottom" id="BC8-pu-ADU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="X38-ea-7z3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="pf9-m1-AJi" kind="modal" identifier="reportUserSegue" id="epz-sO-3Z1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0JL-y9-qRB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2415" y="693"/>
         </scene>
         <!--Image View Controller-->
         <scene sceneID="Soc-qY-Ucz">
@@ -497,7 +528,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Vf-SA-dSq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2970" y="102"/>
+            <point key="canvasLocation" x="2630" y="-10"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="hqG-nt-E5N">
@@ -628,5 +659,8 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="AMJ-MD-8BE"/>
+
+
+        <segue reference="epz-sO-3Z1"/>
     </inferredMetricsTieBreakers>
 </document>

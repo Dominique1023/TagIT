@@ -42,6 +42,8 @@
 		5DF66AA719AE494A002C9E1D /* ReceivedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF66AA619AE494A002C9E1D /* ReceivedTableViewCell.m */; };
 		96231CEC19BE343500C9F2DF /* car-horn.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96231CEB19BE343500C9F2DF /* car-horn.wav */; };
 		965530A519AE1AA400697D37 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 080308B719ABBB1900199B95 /* Parse.framework */; };
+		96CB98DF19CE6EF600A2CA7C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96CB98DE19CE6EF600A2CA7C /* MessageUI.framework */; };
+		96CB98E219CE729500A2CA7C /* ReportUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96CB98E119CE729500A2CA7C /* ReportUserViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +103,9 @@
 		5DF66AA519AE494A002C9E1D /* ReceivedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceivedTableViewCell.h; sourceTree = "<group>"; };
 		5DF66AA619AE494A002C9E1D /* ReceivedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceivedTableViewCell.m; sourceTree = "<group>"; };
 		96231CEB19BE343500C9F2DF /* car-horn.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "car-horn.wav"; sourceTree = "<group>"; };
+		96CB98DE19CE6EF600A2CA7C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		96CB98E019CE729500A2CA7C /* ReportUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportUserViewController.h; sourceTree = "<group>"; };
+		96CB98E119CE729500A2CA7C /* ReportUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportUserViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96CB98DF19CE6EF600A2CA7C /* MessageUI.framework in Frameworks */,
 				0803086E19ABB90C00199B95 /* UIKit.framework in Frameworks */,
 				0803086C19ABB90C00199B95 /* CoreGraphics.framework in Frameworks */,
 				0803086A19ABB90C00199B95 /* Foundation.framework in Frameworks */,
@@ -162,6 +168,7 @@
 		0803086819ABB90C00199B95 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				96CB98DE19CE6EF600A2CA7C /* MessageUI.framework */,
 				080308B419ABBAB600199B95 /* SystemConfiguration.framework */,
 				080308B219ABBAA400199B95 /* StoreKit.framework */,
 				080308B019ABBA9B00199B95 /* Social.framework */,
@@ -186,7 +193,8 @@
 			isa = PBXGroup;
 			children = (
 				083E499119C0B9CC00850515 /* Main.storyboard */,
-				0889967B19ABD2CB001D3425 /* Images.xcassets */,
+				96CB98E019CE729500A2CA7C /* ReportUserViewController.h */,
+				96CB98E119CE729500A2CA7C /* ReportUserViewController.m */,
 				080308B919ABBDAC00199B95 /* LogInViewController.h */,
 				080308BA19ABBDAC00199B95 /* LogInViewController.m */,
 				5DE3061319ACD7CB006E2DBF /* SendViewController.h */,
@@ -203,6 +211,7 @@
 				5DA2517819B8C45800850053 /* FeedTableViewCell.m */,
 				088996BE19AE80EA001D3425 /* SettingsViewController.h */,
 				088996BF19AE80EA001D3425 /* SettingsViewController.m */,
+				0889967B19ABD2CB001D3425 /* Images.xcassets */,
 				0803087019ABB90C00199B95 /* Supporting Files */,
 			);
 			path = TagIt;
@@ -288,10 +297,14 @@
 				ORGANIZATIONNAME = MobileMakers;
 				TargetAttributes = {
 					0803086519ABB90C00199B95 = {
+<<<<<<< HEAD
 						DevelopmentTeam = Q92J65ZBJQ;
+=======
+						DevelopmentTeam = 6VFN7544GC;
+>>>>>>> 8fba51be1a54c0946ecb213f081eec2df30bc28b
 					};
 					0803088619ABB90C00199B95 = {
-						DevelopmentTeam = KTXSHTJLS6;
+						DevelopmentTeam = 6VFN7544GC;
 						TestTargetID = 0803086519ABB90C00199B95;
 					};
 				};
@@ -346,6 +359,7 @@
 				5D0B43CA19AD230100B91F86 /* SentTableViewCell.m in Sources */,
 				5DE3061519ACD7CB006E2DBF /* SendViewController.m in Sources */,
 				088996C019AE80EA001D3425 /* SettingsViewController.m in Sources */,
+				96CB98E219CE729500A2CA7C /* ReportUserViewController.m in Sources */,
 				0803087A19ABB90C00199B95 /* AppDelegate.m in Sources */,
 				5DA2517919B8C45800850053 /* FeedTableViewCell.m in Sources */,
 				5DF66AA719AE494A002C9E1D /* ReceivedTableViewCell.m in Sources */,

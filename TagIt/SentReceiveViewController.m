@@ -10,6 +10,7 @@
 #import "SentTableViewCell.h"
 #import "ReceivedTableViewCell.h"
 #import "ImageViewController.h"
+#import "ReportUserViewController.h"
 
 @interface SentReceiveViewController () <UITableViewDataSource, UITableViewDelegate, ReceivedTableViewCellDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *sentTableView;
@@ -69,6 +70,7 @@
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.receivedMessages = objects.mutableCopy;
+
         [self.receivedTableView reloadData];
     }];
 }
@@ -126,6 +128,7 @@
 
         cell.receivedMessage.text = tempObject[@"text"];
         cell.receivedMessage.textColor = [UIColor grayColor];
+        cell.reportUserButton.tintColor = [UIColor colorWithRed:253.f/255.f green:80.f/255.f blue:80.f/255.f alpha:1.f];
         cell.blockButton.tintColor = [UIColor colorWithRed:253.f/255.f green:80.f/255.f blue:80.f/255.f alpha:1.f];
         cell.message = tempObject;
 
@@ -151,13 +154,25 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     ImageViewController *vc = segue.destinationViewController;
+    ReportUserViewController *rvc = segue.destinationViewController;
 
     if ([segue.identifier isEqualToString:@"receivedPhotoSegue"]) {
+
         NSIndexPath *indexPath = [self.receivedTableView indexPathForSelectedRow];
         vc.object = [self.receivedMessages objectAtIndex:indexPath.row];
+        
     }else if ([segue.identifier isEqualToString:@"sentPhotoSegue"]){
+
         NSIndexPath *indexPath = [self.sentTableView indexPathForSelectedRow];
+
         vc.object = [self.sentMessages objectAtIndex:indexPath.row];
+
+    }else if ([segue.identifier isEqualToString:@"reportUserID"]){
+
+        NSIndexPath *indexPath = [self.receivedTableView indexPathForSelectedRow];
+
+        rvc.messageObject = [self.receivedMessages objectAtIndex:indexPath.row];
+
     }
 }
 
