@@ -20,9 +20,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *reportUserButton;
 @property NSMutableArray *blockedUsers;
 @property PFObject *message;
+@property NSInteger iPath;
 @property id<ReceivedTableViewCellDelegate> delegate;
 
 -(IBAction)onBlockButtonPressed:(id)sender;
-
+- (IBAction)onReportUserButtonPressed:(id)sender; 
 
 @end

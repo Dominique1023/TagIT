@@ -8,10 +8,12 @@
 
 #import "ReceivedTableViewCell.h"
 #import <MessageUI/MessageUI.h>
+#import "ReportUserViewController.h"
 
 @interface ReceivedTableViewCell() <UIAlertViewDelegate>
 @property UIAlertView *blockAlertView;
 @property UIAlertView *reportUserAlertView;
+@property ReportUserViewController *reportUserViewController;
 @end
 
 @implementation ReceivedTableViewCell
@@ -26,6 +28,14 @@
     //disables the button so the user doesn't report the user twice and spam us
     self.reportUserButton.tintColor = [UIColor lightGrayColor];
     self.reportUserButton.enabled = NO;
+    self.reportUserViewController = [ReportUserViewController new];
+
+
+    NSString *reportedUser = self.message.objectId;
+    self.iPath = self.reportUserButton.tag; 
+
+    NSLog(@"reportedUser: %@ ",  reportedUser );
+
 
 }
 
@@ -41,18 +51,18 @@
             PFUser *blockedUser = [self.message objectForKey:@"from"];
 
             //creating a new array filling it with Users that are currently blocked
-            NSMutableArray * blockedUsersArray = [currentUser[@"blockedUsers"] mutableCopy];
+            NSMutableArray *blockedUsersArray = [currentUser[@"blockedUsers"] mutableCopy];
 
             //if the currentUser hasn't blocked anyone than init a new NSMutableArray
             if (blockedUsersArray == nil){
                 blockedUsersArray = [NSMutableArray new];
             }
 
-            //Asing if the blocked has already been blocked
+            //Asking if the blocked users has already been blocked
             BOOL isTheUserThere = NO;
 
             //looking at every user in the blockedUsersArray and checking if its already been blocked
-            for (PFUser * user in blockedUsersArray) {
+            for (PFUser *user in blockedUsersArray) {
 
                 //if the user is NOT apart of the blockedUsersArray meaning they're not blocked
                 if ([user.objectId isEqualToString:blockedUser.objectId]) {
@@ -77,31 +87,7 @@
     }//end of if on line 38
 
 
-//    if (self.reportUserAlertView == alertView) {
-//        if (buttonIndex != alertView.cancelButtonIndex) {
-//
-//
-//            [self sendEmail];
-//
-//
-//
-//        }//end of if on line 83
-//    }//end of if on line 84
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

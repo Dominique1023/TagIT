@@ -19,6 +19,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *refreshButton;
 @property NSArray *sentMessages;
 @property NSMutableArray *receivedMessages;
+@property NSInteger iPath;
+@property ReceivedTableViewCell *rCell;
 
 @end
 
@@ -98,6 +100,7 @@
         SentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID"];
 
         PFObject *tempObject = [self.sentMessages objectAtIndex:indexPath.row];
+
         cell.userMessageView.text = tempObject[@"text"];
         cell.userMessageView.textColor = [UIColor grayColor];
         cell.receiverLabel.text = tempObject[@"to"];
@@ -121,16 +124,18 @@
         return cell;
 
     }else{
-        ReceivedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RCell"];
-        cell.delegate = self;
+        self.rCell = [tableView dequeueReusableCellWithIdentifier:@"RCell"];
+        self.rCell.delegate = self;
+
+        self.rCell.reportUserButton.tag = indexPath.row;
 
         PFObject *tempObject = [self.receivedMessages objectAtIndex:indexPath.row];
 
-        cell.receivedMessage.text = tempObject[@"text"];
-        cell.receivedMessage.textColor = [UIColor grayColor];
-        cell.reportUserButton.tintColor = [UIColor colorWithRed:253.f/255.f green:80.f/255.f blue:80.f/255.f alpha:1.f];
-        cell.blockButton.tintColor = [UIColor colorWithRed:253.f/255.f green:80.f/255.f blue:80.f/255.f alpha:1.f];
-        cell.message = tempObject;
+        self.rCell.receivedMessage.text = tempObject[@"text"];
+        self.rCell.receivedMessage.textColor = [UIColor grayColor];
+        self.rCell.reportUserButton.tintColor = [UIColor colorWithRed:253.f/255.f green:80.f/255.f blue:80.f/255.f alpha:1.f];
+        self.rCell.blockButton.tintColor = [UIColor colorWithRed:253.f/255.f green:80.f/255.f blue:80.f/255.f alpha:1.f];
+        self.rCell.message = tempObject;
 
         [tempObject[@"photo"] getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
 
@@ -141,38 +146,33 @@
                 data = imageData;
             }
 
-            cell.receivedImageView.layer.cornerRadius=8;
-            cell.receivedImageView.layer.borderWidth=2.0;
-            cell.receivedImageView.layer.masksToBounds = YES;
-            cell.receivedImageView.layer.borderColor = [[UIColor colorWithRed:253.f/255.f green:80.f/255.f blue:80.f/255.f alpha:1.f] CGColor];
+            self.rCell.receivedImageView.layer.cornerRadius=8;
+            self.rCell.receivedImageView.layer.borderWidth=2.0;
+            self.rCell.receivedImageView.layer.masksToBounds = YES;
+            self.rCell.receivedImageView.layer.borderColor = [[UIColor colorWithRed:253.f/255.f green:80.f/255.f blue:80.f/255.f alpha:1.f] CGColor];
 
-            cell.receivedImageView.image = [UIImage imageWithData:data];
+            self.rCell.receivedImageView.image = [UIImage imageWithData:data];
         }];
-        return cell;
+        return self.rCell;
     }
 }
 
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    ImageViewController *vc = segue.destinationViewController;
-    ReportUserViewController *rvc = segue.destinationViewController;
 
-    if ([segue.identifier isEqualToString:@"receivedPhotoSegue"]) {
-
-        NSIndexPath *indexPath = [self.receivedTableView indexPathForSelectedRow];
-        vc.object = [self.receivedMessages objectAtIndex:indexPath.row];
-        
-    }else if ([segue.identifier isEqualToString:@"sentPhotoSegue"]){
+    if ([segue.identifier isEqualToString:@"sentPhotoSegue"]){
+        ImageViewController *vc = segue.destinationViewController;
 
         NSIndexPath *indexPath = [self.sentTableView indexPathForSelectedRow];
-
         vc.object = [self.sentMessages objectAtIndex:indexPath.row];
 
-    }else if ([segue.identifier isEqualToString:@"reportUserID"]){
+    }else if([segue.identifier isEqualToString:@"SRReportUserSegue"]){
+        ReportUserViewController *rvc = segue.destinationViewController;
 
-        NSIndexPath *indexPath = [self.receivedTableView indexPathForSelectedRow];
+        PFObject *reportedUser = [self.receivedMessages objectAtIndex:self.rCell.iPath];
+        NSString *messageID = reportedUser.objectId;
 
-        rvc.messageObject = [self.receivedMessages objectAtIndex:indexPath.row];
-
+        rvc.reportedMessage = messageID;
     }
 }
 

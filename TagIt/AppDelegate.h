@@ -11,6 +11,6 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property UIAlertView *alertView;
-@property UIAlertView *alertViewOne;
+@property UIAlertView *rulesOfTheRoadAlertView;
+@property UIAlertView *termsOfUseAlertView;
 @end
