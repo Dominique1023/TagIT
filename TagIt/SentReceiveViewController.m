@@ -157,15 +157,23 @@
     }
 }
 
+- (IBAction)reportUser:(id)sender {
+    [self performSegueWithIdentifier:@"SRReportUserSegue" sender:self];
+}
+
+
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    ImageViewController *vc = segue.destinationViewController;
 
-    if ([segue.identifier isEqualToString:@"sentPhotoSegue"]){
-        ImageViewController *vc = segue.destinationViewController;
+    if ([segue.identifier isEqualToString:@"receivedPhotoSegue"]) {
 
+        NSIndexPath *indexPath = [self.receivedTableView indexPathForSelectedRow];
+        vc.object = [self.receivedMessages objectAtIndex:indexPath.row];
+        
+    }else if ([segue.identifier isEqualToString:@"sentPhotoSegue"]){
         NSIndexPath *indexPath = [self.sentTableView indexPathForSelectedRow];
         vc.object = [self.sentMessages objectAtIndex:indexPath.row];
-
     }else if([segue.identifier isEqualToString:@"SRReportUserSegue"]){
         ReportUserViewController *rvc = segue.destinationViewController;
 
@@ -173,6 +181,9 @@
         NSString *messageID = reportedUser.objectId;
 
         rvc.reportedMessage = messageID;
+
+
+
     }
 }
 

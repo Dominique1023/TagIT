@@ -30,13 +30,10 @@
     self.reportUserButton.enabled = NO;
     self.reportUserViewController = [ReportUserViewController new];
 
-
     NSString *reportedUser = self.message.objectId;
     self.iPath = self.reportUserButton.tag; 
 
     NSLog(@"reportedUser: %@ ",  reportedUser );
-
-
 }
 
 

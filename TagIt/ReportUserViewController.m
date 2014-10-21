@@ -21,6 +21,8 @@
     [super viewDidLoad];
 
     self.hasSent = NO;
+
+    NSLog(@"reportUserVC: %@", self.reportedMessage); 
 }
 
 -(void)viewDidAppear:(BOOL)animated{
