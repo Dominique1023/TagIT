@@ -11,7 +11,12 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+<<<<<<< HEAD
 @property UIAlertView *alertView;
 @property UIAlertView *alertViewOne;
 @property NSString *currentDevice;
+=======
+@property UIAlertView *rulesOfTheRoadAlertView;
+@property UIAlertView *termsOfUseAlertView;
+>>>>>>> Report
 @end

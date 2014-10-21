@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ReportUserViewController : UIViewController
-@property PFObject *messageObject;
-
+@property NSArray *messages;
+@property NSString *reportedMessage;
 @end

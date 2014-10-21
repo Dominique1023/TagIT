@@ -366,7 +366,8 @@
                                                     </state>
                                                     <connections>
                                                         <action selector="onReportUserButtonPressed:" destination="xOY-Lx-Uaw" eventType="touchUpInside" id="O1l-O4-URE"/>
-                                                        <segue destination="GMa-WR-wkl" kind="modal" identifier="reportUserID" id="Ex8-AI-eEl"/>
+                                                        <action selector="reportUser:" destination="pf9-m1-AJi" eventType="touchUpInside" id="N2t-j0-T3a"/>
+                                                        <segue destination="GMa-WR-wkl" kind="modal" identifier="SRReportUserSegue" id="LZ3-Vq-6iP"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -436,7 +437,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="pf9-m1-AJi" kind="modal" identifier="reportUserSegue" id="epz-sO-3Z1"/>
+                        <segue destination="pf9-m1-AJi" kind="modal" identifier="reportUserSegue" id="xHP-w3-YBn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0JL-y9-qRB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -660,7 +661,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="AMJ-MD-8BE"/>
 
+        <segue reference="xHP-w3-YBn"/>
 
-        <segue reference="epz-sO-3Z1"/>
     </inferredMetricsTieBreakers>
 </document>

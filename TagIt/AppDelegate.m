@@ -30,54 +30,50 @@
 
 -(void)applicationDidFinishLaunching:(UIApplication *)application {
 
-    [self alertOnLaunch];
+    [self rulesOfTheRoadAlertOnLaunch];
 
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if ([alertView isEqual:self.alertView]) {
-        [self alertForTerms];
-    }
-    if ([alertView isEqual:self.alertViewOne]) {
-        if (buttonIndex == 0) {
-            [self alertOnLaunch];
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
 
-        }
-        if (buttonIndex == 1) {
+    if ([alertView isEqual:self.rulesOfTheRoadAlertView]) {
+        [self termsOfUseAlertOnLaunch];
+    }
+
+    //Terms of Use AlertView
+    if ([alertView isEqual:self.termsOfUseAlertView]) {
+
+        //If the terms of Use is Accepted
+        if (buttonIndex != self.termsOfUseAlertView.cancelButtonIndex) {
             NSLog(@"ACCEPTED");
+        }else{
+            [self rulesOfTheRoadAlertOnLaunch];
         }
     }
 }
 
 
--(void)alertOnLaunch {
+-(void)rulesOfTheRoadAlertOnLaunch {
 
-    self.alertView = [[UIAlertView alloc] initWithTitle:@"Rules of the Road"
+    self.rulesOfTheRoadAlertView = [[UIAlertView alloc] initWithTitle:@"Rules of the Road"
                                                 message:[NSString stringWithFormat:@"#1 Using this app while operating a motorized vehicle is Prohibited. \n #2 DO NOT PROCEED unless you completely understand and agree to the terms of use.\n #3 Just in case you where wondering...your license plate number will never be shared with any other drivers but your RAGE message most certainly will...you can thank us later :)"]
                                                delegate:self
                                       cancelButtonTitle:@"Terms of Use"
                                       otherButtonTitles:nil];
-    [self.alertView show];
+    [self.rulesOfTheRoadAlertView show];
 
 }
 
--(void)alertForTerms {
+-(void)termsOfUseAlertOnLaunch {
 
-    self.alertViewOne = [[UIAlertView alloc] initWithTitle:@"Terms of Use"
+    self.termsOfUseAlertView = [[UIAlertView alloc] initWithTitle:@"Terms of Use"
                                                    message:[NSString stringWithFormat:@"•	No posting of threats of physical or bodily harm \n •	No uploading inappropriate images i.e.  copyrighted material, sexually explicit material, etc. \n •	Use of RoadRage while operating a vehicle is PROHIBITED \n •	RoadRage and its affiliates are not responsible and/or accountable for any of the content posted.\n •	RoadRage reserves the right to allow, deny, and/or remove any content on the site as needed. \n •	RoadRage may provide your IP address to authorities in the event of illegal activity. \n •	If you have any questions please email us at RoadRageSupport@flashpointapps.com \n •	Again, DO NOT proceed to use RoadRage unless you completely understand, accept, and agree to all of these terms."]
                                                   delegate:self
                                          cancelButtonTitle:@"Decline"
                                          otherButtonTitles:@"Accept",nil];
-    [self.alertViewOne show];
+    [self.termsOfUseAlertView show];
 
 }
-
-
-
-
-
-
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -85,23 +81,27 @@
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
+- (void)applicationDidEnterBackground:(UIApplication *)application{
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
+- (void)applicationWillEnterForeground:(UIApplication *)application{
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
+- (void)applicationDidBecomeActive:(UIApplication *)application{
 
-        [self alertOnLaunch];
+    //Sorry Steve, for testing stopped terms of use and rules of the road alert views
+    PFUser *currentUser = [PFUser currentUser];
+    if (![currentUser.username isEqualToString:@"I8ZADY"]) {
+        [self rulesOfTheRoadAlertOnLaunch];
+    }else{
+        NSLog(@"Hello Dominique");
+    }
 
+<<<<<<< HEAD
 //        [self applicationDidFinishLaunching:application];
 //
        PFUser *currentUser = [PFUser currentUser];
@@ -133,22 +133,27 @@
             [PFUser logOut];
             // show the signup screen here....
         }
+=======
+>>>>>>> Report
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application
-{
+- (void)applicationWillTerminate:(UIApplication *)application{
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+<<<<<<< HEAD
 
 -(void)automaticLogin
 {
 }
 
+=======
+>>>>>>> Report
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
     //Store the deviceToken in the current installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:newDeviceToken];
+<<<<<<< HEAD
     currentInstallation.channels = @[@"global"];
     [currentInstallation saveInBackground];
     [PFPush storeDeviceToken:newDeviceToken];
@@ -159,10 +164,19 @@
 
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
+=======
+    //currentInstallation.channels = @[@"global"];
+    [currentInstallation saveInBackground];
+    //[PFPush storeDeviceToken:newDeviceToken];
+    //[PFPush subscribeToChannelInBackground:@""];
+
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+>>>>>>> Report
     [PFPush handlePush:userInfo];
 }
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
-{
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
     NSLog(@"Did fail to register for push, %@", error);
 }
 @end
