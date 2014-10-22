@@ -46,8 +46,8 @@
     NSString *currentUserObjectID = currentUser.objectId;
     NSString *currentUserUserName = [[PFUser currentUser] username];
 
-    //automatically sets the recipent to us     *** add @"alexhudson07@gmail.com", or @"steven.sickler@yahoo.com" to test   ****
-    NSArray *recipent = [[NSArray alloc]initWithObjects:@"dominiquev91@gmail.com", nil];
+    //automatically sets the recipent to us    roadragesupport@flashpointapps.com
+    NSArray *recipent = [[NSArray alloc]initWithObjects:@"roadragesupport@flashpointapps.com", nil];
 
     //inits a new mail composer and sets properties
     self.mailComposer = [MFMailComposeViewController new];
