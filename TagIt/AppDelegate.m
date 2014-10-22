@@ -93,15 +93,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application{
 
-    //Sorry Steve, for testing stopped terms of use and rules of the road alert views
-    PFUser *currentUser = [PFUser currentUser];
-    if (![currentUser.username isEqualToString:@"I8ZADY"]) {
-        [self rulesOfTheRoadAlertOnLaunch];
-    }else{
-        NSLog(@"Hello Dominique");
-    }
 
-<<<<<<< HEAD
 //        [self applicationDidFinishLaunching:application];
 //
        PFUser *currentUser = [PFUser currentUser];
@@ -133,27 +125,19 @@
             [PFUser logOut];
             // show the signup screen here....
         }
-=======
->>>>>>> Report
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application{
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-<<<<<<< HEAD
 
--(void)automaticLogin
-{
-}
-
-=======
->>>>>>> Report
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
     //Store the deviceToken in the current installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:newDeviceToken];
-<<<<<<< HEAD
+
     currentInstallation.channels = @[@"global"];
     [currentInstallation saveInBackground];
     [PFPush storeDeviceToken:newDeviceToken];
@@ -162,18 +146,17 @@
 }
 
 
-- (void)application:(UIApplication *)application
-didReceiveRemoteNotification:(NSDictionary *)userInfo {
-=======
-    //currentInstallation.channels = @[@"global"];
-    [currentInstallation saveInBackground];
-    //[PFPush storeDeviceToken:newDeviceToken];
-    //[PFPush subscribeToChannelInBackground:@""];
-
-}
+//- (void)application:(UIApplication *)application
+//didReceiveRemoteNotification:(NSDictionary *)userInfo {
+//
+//    //currentInstallation.channels = @[@"global"];
+//    [currentInstallation saveInBackground];
+//    //[PFPush storeDeviceToken:newDeviceToken];
+//    //[PFPush subscribeToChannelInBackground:@""];
+//
+//}
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
->>>>>>> Report
     [PFPush handlePush:userInfo];
 }
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{

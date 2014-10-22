@@ -171,21 +171,16 @@
 
             [alertView show];
 
-<<<<<<< HEAD
-=======
+
             self.licensePlateTextField.text = @"";
             self.passwordField.text = @"";
->>>>>>> 8fba51be1a54c0946ecb213f081eec2df30bc28b
         }else{
             if (user) {
                 NSLog(@"User logged in");
                 [self performSegueWithIdentifier:@"initialSegue" sender:self];
-<<<<<<< HEAD
                 //updates PFInstallation installedUser to currently logged in user
                 [self addCurrentUserObjectId];
 
-=======
->>>>>>> 8fba51be1a54c0946ecb213f081eec2df30bc28b
             }else{
 
             }
