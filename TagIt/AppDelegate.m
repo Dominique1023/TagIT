@@ -10,18 +10,13 @@
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
     [Parse setApplicationId:@"LGoKQau3KAIoHY3aH201WncmAp4uOoNhe7nyCkqx"clientKey:@"iEJmwbIor8EqyCvZ4Jqsyu6VWv0gNpUN0t1xcODV"];
-
-
 
     [application registerForRemoteNotificationTypes:
      UIRemoteNotificationTypeBadge |
      UIRemoteNotificationTypeAlert |
      UIRemoteNotificationTypeSound];
-
-
 
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor redColor]];
 
@@ -52,7 +47,6 @@
     }
 }
 
-
 -(void)rulesOfTheRoadAlertOnLaunch {
 
     self.rulesOfTheRoadAlertView = [[UIAlertView alloc] initWithTitle:@"Rules of the Road"
@@ -75,8 +69,7 @@
 
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
-{
+- (void)applicationWillResignActive:(UIApplication *)application{
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
@@ -92,39 +85,7 @@
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application{
-
-
-//        [self applicationDidFinishLaunching:application];
-//
-       PFUser *currentUser = [PFUser currentUser];
-        if (currentUser) {
-            //save the installation
-            PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-            currentInstallation[@"installationUser"] = [[PFUser currentUser]objectId];
-
-           // here we add a column to the installation table and store the current user’s ID
-            // this way we can target specific users later
-
-            // while we’re at it, this is a good place to reset our app’s badge count
-            // you have to do this locally as well as on the parse server by updating
-           // the PFInstallation object
-            if (currentInstallation.badge != 0) {
-                currentInstallation.badge = 0;
-                [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    if (error) {
-                        // Handle error here with an alert…
-                    }else {
-                        // only update locally if the remote update succeeded so they always match
-                        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-                        NSLog(@"updated badge");
-                    }
-                }];
-            }
-       } else {
-
-            [PFUser logOut];
-            // show the signup screen here....
-        }
+    [self rulesOfTheRoadAlertOnLaunch];
 
 }
 
@@ -132,29 +93,19 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
     //Store the deviceToken in the current installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    currentInstallation[@"installationUser"] = [[PFUser currentUser]objectId];
     [currentInstallation setDeviceTokenFromData:newDeviceToken];
 
-    currentInstallation.channels = @[@"global"];
+    //currentInstallation.channels = @[@"global"];
     [currentInstallation saveInBackground];
-    [PFPush storeDeviceToken:newDeviceToken];
-    [PFPush subscribeToChannelInBackground:@""];
+    //[PFPush storeDeviceToken:newDeviceToken];
+    //[PFPush subscribeToChannelInBackground:@""];
+
 
 }
-
-
-//- (void)application:(UIApplication *)application
-//didReceiveRemoteNotification:(NSDictionary *)userInfo {
-//
-//    //currentInstallation.channels = @[@"global"];
-//    [currentInstallation saveInBackground];
-//    //[PFPush storeDeviceToken:newDeviceToken];
-//    //[PFPush subscribeToChannelInBackground:@""];
-//
-//}
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [PFPush handlePush:userInfo];
