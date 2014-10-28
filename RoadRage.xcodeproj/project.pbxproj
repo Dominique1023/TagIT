@@ -195,16 +195,16 @@
 				083E499119C0B9CC00850515 /* Main.storyboard */,
 				96CB98E019CE729500A2CA7C /* ReportUserViewController.h */,
 				96CB98E119CE729500A2CA7C /* ReportUserViewController.m */,
+				5D0B43C519AD1F4A00B91F86 /* SentReceiveViewController.h */,
+				5D0B43C619AD1F4A00B91F86 /* SentReceiveViewController.m */,
+				5DF66AA519AE494A002C9E1D /* ReceivedTableViewCell.h */,
+				5DF66AA619AE494A002C9E1D /* ReceivedTableViewCell.m */,
 				080308B919ABBDAC00199B95 /* LogInViewController.h */,
 				080308BA19ABBDAC00199B95 /* LogInViewController.m */,
 				5DE3061319ACD7CB006E2DBF /* SendViewController.h */,
 				5DE3061419ACD7CB006E2DBF /* SendViewController.m */,
-				5D0B43C519AD1F4A00B91F86 /* SentReceiveViewController.h */,
-				5D0B43C619AD1F4A00B91F86 /* SentReceiveViewController.m */,
 				5D0B43C819AD230100B91F86 /* SentTableViewCell.h */,
 				5D0B43C919AD230100B91F86 /* SentTableViewCell.m */,
-				5DF66AA519AE494A002C9E1D /* ReceivedTableViewCell.h */,
-				5DF66AA619AE494A002C9E1D /* ReceivedTableViewCell.m */,
 				5D41DD9919AE98EE00295892 /* ImageViewController.h */,
 				5D41DD9A19AE98EE00295892 /* ImageViewController.m */,
 				5DA2517719B8C45800850053 /* FeedTableViewCell.h */,
@@ -297,10 +297,10 @@
 				ORGANIZATIONNAME = MobileMakers;
 				TargetAttributes = {
 					0803086519ABB90C00199B95 = {
-						DevelopmentTeam = 6VFN7544GC;
+						DevelopmentTeam = Q92J65ZBJQ;
 					};
 					0803088619ABB90C00199B95 = {
-						DevelopmentTeam = 6VFN7544GC;
+						DevelopmentTeam = Q92J65ZBJQ;
 						TestTargetID = 0803086519ABB90C00199B95;
 					};
 				};
@@ -492,8 +492,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TagIt/TagIt-Prefix.pch";
 				INFOPLIST_FILE = "TagIt/TagIt-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -513,8 +515,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TagIt/TagIt-Prefix.pch";
 				INFOPLIST_FILE = "TagIt/TagIt-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

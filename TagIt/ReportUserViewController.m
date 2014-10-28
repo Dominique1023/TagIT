@@ -22,7 +22,8 @@
 
     self.hasSent = NO;
 
-    NSLog(@"reportUserVC: %@", self.reportedMessage); 
+     NSLog(@"reportUserVC: %@", self.reportedMessage); 
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -52,8 +53,9 @@
     //inits a new mail composer and sets properties
     self.mailComposer = [MFMailComposeViewController new];
     self.mailComposer.mailComposeDelegate = self;
-    [self.mailComposer setSubject:[NSString stringWithFormat:@"Message ID: %@", self.reportedMessage]];
-    [self.mailComposer setMessageBody: [NSString stringWithFormat:@" \n \n \n \n \n User ID: %@ \n License Plate: %@", currentUserObjectID, currentUserUserName] isHTML:NO];
+    [self.mailComposer setSubject:[NSString stringWithFormat:@"Reported Message ID: %@", self.reportedMessage]];
+    [self.mailComposer setMessageBody: [NSString stringWithFormat:@" \n Hello Road Rage Support, \n\n I use Road Rage and my License Plate is: %@ and my User ID is: %@. I would like to report an inappropriate message I received. The message that needs to be reviewed is message ID %@. \n Thank you :)  \n\n\n (Please provide addtion comments here as needed)", currentUserUserName, currentUserObjectID, self.reportedMessage] isHTML:NO];
+
     [self.mailComposer setToRecipients:recipent];
 
     [self presentViewController:self.mailComposer animated:YES completion:nil];

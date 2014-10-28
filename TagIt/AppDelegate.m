@@ -11,12 +11,37 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
+
+
     [Parse setApplicationId:@"LGoKQau3KAIoHY3aH201WncmAp4uOoNhe7nyCkqx"clientKey:@"iEJmwbIor8EqyCvZ4Jqsyu6VWv0gNpUN0t1xcODV"];
 
-    [application registerForRemoteNotificationTypes:
-     UIRemoteNotificationTypeBadge |
-     UIRemoteNotificationTypeAlert |
-     UIRemoteNotificationTypeSound];
+//    //-- Set Notification
+//    if ([application respondsToSelector:@selector(isRegisteredForRemoteNotifications)])
+//    {
+//        // iOS 8 Notifications
+//        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+//
+//        //[application registerForRemoteNotifications];
+//        [[UIApplication sharedApplication] registerForRemoteNotifications];
+//
+//    }
+//    else
+//    {
+//        // iOS < 8 Notifications
+//        [application registerForRemoteNotificationTypes:
+//         (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
+//    }
+
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+    {
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+    else
+    {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeNewsstandContentAvailability| UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    }
 
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor redColor]];
 
@@ -25,7 +50,7 @@
 
 -(void)applicationDidFinishLaunching:(UIApplication *)application {
 
-    [self rulesOfTheRoadAlertOnLaunch];
+   [self rulesOfTheRoadAlertOnLaunch];
 
 }
 
@@ -84,28 +109,80 @@
 }
 
 
-- (void)applicationDidBecomeActive:(UIApplication *)application{
-    [self rulesOfTheRoadAlertOnLaunch];
+//- (void)applicationDidBecomeActive:(UIApplication *)application{
+//    //[self rulesOfTheRoadAlertOnLaunch];
+//
+//}
 
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+
+    //[self alertOnLaunch];
+
+    //        [self applicationDidFinishLaunching:application];
+    //
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser) {
+        //save the installation
+        PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+        currentInstallation[@"installationUser"] = [[PFUser currentUser]objectId];
+
+        // here we add a column to the installation table and store the current user’s ID
+        // this way we can target specific users later
+
+        // while we’re at it, this is a good place to reset our app’s badge count
+        // you have to do this locally as well as on the parse server by updating
+        // the PFInstallation object
+        if (currentInstallation.badge != 0) {
+            currentInstallation.badge = 0;
+            [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (error) {
+                    // Handle error here with an alert…
+                }else {
+                    // only update locally if the remote update succeeded so they always match
+                    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+                    NSLog(@"updated badge");
+                }
+            }];
+        }
+    } else {
+
+        [PFUser logOut];
+        // show the signup screen here....
+    }
 }
+
 
 - (void)applicationWillTerminate:(UIApplication *)application{
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
     //Store the deviceToken in the current installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    currentInstallation[@"installationUser"] = [[PFUser currentUser]objectId];
+    
     [currentInstallation setDeviceTokenFromData:newDeviceToken];
-
-    //currentInstallation.channels = @[@"global"];
+    currentInstallation.channels = @[@"global"];
     [currentInstallation saveInBackground];
-    //[PFPush storeDeviceToken:newDeviceToken];
-    //[PFPush subscribeToChannelInBackground:@""];
-
+    [PFPush storeDeviceToken:newDeviceToken];
+    [PFPush subscribeToChannelInBackground:@""];
 
 }
+
+//- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
+//    //Store the deviceToken in the current installation and save it to Parse.
+//    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+//    currentInstallation[@"installationUser"] = [[PFUser currentUser]objectId];
+
+//    [currentInstallation setDeviceTokenFromData:newDeviceToken];
+//    //currentInstallation.channels = @[@"global"];
+//    [currentInstallation saveInBackground];
+//    //[PFPush storeDeviceToken:newDeviceToken];
+//    //[PFPush subscribeToChannelInBackground:@""];
+//
+//
+//}
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [PFPush handlePush:userInfo];

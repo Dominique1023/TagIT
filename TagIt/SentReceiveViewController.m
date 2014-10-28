@@ -174,6 +174,7 @@
     }else if ([segue.identifier isEqualToString:@"sentPhotoSegue"]){
         NSIndexPath *indexPath = [self.sentTableView indexPathForSelectedRow];
         vc.object = [self.sentMessages objectAtIndex:indexPath.row];
+
     }else if([segue.identifier isEqualToString:@"SRReportUserSegue"]){
         ReportUserViewController *rvc = segue.destinationViewController;
 
@@ -181,6 +182,7 @@
         NSString *messageID = reportedUser.objectId;
 
         rvc.reportedMessage = messageID;
+
 
 
 

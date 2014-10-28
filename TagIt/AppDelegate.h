@@ -16,4 +16,7 @@
 @property NSString *currentDevice;
 @property UIAlertView *rulesOfTheRoadAlertView;
 @property UIAlertView *termsOfUseAlertView;
+
+
+
 @end
