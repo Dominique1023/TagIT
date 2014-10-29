@@ -26,6 +26,13 @@
 @property UIAlertView *forgotPasswordAlertView;
 @property BOOL isCancelShowing;
 
+//@property UIAlertView *alertView;
+@property UIAlertView *alertViewOne;
+
+@property UIAlertView *rulesOfTheRoadAlertView;
+@property UIAlertView *termsOfUseAlertView;
+
+
 @end
 
 @implementation LogInViewController
@@ -92,17 +99,17 @@
         [UIView animateWithDuration:1.2 animations:^{
             self.logInButton.hidden = YES;
 
-            self.roadRageLabel.transform = CGAffineTransformMakeTranslation(0, -90);
-            self.roadRageLabel.transform = CGAffineTransformMakeTranslation(0, -185);
+            self.roadRageLabel.transform = CGAffineTransformMakeTranslation(0, -120);
+            self.roadRageLabel.transform = CGAffineTransformMakeTranslation(0, -70);
 
-            self.emailTextField.transform = CGAffineTransformMakeTranslation(0, -60);
-            self.emailTextField.transform = CGAffineTransformMakeTranslation(0, -120);
+            self.emailTextField.transform = CGAffineTransformMakeTranslation(0, -25);
+            self.emailTextField.transform = CGAffineTransformMakeTranslation(0, -35);
 
-            self.licensePlateTextField.transform = CGAffineTransformMakeTranslation(0, -60);
-            self.licensePlateTextField.transform = CGAffineTransformMakeTranslation(0, -120);
+            self.licensePlateTextField.transform = CGAffineTransformMakeTranslation(0, -25);
+            self.licensePlateTextField.transform = CGAffineTransformMakeTranslation(0, -35);
 
-            self.passwordField.transform = CGAffineTransformMakeTranslation(0, -60);
-            self.passwordField.transform = CGAffineTransformMakeTranslation(0, -120);
+            self.passwordField.transform = CGAffineTransformMakeTranslation(0, -25);
+            self.passwordField.transform = CGAffineTransformMakeTranslation(0, -35);
 
             self.emailTextField.hidden = NO;
             self.emailTextField.alpha = 1;
@@ -171,21 +178,25 @@
 
             [alertView show];
 
+
+            self.licensePlateTextField.text = @"";
+            self.passwordField.text = @"";
         }else{
             if (user) {
                 NSLog(@"User logged in");
                 [self performSegueWithIdentifier:@"initialSegue" sender:self];
+                [self rulesOfTheRoadAlertOnLaunch];
                 //updates PFInstallation installedUser to currently logged in user
                 [self addCurrentUserObjectId];
 
             }else{
 
-                self.licensePlateTextField.text = @"";
-                self.passwordField.text = @"";
             }
         }
     }];
-}
+
+    //[self rulesOfTheRoadAlertOnLaunch];
+    }
 
 //called when user touches "Forget Password", hides login buttons
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -200,6 +211,24 @@
         self.doneButton.hidden = NO;
         self.cancelResetPasswordButton.hidden = NO;
     }
+
+    if ([alertView isEqual:self.rulesOfTheRoadAlertView]) {
+        [self termsOfUseAlertOnLaunch];
+    }
+
+    //Terms of Use AlertView
+    if ([alertView isEqual:self.termsOfUseAlertView]) {
+
+        //If the terms of Use is Accepted
+        if (buttonIndex != self.termsOfUseAlertView.cancelButtonIndex) {
+            NSLog(@"ACCEPTED");
+        }else{
+            [self rulesOfTheRoadAlertOnLaunch];
+        }
+    }
+
+
+
 }
 
 //when user touches cancel on forget password, returns to login view
@@ -261,10 +290,12 @@
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         if (!error){
             [self performSegueWithIdentifier:@"initialSegue" sender:self];
+
+            [self rulesOfTheRoadAlertOnLaunch];
             
             //updates PFInstallation installedUser to currently logged in user
             [self addCurrentUserObjectId];
-
+       
 
         }else{
             NSString *errorString = [[error userInfo] objectForKey:@"error"];
@@ -273,6 +304,8 @@
             [alertView show];
          }
     }];
+
+
 }
 
 #pragma mark TEXTFEILD DELEGATES
@@ -294,8 +327,45 @@
 }
 
 
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+//
+//    if ([alertView isEqual:self.rulesOfTheRoadAlertView]) {
+//        [self termsOfUseAlertOnLaunch];
+//    }
+//
+//    //Terms of Use AlertView
+//    if ([alertView isEqual:self.termsOfUseAlertView]) {
+//
+//        //If the terms of Use is Accepted
+//        if (buttonIndex != self.termsOfUseAlertView.cancelButtonIndex) {
+//            NSLog(@"ACCEPTED");
+//        }else{
+//            [self rulesOfTheRoadAlertOnLaunch];
+//        }
+//    }
+//}
 
+-(void)rulesOfTheRoadAlertOnLaunch {
 
+    self.rulesOfTheRoadAlertView = [[UIAlertView alloc] initWithTitle:@"Rules of the Road"
+                                                              message:[NSString stringWithFormat:@"#1 Using this app while operating a motorized vehicle is Prohibited. \n #2 DO NOT PROCEED unless you completely understand and agree to the terms of use.\n #3 Just in case you where wondering...your license plate number will never be shared with any other drivers but your RAGE message most certainly will...you can thank us later :)"]
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Terms of Use"
+                                                    otherButtonTitles:nil];
+    [self.rulesOfTheRoadAlertView show];
+
+}
+
+-(void)termsOfUseAlertOnLaunch {
+
+    self.termsOfUseAlertView = [[UIAlertView alloc] initWithTitle:@"Terms of Use"
+                                                          message:[NSString stringWithFormat:@"•	No posting of threats of physical or bodily harm \n •	No uploading inappropriate images i.e.  copyrighted material, sexually explicit material, etc. \n •	Use of RoadRage while operating a vehicle is PROHIBITED \n •	RoadRage and its affiliates are not responsible and/or accountable for any of the content posted.\n •	RoadRage reserves the right to allow, deny, and/or remove any content on the site as needed. \n •	RoadRage may provide your IP address to authorities in the event of illegal activity. \n •	If you have any questions please email us at RoadRageSupport@flashpointapps.com \n •	Again, DO NOT proceed to use RoadRage unless you completely understand, accept, and agree to all of these terms."]
+                                                         delegate:self
+                                                cancelButtonTitle:@"Decline"
+                                                otherButtonTitles:@"Accept",nil];
+    [self.termsOfUseAlertView show];
+    
+}
 
 
 
